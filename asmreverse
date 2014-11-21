@@ -47,6 +47,19 @@ class State:
     def setReg(self, name, value):
         self.regs[name] = value
 
+    def isValue(self, value):
+        if len(value) > 2 and value[:2] == "0x" and value[2:].isdigit():
+            return True
+        if value[-1] == 'h' and value[:-1].isdigit():
+            return True
+        return value.isdigit()
+    def parseValue(self, value):
+        if len(value) > 2 and value[:2] == "0x" and value[2:].isdigit():
+            return int(value[2:], 16)
+        if value[-1] == 'h' and value[:-1].isdigit():
+            return int(value[:-1], 16)
+        return int(value, 10)
+
     def getReg(self, name):
         return self.regs[name]
 
