@@ -1,0 +1,389 @@
+#!/usr/bin/python
+FILEBASE = "HashAsm"
+FILE = FILEBASE + ".txt"
+FILE_OUT = FILEBASE + "_reversed.txt"
+
+from re import *
+
+REG = r"([a-z]+)[ \t]+([a-zA-Z0-9_+\[\]]+)[, \t]*([a-zA-Z0-9+_\[\]]*)"
+
+UNDEF = "U"
+
+
+class State:
+    def __init__(self, ax, bx, cx, dx, di, si, bp, sp):
+        self.regs = {
+            "eax": ax,
+            "ebx": bx,
+            "ecx": cx,
+            "edx": dx,
+            "edi": di,
+            "esi": si,
+            "ebp": bp,
+            "esp": sp
+        }
+        self.lineNum = 0
+
+    def getCopy(self):
+        return State(self.regs["eax"], self.regs["ebx"], self.regs["ecx"], self.regs["edx"], self.regs["edi"],
+                     self.regs["esi"], self.regs["ebp"], self.regs["esp"])
+
+    def ifInUndefState(self):
+        for regname in self.regs.keys():
+            if self.isUndef(regname):
+                return True
+        return False
+
+    def isUndef(self, reg):
+        if reg not in self.regs.keys():
+            raise Exception("Invalid " + str(reg))
+        return str(self.regs[reg]) == UNDEF
+
+    def makeUndef(self, reg):
+        if reg not in self.regs.keys():
+            raise Exception("Invalid " + str(reg))
+        self.regs[reg] = UNDEF
+
+    def setReg(self, name, value):
+        self.regs[name] = value
+
+    def getReg(self, name):
+        return self.regs[name]
+
+    def __str__(self):
+        print "#%-4i: " % self.lineNum + str(self.regs)
+
+    def check(self, op, arg1, arg2):
+        if arg1 not in self.regs.keys() and arg2 not in self.regs.keys():
+            raise Exception("Invalid " + str(op))
+
+
+class StateMachine:
+    def __init__(self, numString, state):
+        self.states = [state]
+        self.currentCode = numString
+        self.endString = numString
+        self.currentState = lambda: self.endString - self.currentCode
+        self.lastState = lambda: len(self.states)  - 1
+        self.upFlag = True
+
+        self.cmap = {
+            'mov': (self.movUp, self.movDown),
+            'shl': (self.shlUp, self.shlDown),
+            'shr': (self.shrUp, self.shrDown),
+            'push': (self.pushUp, self.pushDown),
+            'pop': (self.popUp, self.popDown),
+            'add': (self.addUp, self.addDown),
+            'sub': (self.subUp, self.subDown),
+            'and': (self.andUp, self.andDown),
+            'neg': (self.negUp, self.negDown),
+            'rol': (self.rolUp, self.rolDown),
+            'not': (self.notUp, self.notDown),
+            'inc': (self.incUp, self.incDown),
+            'dec': (self.decUp, self.decDown),
+            'lea': (self.leaUp, self.leaDown)
+        }
+
+
+    def step(self, op, a1, a2, a3):
+        if self.upFlag:
+            self.up(op, a1, a2, a3)
+        else:
+            self.down(op, a1, a2, a3)
+
+    def up(self, op, arg1, arg2, arg3):
+        self.copyStateUp()
+        upFunc, downFunc = self.cmap[op]
+        upFunc(arg1, arg2, arg3)
+        self.currentCode -= 1
+        if self.currentCode < 0:
+            raise Exception("BUG 4")
+        self.checkForUpdate()
+
+    def down(self, op, arg1, arg2, arg3):
+        upFunc, downFunc = self.cmap[op]
+        downFunc(arg1, arg2, arg3)
+        self.copyStateDown(arg1, arg2, arg3)
+        self.currentCode += 1
+        self.checkForUpdateFinish()
+
+    def checkForUpdate(self):
+        if self.currentState() != len(self.states) - 1:
+            raise Exception("BUG 2")
+
+        curState = self.states[self.currentState()]
+        prevState = self.states[self.currentState() - 1]
+        for regname in curState.regs.keys():
+            if prevState.isUndef(regname) and not curState.isUndef(regname):
+                #assert self.upFlag == True, "BUG 6"
+                self.upFlag = False
+
+    def checkForUpdateFinish(self):
+        assert self.currentState() >= 0 and self.currentState() <= len(self.states)
+        curState = self.states[self.currentState()]
+        if not curState.ifInUndefState():
+            assert self.upFlag == False, "BUG 5"
+            self.upFlag = True
+            self.currentCode = self.endString - self.lastState()
+            assert self.currentState() == self.lastState(), "BUG7"
+
+    def currentPos(self):
+        return self.currentCode
+
+    def copyStateUp(self):
+        if len(self.states) - 1 != self.currentState():
+            raise Exception("BUG 1")
+        st = self.states[self.currentState()].getCopy()
+        st.lineNum = self.currentCode - 1
+        self.states.append(st)
+
+    def copyStateDown(self, *args):
+        if self.currentState() >= len(self.states) and self.currentState() < 1:
+            raise Exception("BUG 3")
+
+        upState = self.states[self.currentState()]
+        downState = self.states[self.currentState() - 1]
+        for regname in upState.regs.keys():
+            if regname in args:
+                continue
+
+            if not upState.isUndef(regname) and downState.isUndef(regname):
+                downState.regs[regname] = upState.regs[regname]
+
+            if not upState.isUndef(regname) and not downState.isUndef(regname):
+                if downState.regs[regname] != upState.regs[regname]:
+                    raise Exception("Warning: different regs states")
+
+    ####### useful code
+    def movUp(self, a1, a2, a3):
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+
+
+        upState.makeUndef(a1)
+        if not downState.isUndef(a1) and upState.isUndef(a2):
+            upState.setReg(a2, downState.getReg(a1))
+        elif not downState.isUndef(a1) and not upState.isUndef(a2):
+            assert upState.getReg(a2) == downState.getReg(a2), "BUG 8"
+        elif not downState.isUndef(a2) and downState.isUndef(a1):
+            self.upFlag = False
+
+    def movDown(self, a1, a2, a3):
+        state = self.states[self.currentState()]
+        if not state.isUndef(a2) and state.isUndef(a1):
+            state.setReg(a1, state.getReg(a2))
+        if not state.isUndef(a2) and not state.isUndef(a1):
+            assert state.getReg(a1) == state.getReg(a2)
+
+
+
+    def shlUp(self, a1, a2, a3):
+        pass
+
+    def shlDown(self, a1, a2, a3):
+        pass
+
+    def shrUp(self, a1, a2, a3):
+        pass
+
+    def shrDown(self, a1, a2, a3):
+        pass
+
+    def pushUp(self, a1, a2, a3):
+        pass
+
+    def pushDown(self, a1, a2, a3):
+        pass
+
+    def popUp(self, a1, a2, a3):
+        pass
+
+    def popDown(self, a1, a2, a3):
+        pass
+
+    def addUp(self, a1, a2, a3):
+        pass
+
+    def addDown(self, a1, a2, a3):
+        pass
+
+    def subUp(self, a1, a2, a3):
+        pass
+
+    def subDown(self, a1, a2, a3):
+        pass
+
+    def andUp(self, a1, a2, a3):
+        pass
+
+    def andDown(self, a1, a2, a3):
+        pass
+
+    def negUp(self, a1, a2, a3):
+        pass
+
+    def negDown(self, a1, a2, a3):
+        pass
+
+    def rolUp(self, a1, a2, a3):
+        pass
+
+    def rolDown(self, a1, a2, a3):
+        pass
+
+    def notUp(self, a1, a2, a3):
+        pass
+
+    def notDown(self, a1, a2, a3):
+        pass
+
+    def incUp(self, a1, a2, a3):
+        pass
+
+    def incDown(self, a1, a2, a3):
+        pass
+
+    def decUp(self, a1, a2, a3):
+        pass
+
+    def decDown(self, a1, a2, a3):
+        pass
+
+    def leaUp(self, a1, a2, a3):
+        pass
+
+    def leaDown(self, a1, a2, a3):
+        pass
+
+
+def processMov(arg1, arg2, arg3):
+    return "mov " + arg2 + ", " + arg1
+
+
+def processShl(arg1, arg2, arg3):
+    return "shr " + arg1 + ", " + arg2
+
+
+def processShr(arg1, arg2, arg3):
+    return "shr " + arg1 + ", " + arg2
+
+
+def processPop(arg1, arg2, arg3):
+    return "push " + arg1
+
+
+def processPush(arg1, arg2, arg3):
+    return "pop " + arg1
+
+
+def processAdd(arg1, arg2, arg3):
+    return "sub " + arg1 + ", " + arg2
+
+
+def processSub(arg1, arg2, arg3):
+    return "add " + arg1 + ", " + arg2
+
+
+def processAnd(arg1, arg2, arg3):
+    return ""  # and " + arg1 + ", " + arg2
+
+
+def processOr(arg1, arg2, arg3):
+    return ""  # or " + arg1 + ", " + arg2
+
+
+def processNeg(arg1, arg2, arg3):
+    return "neg " + arg1
+
+
+def processRol(arg1, arg2, arg3):
+    return "ror " + arg1 + ", " + arg2
+
+
+def processRor(arg1, arg2, arg3):
+    return "rol " + arg1 + ", " + arg2
+
+
+def processNot(arg1, arg2, arg3):
+    return "not " + arg1
+
+
+def processInc(arg1, arg2, arg3):
+    return "dec " + arg1
+
+
+def processDec(arg1, arg2, arg3):
+    return "inc " + arg1
+
+
+def processLea(arg1, arg2, arg3):
+    return ""
+
+
+def processImul(arg1, arg2, arg3):
+    return ""
+
+
+cmap = {
+    'mov': processMov,
+    'shl': processShl,
+    'shr': processShr,
+    'push': processPush,
+    'pop': processPop,
+    'add': processAdd,
+    'sub': processSub,
+    'and': processAnd,
+    'neg': processNeg,
+    'rol': processRol,
+    'not': processNot,
+    'inc': processInc,
+    'dec': processDec,
+    'lea': processLea
+}
+
+
+def printState(stm, i):
+    print str(i) + ": " + str(stm.states[i].regs)
+
+
+def processLine(lines, i):
+    m = search(REG, lines[i])
+    if m == None:
+        print "ERROR. Life is shit"
+        return ""
+    op, arg1, arg2 = m.group(1), m.group(2), m.group(3)
+
+
+    # if op in cmap:
+    # return cmap[op](arg1, arg2, '')
+    # return ""
+
+
+fin = open(FILE, "r")
+fout = open(FILE_OUT, "w+")
+
+lines = fin.readlines()
+st = State(6, 1, 5, 1, 5, 6, 7, 8)
+stm = StateMachine(len(lines), st)
+
+outLines = []
+for i in range(len(lines) - 1, -1, -1):
+    outLines.append(lines[i])
+
+flag = "up"
+while 1:
+    cur = stm.currentPos() - 1
+    print lines[cur]
+    m = search(REG, lines[cur])
+    if m == None:
+        print "ERROR. Life is shit"
+    op, arg1, arg2 = m.group(1), m.group(2), m.group(3)
+
+    stm.step(op, arg1, arg2, '')
+# for i in range(len(outLines)):
+# s = processLine(outLines[i])
+
+fout.close()
+fin.close()
+
+

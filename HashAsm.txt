@@ -1,0 +1,8 @@
+mov edx, 1
+mov     ecx, esi
+mov     ecx, edi
+mov     ebx, edx
+mov     eax, esi
+mov     ecx, edi
+mov     ebx, edx
+mov     ecx, edi
