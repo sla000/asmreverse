@@ -35,6 +35,8 @@ class State:
         return False
 
     def isUndef(self, reg):
+        if self.isValue(reg):
+            return False
         if reg not in self.regs.keys():
             raise Exception("Invalid " + str(reg))
         return str(self.regs[reg]) == UNDEF
@@ -45,15 +47,20 @@ class State:
         self.regs[reg] = UNDEF
 
     def setReg(self, name, value):
-        self.regs[name] = value
+        if self.isValue(value):
+            self.regs[name] = self.parseValue(value)
+        else:
+            self.regs[name] = value
 
     def isValue(self, value):
+	value = str(value)
         if len(value) > 2 and value[:2] == "0x" and value[2:].isdigit():
             return True
         if value[-1] == 'h' and value[:-1].isdigit():
             return True
         return value.isdigit()
     def parseValue(self, value):
+	value = str(value)
         if len(value) > 2 and value[:2] == "0x" and value[2:].isdigit():
             return int(value[2:], 16)
         if value[-1] == 'h' and value[:-1].isdigit():
@@ -61,10 +68,13 @@ class State:
         return int(value, 10)
 
     def getReg(self, name):
+	if self.isValue(name):
+		return self.parseValue(name) 
+	assert name in self.regs.keys(), "name %s not in regs" % name 
         return self.regs[name]
 
     def __str__(self):
-        print "#%-4i: " % self.lineNum + str(self.regs)
+        return "#%-4i: " % self.lineNum + str(self.regs)
 
     def check(self, op, arg1, arg2):
         if arg1 not in self.regs.keys() and arg2 not in self.regs.keys():
@@ -186,7 +196,8 @@ class StateMachine:
         if not state.isUndef(a2) and state.isUndef(a1):
             state.setReg(a1, state.getReg(a2))
         if not state.isUndef(a2) and not state.isUndef(a1):
-            assert state.getReg(a1) == state.getReg(a2)
+            #assert state.getReg(a1) == state.getReg(a2), "%i: %s = %u %s = %u" % (self.currentState(), a1, state.getReg(a1), a2, state.getReg(a2))
+	    state.setReg(a1, state.getReg(a2))
 
 
 
@@ -376,7 +387,7 @@ fin = open(FILE, "r")
 fout = open(FILE_OUT, "w+")
 
 lines = fin.readlines()
-st = State(6, 1, 5, 1, 5, 6, 7, 8)
+st = State(16, 16, 16, 3, 3, 3, 16, 8)
 stm = StateMachine(len(lines), st)
 
 outLines = []
@@ -386,6 +397,7 @@ for i in range(len(lines) - 1, -1, -1):
 flag = "up"
 while 1:
     cur = stm.currentPos() - 1
+
     print lines[cur]
     m = search(REG, lines[cur])
     if m == None:
@@ -393,6 +405,9 @@ while 1:
     op, arg1, arg2 = m.group(1), m.group(2), m.group(3)
 
     stm.step(op, arg1, arg2, '')
+    if cur == 0:
+        print stm.states[-1]
+        break
 # for i in range(len(outLines)):
 # s = processLine(outLines[i])
 
