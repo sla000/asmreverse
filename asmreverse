@@ -10,23 +10,38 @@ REG = r"([a-z]+)[ \t]+([a-zA-Z0-9_+\[\]]+)[, \t]*([a-zA-Z0-9+_\[\]]*)"
 UNDEF = "U"
 
 
+'''ax, bx, cx, dx, di, si, bp, sp'''
 class State:
-    def __init__(self, ax, bx, cx, dx, di, si, bp, sp):
+    def __init__(self, regs):
         self.regs = {
-            "eax": ax,
-            "ebx": bx,
-            "ecx": cx,
-            "edx": dx,
-            "edi": di,
-            "esi": si,
-            "ebp": bp,
-            "esp": sp
+            "eax": 0,
+            "ebx": 0,
+            "ecx": 0,
+            "edx": 0,
+            "edi": 0,
+            "esi": 0,
+            "ebp": 0,
+            "esp": 0,
+            "[ebp+var_1C]": 0,
+            "[ebp+var_18]": 0,
+            "[ebp+var_14]": 0,
+            "[ebp+var_10]": 0,
+            "[ebp+var_C]": 0,
+            "[ebp+var_8]": 0,
+            "[ebp+var_4]": 0,
+            "[ebp+arg_0]": 0,
+            "[ebp+arg_4]": 0
         }
+        for key in regs.keys():
+            assert key in self.regs.keys()
+            self.regs[key] = regs[key]
         self.lineNum = 0
 
     def getCopy(self):
-        return State(self.regs["eax"], self.regs["ebx"], self.regs["ecx"], self.regs["edx"], self.regs["edi"],
-                     self.regs["esi"], self.regs["ebp"], self.regs["esp"])
+        regs = {}
+        for key in self.regs.keys():
+            regs[key] = self.regs[key]
+        return State(regs)
 
     def ifInUndefState(self):
         for regname in self.regs.keys():
@@ -387,7 +402,7 @@ fin = open(FILE, "r")
 fout = open(FILE_OUT, "w+")
 
 lines = fin.readlines()
-st = State(16, 16, 16, 3, 3, 3, 16, 8)
+st = State({"eax": 16, "ebx" : 16, "ecx" : 16, "edx" : 3, "edi": 3, "esi" : 3, "ebp": 16, "esp" :8})
 stm = StateMachine(len(lines), st)
 
 outLines = []
@@ -397,6 +412,9 @@ for i in range(len(lines) - 1, -1, -1):
 flag = "up"
 while 1:
     cur = stm.currentPos() - 1
+    if cur == -1:
+        print stm.states[-1]
+        break
 
     print lines[cur]
     m = search(REG, lines[cur])
@@ -405,9 +423,6 @@ while 1:
     op, arg1, arg2 = m.group(1), m.group(2), m.group(3)
 
     stm.step(op, arg1, arg2, '')
-    if cur == 0:
-        print stm.states[-1]
-        break
 # for i in range(len(outLines)):
 # s = processLine(outLines[i])
 
