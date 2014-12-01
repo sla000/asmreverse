@@ -18,6 +18,15 @@ static PyMethodDef ClibMethods[] = {
         "Xor command"},
     {"notc", clib_not, METH_VARARGS,
         "Not command"},
+	{"or", clib_or, METH_VARARGS,
+        "Or command"},
+	{"and", clib_and, METH_VARARGS,
+        "And command"},		
+	{"add", clib_add, METH_VARARGS,
+        "Add command"},		
+	{"sub", clib_sub, METH_VARARGS,
+        "Sub command"},		
+	{
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
@@ -28,7 +37,7 @@ static PyObject *clib_func(PyObject *self, PyObject *args) {
         return NULL;
 
     printf("%s", command);
-    return Py_BuildValue("i", 0);
+    return Py_BuildValue("I", 0);
 }
 
 static PyObject *clib_shr(PyObject *self, PyObject *args)
@@ -42,20 +51,20 @@ static PyObject *clib_shr(PyObject *self, PyObject *args)
         res = reg >> shift;
         
 
-    return Py_BuildValue("i", res);
+    return Py_BuildValue("I", res);
 }
 
 static PyObject *clib_shl(PyObject *self, PyObject *args)
 {
     unsigned int reg = 0, shift = 0;
-    unsigned res = 0;
+    unsigned int res = 0;
 
     if (!PyArg_ParseTuple(args, "II", &reg, &shift))
         return NULL;
     if (shift < 32)
         res = reg << shift;
 
-    return Py_BuildValue("i", res);
+    return Py_BuildValue("I", res);
 }
 
 static PyObject *clib_ror(PyObject *self, PyObject *args)
@@ -88,32 +97,72 @@ static PyObject *clib_rol(PyObject *self, PyObject *args)
 
 static PyObject *clib_neg(PyObject *self, PyObject *args)
 {
-    int reg = 0;
+    unsigned int reg = 0;
 
     if (!PyArg_ParseTuple(args, "I", &reg))
         return NULL;
 
-    return Py_BuildValue("i", -reg);
+    return Py_BuildValue("I", -reg);
 }
 
 static PyObject *clib_not(PyObject *self, PyObject *args)
 {
-    int reg = 0;
+    unsigned int reg = 0;
 
     if (!PyArg_ParseTuple(args, "I", &reg))
         return NULL;
 
-    return Py_BuildValue("i", ~reg);
+    return Py_BuildValue("I", ~reg);
 }
 
 static PyObject *clib_xor(PyObject *self, PyObject *args)
 {
-    int reg1 = 0, reg2 = 0;
+    unsigned int reg1 = 0, reg2 = 0;
 
     if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
         return NULL;
 
-    return Py_BuildValue("i", reg1^reg2);
+    return Py_BuildValue("I", reg1^reg2);
+}
+
+static PyObject *clib_or(PyObject *self, PyObject *args)
+{
+    unsigned int reg1 = 0, reg2 = 0;
+
+    if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
+        return NULL;
+
+    return Py_BuildValue("I", reg1|reg2);
+}
+
+static PyObject *clib_and(PyObject *self, PyObject *args)
+{
+    unsigned int reg1 = 0, reg2 = 0;
+
+    if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
+        return NULL;
+
+    return Py_BuildValue("I", reg1&reg2);
+}
+
+static PyObject *clib_add(PyObject *self, PyObject *args)
+{
+    unsigned int reg1 = 0, reg2 = 0;
+
+    if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
+        return NULL;
+
+    return Py_BuildValue("I", reg1 + reg2);
+}
+
+static PyObject *clib_sub(PyObject *self, PyObject *args)
+{
+    unsigned int reg1 = 0, reg2 = 0;
+
+    if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
+        return NULL;
+
+    return Py_BuildValue("I", reg1 - reg2);
 }
 
 static PyObject *ClibError;

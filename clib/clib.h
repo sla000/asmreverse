@@ -14,3 +14,8 @@ static PyObject *clib_neg(PyObject *self, PyObject *args);
 
 static PyObject *clib_not(PyObject *self, PyObject *args);
 static PyObject *clib_xor(PyObject *self, PyObject *args);
+static PyObject *clib_or(PyObject *self, PyObject *args);
+static PyObject *clib_and(PyObject *self, PyObject *args);
+
+static PyObject *clib_add(PyObject *self, PyObject *args);
+static PyObject *clib_sub(PyObject *self, PyObject *args);
