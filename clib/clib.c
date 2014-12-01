@@ -26,7 +26,6 @@ static PyMethodDef ClibMethods[] = {
         "Add command"},		
 	{"sub", clib_sub, METH_VARARGS,
         "Sub command"},		
-	{
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
