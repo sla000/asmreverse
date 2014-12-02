@@ -10003,7 +10003,7 @@ add		edi, ebx
 rol		edx, cl
 not		esi
 ror		ebx, 0Eh
-imul	eax, edi, -2
+imul		eax, edi, -2
 add		ebx, edi
 rol		edx, 4
 add		esi, edi

@@ -1,0 +1,6240 @@
+﻿add     ebx, edi
+rol     edx, 4
+mov     ecx, edi
+neg     ecx
+add     esi, edi
+and     ecx, 1Fh
+add     edx, eax
+add     ebx, edx
+mov     [ebp+var_14], ebx
+mov     ebx, edx
+shl     ebx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     edx, cl
+or      ebx, edx
+mov     eax, [ebp+var_14]
+mov     edx, esi
+ror     edi, 2
+mov     [ebp+var_8], edi
+mov     edi, eax
+neg     edi
+mov     ecx, edi
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     esi, cl
+or      edx, esi
+mov     esi, ebx
+xor     edx, eax
+mov     eax, [ebp+var_8]
+sub     edx, eax
+ror     eax, 0Eh
+neg     edx
+mov     [ebp+var_8], eax
+ror     edx, 0Fh
+add     edx, 266A58D8h
+mov     [ebp+var_C], edx
+mov     edx, eax
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+and     edx, 1Fh
+shl     esi, cl
+mov     ecx, edx
+shr     ebx, cl
+mov     ecx, eax
+or      esi, ebx
+mov     ebx, edi
+shl     ebx, cl
+sub     esi, 534E34D6h
+mov     ecx, edx
+mov     edx, ebx
+mov     ebx, [ebp+var_C]
+shr     edi, cl
+or      edx, edi
+mov     edi, [ebp+var_8]
+neg     edx
+mov     eax, edi
+xor     edx, esi
+add     esi, ebx
+mov     ecx, esi
+mov     [ebp+var_14], esi
+neg     ecx
+neg     ebx
+and     ecx, 1Fh
+mov     [ebp+var_C], ebx
+shr     eax, cl
+neg     edx
+mov     ecx, esi
+mov     esi, [ebp+var_C]
+and     ecx, 1Fh
+and     esi, 1Fh
+shl     edi, cl
+mov     ecx, esi
+or      eax, edi
+sub     eax, ebx
+neg     ebx
+mov     [ebp+var_8], eax
+and     ebx, 1Fh
+mov     eax, [ebp+var_14]
+mov     edi, eax
+shl     edi, cl
+mov     ecx, ebx
+shr     eax, cl
+or      edi, eax
+mov     eax, [ebp+var_8]
+rol     edi, 3
+sub     edi, eax
+not     eax
+mov     ecx, edi
+mov     [ebp+var_8], eax
+neg     ecx
+mov     eax, edx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, esi
+or      eax, edx
+mov     edx, edi
+shl     edx, cl
+sub     eax, 771BB33Ch
+mov     ecx, ebx
+not     eax
+shr     edi, cl
+mov     ebx, [ebp+var_8]
+or      edx, edi
+mov     edi, [ebp+var_C]
+xor     edx, eax
+xor     edx, edi
+xor     edi, ebx
+add     edx, ebx
+mov     esi, edi
+sub     esi, eax
+ror     ebx, 8
+add     ebx, esi
+mov     ecx, esi
+neg     ecx
+mov     eax, edx
+and     ecx, 1Fh
+neg     ebx
+shl     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+rol     ebx, 7
+shr     edx, cl
+mov     ecx, edi
+neg     ecx
+mov     [ebp+var_8], ebx
+and     ecx, 1Fh
+mov     ebx, esi
+shr     ebx, cl
+or      edx, eax
+mov     ecx, edi
+ror     edi, 0Eh
+and     ecx, 1Fh
+mov     [ebp+var_C], edi
+shl     esi, cl
+or      ebx, esi
+mov     esi, [ebp+var_C]
+ror     ebx, 8
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shr     esi, cl
+or      edi, esi
+mov     esi, [ebp+var_8]
+sub     edi, 2D2576A3h
+add     edx, esi
+xor     esi, 877B5C80h
+mov     ecx, edi
+neg     ecx
+mov     eax, esi
+and     ecx, 1Fh
+neg     edx
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+ror     edx, 0Dh
+shr     esi, cl
+mov     ecx, 58F0E5AAh
+or      eax, esi
+xor     eax, edi
+sub     ecx, eax
+mov     eax, ebx
+rol     ebx, 8
+xor     ecx, 0DB80FDD6h
+not     ebx
+sub     eax, edx
+sub     ebx, ecx
+rol     ebx, 0Ah
+sub     ebx, edi
+sub     edi, eax
+add     eax, 7879322Fh
+mov     esi, edi
+sub     esi, ecx
+mov     [ebp+var_4], eax
+sub     edi, eax
+sub     esi, 75897528h
+add     eax, edi
+not     esi
+sub     esi, [ebp+var_4]
+sub     ebx, eax
+add     edi, ebx
+ror     esi, 5
+dec     esi
+ror     ebx, 3
+xor     esi, edi
+neg     ebx
+xor     esi, 5A58227Dh
+mov     eax, ebx
+and     eax, 1Fh
+mov     [ebp+var_8], esi
+mov     ecx, eax
+mov     edx, ebx
+shr     [ebp+var_8], cl
+neg     edx
+and     edx, 1Fh
+add     ebx, 0FD840FBh
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, [ebp+var_8]
+or      ecx, esi
+mov     esi, [ebp+var_4]
+ror     esi, 0Ch
+xor     esi, edi
+mov     [ebp+var_8], ecx
+not     esi
+sub     esi, ecx
+mov     ecx, eax
+not     esi
+mov     [ebp+var_4], esi
+mov     esi, edi
+shl     esi, cl
+mov     ecx, edx
+shr     edi, cl
+or      esi, edi
+mov     edi, [ebp+var_8]
+sub     esi, [ebp+var_4]
+mov     eax, edi
+sub     eax, [ebp+var_4]
+not     edi
+add     eax, esi
+sub     edi, 2DE28A3Eh
+add     eax, ebx
+mov     [ebp+var_8], edi
+mov     ebx, [ebp+var_4]
+not     esi
+mov     edx, eax
+mov     ecx, esi
+neg     ecx
+and     ebx, 1Fh
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+or      edx, eax
+mov     eax, [ebp+var_4]
+neg     eax
+mov     edi, edx
+and     eax, 1Fh
+shr     edi, cl
+mov     ecx, eax
+mov     [ebp+var_14], eax
+shl     edx, cl
+mov     eax, esi
+mov     ecx, ebx
+or      edi, edx
+shr     eax, cl
+mov     ecx, [ebp+var_14]
+shl     esi, cl
+mov     edx, edi
+mov     ecx, [ebp+var_8]
+or      eax, esi
+neg     ecx
+not     eax
+and     ecx, 1Fh
+mov     esi, eax
+shr     esi, cl
+mov     ecx, [ebp+var_8]
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+mov     eax, 7854E9B1h
+add     esi, 136EE64Dh
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, ebx
+or      edx, edi
+mov     ebx, esi
+mov     edi, [ebp+var_4]
+sub     eax, edx
+shl     ebx, cl
+not     edi
+mov     ecx, [ebp+var_14]
+shr     esi, cl
+or      ebx, esi
+rol     edi, 1
+mov     esi, [ebp+var_8]
+xor     ebx, edi
+sub     eax, esi
+xor     edi, 378D5EBAh
+add     esi, edi
+not     eax
+sub     eax, esi
+not     ebx
+add     ebx, edi
+rol     esi, 10h
+mov     edx, eax
+ror     esi, 4
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+rol     ebx, 0Ah
+shl     eax, cl
+mov     ecx, edi
+neg     ecx
+or      edx, eax
+and     ecx, 1Fh
+mov     eax, edx
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+add     edi, esi
+shr     edx, cl
+mov     ecx, ebx
+or      eax, edx
+mov     [ebp+var_4], edi
+neg     ecx
+dec     eax
+and     ecx, 1Fh
+not     eax
+mov     edi, eax
+shr     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+rol     ebx, 0Dh
+shl     eax, cl
+mov     ecx, 0A2716206h
+or      edi, eax
+sub     ecx, esi
+neg     edi
+xor     ecx, ebx
+mov     edx, [ebp+var_4]
+mov     eax, ecx
+sub     eax, edx
+rol     ebx, 3
+add     ebx, eax
+rol     ecx, 0Ah
+sub     edi, edx
+mov     eax, 0A97A8B80h
+sub     eax, ebx
+ror     edi, 9
+add     edi, eax
+lea     esi, [edx+1]
+neg     ebx
+xor     esi, 0F89B7291h
+xor     ebx, 0C5B39C7Fh
+ror     esi, 0Fh
+neg     ebx
+xor     ebx, 24BC6A66h
+mov     eax, ebx
+not     ebx
+sub     eax, ecx
+xor     esi, eax
+add     eax, 4364266Bh
+sub     edi, eax
+sub     ebx, esi
+add     ebx, edi
+xor     ebx, 81099A87h
+add     eax, ebx
+mov     [ebp+var_10], ebx
+mov     edx, [ebp+var_10]
+neg     eax
+mov     ebx, eax
+mov     [ebp+var_4], edx
+neg     ebx
+and     eax, 1Fh
+xor     edi, ebx
+mov     ecx, ebx
+and     ecx, 1Fh
+ror     edi, 8
+shl     [ebp+var_4], cl
+not     edi
+mov     ecx, eax
+ror     ebx, 0Bh
+mov     eax, [ebp+var_4]
+inc     ebx
+shr     edx, cl
+mov     ecx, edi
+neg     ecx
+or      eax, edx
+and     ecx, 1Fh
+mov     edx, esi
+shl     edx, cl
+sub     eax, edi
+mov     ecx, edi
+xor     eax, 0F40C5D60h
+and     ecx, 1Fh
+not     edi
+shr     esi, cl
+or      edx, esi
+mov     esi, edi
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     edi, cl
+or      esi, edi
+mov     edi, eax
+add     esi, edi
+mov     eax, 7E3F80A6h
+neg     esi
+sub     eax, ebx
+ror     esi, 0Bh
+lea     ecx, [edi+2F0B8C89h]
+add     esi, eax
+add     ecx, edx
+ror     esi, 0Ch
+xor     ecx, ebx
+xor     edi, ebx
+sub     ebx, ecx
+mov     edx, esi
+rol     ebx, 4
+xor     edx, ecx
+ror     esi, 0Bh
+xor     ebx, ecx
+xor     esi, 0EEC95B99h
+not     edx
+neg     esi
+sub     ebx, edx
+ror     esi, 9
+xor     esi, 0E2FFFE6Ah
+rol     ebx, 6
+sub     edi, 6421537Fh
+neg     ebx
+mov     eax, edi
+mov     [ebp+var_10], ebx
+neg     eax
+mov     [ebp+var_4], edi
+mov     ebx, eax
+mov     [ebp+var_14], eax
+mov     eax, esi
+and     edi, 1Fh
+and     ebx, 1Fh
+mov     ecx, edi
+shr     eax, cl
+neg     edx
+mov     ecx, ebx
+shl     esi, cl
+mov     ecx, edi
+or      eax, esi
+mov     esi, [ebp+var_4]
+mov     [ebp+var_C], eax
+mov     eax, edx
+shr     eax, cl
+mov     ecx, ebx
+shl     edx, cl
+mov     ecx, [ebp+var_C]
+or      eax, edx
+sub     eax, [ebp+var_10]
+mov     edx, ecx
+xor     edx, [ebp+var_10]
+sub     edx, ecx
+ror     eax, 0Ch
+add     edx, esi
+sub     esi, eax
+mov     eax, [ebp+var_14]
+add     ecx, edx
+sub     esi, 4CC817D7h
+mov     [ebp+var_C], ecx
+ror     esi, 0Bh
+mov     ecx, edi
+mov     [ebp+var_4], esi
+ror     edx, 3
+mov     esi, edx
+shr     esi, cl
+mov     ecx, ebx
+shl     edx, cl
+mov     ebx, eax
+mov     ecx, [ebp+var_4]
+or      esi, edx
+not     ecx
+neg     esi
+xor     ecx, eax
+mov     edx, eax
+rol     ecx, 9
+not     esi
+neg     ecx
+neg     ebx
+rol     ecx, 3
+and     edx, 1Fh
+sub     esi, ecx
+mov     [ebp+var_4], ecx
+mov     edi, ebx
+mov     eax, esi
+mov     ecx, edx
+and     edi, 1Fh
+shr     eax, cl
+mov     ecx, edi
+shl     esi, cl
+mov     ecx, [ebp+var_4]
+or      eax, esi
+neg     ecx
+mov     esi, eax
+mov     [ebp+var_4], ecx
+neg     ecx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, [ebp+var_4]
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edx
+or      esi, eax
+mov     eax, [ebp+var_C]
+ror     eax, 9
+neg     esi
+not     eax
+rol     esi, 0Dh
+xor     [ebp+var_4], esi
+ror     eax, 5
+add     eax, [ebp+var_14]
+ror     eax, 0Ah
+ror     eax, 3
+mov     [ebp+var_C], eax
+shl     eax, cl
+mov     ecx, edi
+mov     edx, [ebp+var_C]
+shr     edx, cl
+mov     ecx, ebx
+neg     ecx
+or      eax, edx
+and     ecx, 1Fh
+lea     edx, [esi-1]
+mov     esi, [ebp+var_4]
+not     eax
+xor     eax, 9F011D42h
+not     edx
+mov     edi, eax
+neg     esi
+shr     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     eax, cl
+or      edi, eax
+lea     eax, [esi+edx*2]
+add     ebx, eax
+rol     esi, 7
+mov     ecx, edi
+mov     [ebp+var_4], esi
+neg     ecx
+mov     eax, edi
+and     ecx, 1Fh
+xor     eax, ebx
+mov     ebx, edx
+add     eax, edx
+shr     ebx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+or      ebx, edx
+mov     edx, esi
+neg     edx
+mov     esi, edi
+mov     ecx, edx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, [ebp+var_4]
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, [ebp+var_4]
+or      esi, edi
+add     ecx, 522CB819h
+add     eax, ecx
+mov     ecx, edx
+neg     ecx
+mov     edi, eax
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+or      edi, eax
+xor     edi, 68526D07h
+rol     edx, 0Fh
+mov     eax, esi
+sub     ebx, eax
+mov     ecx, edx
+neg     ecx
+mov     esi, ebx
+and     ecx, 1Fh
+xor     eax, 3CB4E1CCh
+shl     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+add     edx, 0A7666B0h
+shr     ebx, cl
+or      esi, ebx
+mov     ebx, eax
+mov     ecx, esi
+add     edx, esi
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+rol     esi, 9
+shl     eax, cl
+neg     esi
+or      ebx, eax
+or      eax, 0FFFFFFFFh
+sub     eax, edx
+ror     ebx, 1
+add     edi, eax
+sub     ebx, 1EF83897h
+mov     ecx, edi
+mov     eax, esi
+neg     ecx
+not     edx
+and     ecx, 1Fh
+xor     edx, edi
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+rol     edx, 0Eh
+shl     esi, cl
+xor     edi, ebx
+or      eax, esi
+add     ebx, eax
+add     eax, edx
+mov     [ebp+var_14], ebx
+mov     ecx, eax
+mov     esi, [ebp+var_14]
+neg     ecx
+and     ecx, 1Fh
+mov     ebx, 371FB2AAh
+sub     ebx, edi
+neg     esi
+sub     ebx, edx
+neg     edx
+mov     edi, edx
+sub     ebx, 2A3B900h
+shl     edi, cl
+mov     ecx, eax
+and     ecx, 1Fh
+ror     eax, 4
+shr     edx, cl
+or      edi, edx
+rol     eax, 0Ah
+not     edi
+not     eax
+mov     ecx, edi
+mov     [ebp+var_C], edi
+mov     edx, [ebp+var_C]
+neg     ecx
+and     ecx, 1Fh
+mov     edi, esi
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     esi, cl
+or      edi, esi
+xor     edx, edi
+rol     edi, 1
+mov     [ebp+var_C], edx
+mov     esi, eax
+mov     ecx, edi
+neg     ecx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+not     edi
+shl     eax, cl
+mov     ecx, edi
+neg     ecx
+or      esi, eax
+and     ecx, 1Fh
+mov     eax, ebx
+shr     eax, cl
+sub     esi, 7BAB808Fh
+mov     ecx, edi
+mov     edx, esi
+and     ecx, 1Fh
+not     edi
+shl     ebx, cl
+mov     ecx, edi
+neg     ecx
+mov     [ebp+var_14], edi
+and     ecx, 1Fh
+or      eax, ebx
+shl     edx, cl
+not     eax
+mov     ecx, edi
+sub     eax, 3E83F95Bh
+and     ecx, 1Fh
+mov     edi, eax
+shr     esi, cl
+or      edx, esi
+mov     esi, [ebp+var_C]
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+add     edx, [ebp+var_14]
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, esi
+neg     ecx
+or      edi, eax
+and     ecx, 1Fh
+mov     eax, edx
+shl     eax, cl
+not     edi
+mov     ecx, esi
+sub     esi, edi
+and     ecx, 1Fh
+mov     [ebp+var_C], esi
+shr     edx, cl
+mov     esi, 0A9AC0164h
+or      eax, edx
+sub     esi, [ebp+var_14]
+not     eax
+xor     esi, 6032392Dh
+ror     eax, 5
+neg     eax
+sub     edi, eax
+mov     edx, eax
+ror     edi, 3
+mov     ecx, edi
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     eax, cl
+or      edx, eax
+mov     eax, edi
+mov     ecx, edx
+add     esi, edx
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     edi, cl
+or      eax, edi
+mov     [ebp+var_10], eax
+mov     eax, esi
+sub     eax, [ebp+var_C]
+neg     esi
+ror     eax, 0Ch
+add     eax, edx
+add     edx, 14BB6A22h
+add     eax, edx
+mov     [ebp+var_14], edx
+mov     ecx, edx
+mov     ebx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, edx
+and     ecx, 1Fh
+mov     edx, esi
+shr     eax, cl
+or      ebx, eax
+mov     eax, ebx
+mov     edi, ebx
+and     eax, 1Fh
+neg     edi
+mov     ecx, eax
+and     edi, 1Fh
+shr     edx, cl
+mov     ecx, edi
+shl     esi, cl
+or      edx, esi
+mov     esi, [ebp+var_14]
+xor     edx, 13B521F5h
+mov     [ebp+var_8], esi
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     [ebp+var_8], cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, eax
+or      [ebp+var_8], esi
+mov     esi, [ebp+var_10]
+mov     [ebp+var_C], esi
+shr     [ebp+var_C], cl
+mov     ecx, edi
+shl     esi, cl
+mov     ecx, [ebp+var_C]
+or      ecx, esi
+mov     esi, edx
+rol     ecx, 0Ah
+neg     ecx
+ror     ecx, 0Ch
+neg     ecx
+mov     [ebp+var_C], ecx
+mov     ecx, eax
+shl     esi, cl
+lea     eax, [ebx+59B977D5h]
+mov     ebx, [ebp+var_8]
+mov     ecx, edi
+mov     edi, [ebp+var_C]
+xor     eax, ebx
+shr     edx, cl
+or      esi, edx
+rol     eax, 0Ch
+mov     edx, ebx
+xor     esi, 65692DB8h
+sub     edx, eax
+sub     esi, edi
+mov     eax, edx
+mov     [ebp+var_C], esi
+neg     eax
+and     edx, 1Fh
+mov     ecx, eax
+and     ecx, 1Fh
+shr     [ebp+var_C], cl
+mov     ecx, edx
+mov     edx, [ebp+var_C]
+shl     esi, cl
+or      edx, esi
+sub     edx, 1C9589A5h
+ror     ebx, 0Bh
+mov     ecx, edx
+mov     esi, eax
+neg     ecx
+neg     ebx
+and     ecx, 1Fh
+ror     ebx, 0Eh
+shl     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+xor     edx, ebx
+shr     eax, cl
+or      esi, eax
+mov     [ebp+var_C], edx
+mov     [ebp+var_8], esi
+mov     eax, edi
+and     eax, 1Fh
+mov     esi, edi
+mov     ecx, eax
+mov     edx, ebx
+shl     edx, cl
+neg     esi
+and     esi, 1Fh
+mov     ecx, esi
+shr     ebx, cl
+mov     ecx, eax
+mov     eax, [ebp+var_8]
+or      edx, ebx
+mov     ebx, edx
+not     eax
+shr     ebx, cl
+mov     ecx, esi
+shl     edx, cl
+or      ebx, edx
+mov     edx, [ebp+var_C]
+xor     eax, ebx
+add     edi, ebx
+mov     [ebp+var_8], eax
+mov     ecx, ebx
+neg     ecx
+mov     eax, edi
+and     ecx, 1Fh
+xor     edx, ebx
+shr     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shl     edi, cl
+xor     edx, ebx
+or      eax, edi
+xor     ebx, edx
+mov     edi, [ebp+var_8]
+mov     esi, eax
+ror     edi, 0Dh
+ror     edi, 6
+mov     ecx, edi
+neg     ecx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+add     edi, ebx
+shl     eax, cl
+mov     ecx, ebx
+neg     ecx
+mov     [ebp+var_8], edi
+or      esi, eax
+and     ecx, 1Fh
+mov     eax, edx
+not     esi
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shr     edx, cl
+mov     ecx, ebx
+neg     ecx
+mov     [ebp+var_10], ebx
+or      eax, edx
+and     ecx, 1Fh
+mov     edx, [ebp+var_10]
+mov     ebx, eax
+shl     ebx, cl
+mov     ecx, edx
+and     ecx, 1Fh
+sub     edx, esi
+shr     eax, cl
+xor     edx, edi
+or      ebx, eax
+not     esi
+sub     ebx, edi
+sub     edx, ebx
+mov     [ebp+var_C], ebx
+xor     esi, edx
+mov     [ebp+var_10], edx
+mov     edi, esi
+mov     eax, ebx
+mov     edx, ebx
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+shr     edi, cl
+and     edx, 1Fh
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, [ebp+var_8]
+or      edi, esi
+mov     esi, [ebp+var_10]
+neg     ecx
+and     ecx, 1Fh
+add     edi, 4066C1ACh
+xor     edi, ebx
+mov     ebx, esi
+shr     ebx, cl
+mov     ecx, [ebp+var_8]
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, eax
+mov     eax, [ebp+var_8]
+or      ebx, esi
+mov     esi, [ebp+var_8]
+shl     esi, cl
+mov     ecx, edx
+shr     eax, cl
+or      esi, eax
+rol     ebx, 9
+mov     ecx, esi
+mov     [ebp+var_14], esi
+neg     ecx
+mov     [ebp+var_10], ebx
+and     ecx, 1Fh
+mov     esi, edi
+shr     esi, cl
+mov     eax, ebx
+mov     ecx, [ebp+var_14]
+mov     edx, ebx
+and     ecx, 1Fh
+and     eax, 1Fh
+shl     edi, cl
+neg     edx
+or      esi, edi
+and     edx, 1Fh
+mov     edi, [ebp+var_C]
+mov     ecx, eax
+add     edi, esi
+xor     esi, 0B9CE84A3h
+mov     ebx, edi
+not     esi
+shr     ebx, cl
+mov     ecx, edx
+shl     edi, cl
+mov     ecx, eax
+or      ebx, edi
+mov     edi, esi
+shr     edi, cl
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, ebx
+neg     ecx
+or      edi, esi
+and     ecx, 1Fh
+mov     eax, [ebp+var_10]
+mov     edx, eax
+shr     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+mov     esi, [ebp+var_14]
+shl     eax, cl
+dec     esi
+or      edx, eax
+mov     eax, esi
+not     edx
+ror     edx, 3
+mov     [ebp+var_8], edx
+mov     edx, edi
+neg     edx
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     esi, cl
+or      eax, esi
+mov     esi, [ebp+var_8]
+neg     eax
+mov     ecx, esi
+sub     ecx, ebx
+ror     eax, 2
+xor     eax, edx
+sub     esi, edi
+mov     ebx, ecx
+ror     esi, 0Ah
+rol     esi, 6
+sub     edx, esi
+mov     [ebp+var_8], esi
+xor     edx, esi
+sub     eax, edx
+add     edx, 14DED9CFh
+xor     ebx, eax
+rol     edx, 0Fh
+xor     ebx, 0D9387D83h
+add     ebx, eax
+xor     eax, edx
+add     eax, ebx
+not     edx
+rol     eax, 4
+mov     ecx, edx
+neg     ecx
+mov     esi, eax
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+or      esi, eax
+neg     ecx
+and     ecx, 1Fh
+mov     eax, edx
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+rol     ebx, 6
+shr     edx, cl
+mov     edi, ebx
+or      eax, edx
+ror     eax, 1
+add     eax, esi
+mov     [ebp+var_10], eax
+mov     eax, [ebp+var_8]
+mov     edx, eax
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+and     edx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+shl     ebx, cl
+mov     ecx, eax
+or      edi, ebx
+mov     ebx, esi
+shr     ebx, cl
+mov     eax, [ebp+var_8]
+mov     ecx, edx
+shl     esi, cl
+mov     edx, ebx
+mov     ebx, [ebp+var_10]
+or      edx, esi
+add     eax, 669353A4h
+rol     ebx, 0Ch
+sub     edi, eax
+mov     ecx, ebx
+neg     ecx
+add     eax, ebx
+and     ecx, 1Fh
+mov     esi, eax
+shl     esi, cl
+add     edx, 624A01AFh
+rol     edx, 0Ah
+mov     ecx, ebx
+and     ecx, 1Fh
+ror     ebx, 7
+shr     eax, cl
+add     edx, edi
+or      esi, eax
+mov     ecx, edx
+neg     ecx
+neg     edi
+and     ecx, 1Fh
+sub     esi, edi
+xor     esi, ebx
+mov     eax, edi
+shr     eax, cl
+neg     esi
+mov     ecx, edx
+sub     ebx, 1A8AE567h
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, ebx
+or      eax, edi
+neg     ecx
+xor     esi, eax
+and     ecx, 1Fh
+sub     eax, esi
+xor     esi, ebx
+add     edx, eax
+not     eax
+mov     edi, eax
+mov     [ebp+var_C], edx
+shl     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shr     eax, cl
+mov     ecx, edx
+neg     ecx
+mov     [ebp+var_10], ebx
+or      edi, eax
+and     ecx, 1Fh
+xor     esi, edi
+mov     eax, [ebp+var_10]
+mov     edx, esi
+mov     [ebp+var_8], edi
+shr     edx, cl
+mov     ecx, [ebp+var_C]
+and     ecx, 1Fh
+shl     esi, cl
+or      edx, esi
+mov     esi, [ebp+var_C]
+add     edx, 6124E547h
+ror     edx, 0Dh
+not     edx
+sub     esi, edx
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     eax, cl
+or      ebx, eax
+sub     ebx, 50C19F90h
+add     esi, edi
+mov     eax, esi
+mov     [ebp+var_C], esi
+mov     edi, esi
+and     eax, 1Fh
+mov     esi, edx
+mov     ecx, eax
+shl     esi, cl
+neg     edi
+and     edi, 1Fh
+add     ebx, 8B39FFF1h
+mov     ecx, edi
+not     ebx
+shr     edx, cl
+mov     ecx, eax
+or      esi, edx
+mov     eax, 610C0126h
+neg     esi
+mov     edx, esi
+shr     edx, cl
+mov     ecx, edi
+shl     esi, cl
+mov     ecx, ebx
+mov     edi, [ebp+var_C]
+or      edx, esi
+neg     ecx
+sub     eax, edx
+and     ecx, 1Fh
+add     edi, eax
+mov     eax, [ebp+var_8]
+add     edx, 1E84C91Dh
+not     edx
+not     eax
+mov     esi, edx
+rol     eax, 0Bh
+shr     esi, cl
+add     eax, edi
+mov     ecx, ebx
+mov     [ebp+var_8], eax
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, eax
+neg     ecx
+or      esi, edx
+and     ecx, 1Fh
+mov     edx, edi
+shl     edx, cl
+not     esi
+mov     ecx, eax
+xor     ebx, esi
+and     ecx, 1Fh
+mov     eax, ebx
+shr     edi, cl
+mov     ecx, esi
+neg     ecx
+or      edx, edi
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     ebx, cl
+or      eax, ebx
+mov     ebx, esi
+mov     ecx, eax
+mov     edi, eax
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     esi, cl
+or      ebx, esi
+mov     esi, [ebp+var_8]
+rol     esi, 10h
+mov     ecx, ebx
+add     esi, edx
+mov     [ebp+var_10], ebx
+neg     ecx
+neg     esi
+and     ecx, 1Fh
+mov     [ebp+var_8], esi
+shr     edi, cl
+sub     edx, ebx
+mov     ecx, ebx
+and     ecx, 1Fh
+neg     esi
+shl     eax, cl
+and     esi, 1Fh
+or      edi, eax
+mov     eax, [ebp+var_8]
+neg     edi
+and     eax, 1Fh
+xor     edx, edi
+mov     ecx, eax
+mov     [ebp+var_14], edx
+mov     edx, edi
+shr     edx, cl
+mov     ecx, esi
+shl     edi, cl
+mov     ecx, eax
+mov     eax, [ebp+var_14]
+or      edx, edi
+mov     ebx, edx
+shl     ebx, cl
+mov     ecx, esi
+shr     edx, cl
+mov     esi, [ebp+var_8]
+or      ebx, edx
+mov     edx, [ebp+var_10]
+add     esi, eax
+ror     edx, 9
+mov     edi, esi
+xor     edx, 0C0A5AB6Eh
+not     edx
+sub     edx, eax
+add     edx, ebx
+xor     ebx, 0D78C933Dh
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+not     edx
+shl     esi, cl
+or      edi, esi
+neg     edi
+lea     esi, [edi+eax]
+mov     eax, 7FF9F95Dh
+xor     esi, edx
+sub     eax, esi
+rol     esi, 9
+not     esi
+add     edx, eax
+add     esi, 3B6B3310h
+mov     [ebp+var_10], edx
+mov     eax, [ebp+var_10]
+xor     esi, ebx
+neg     esi
+rol     ebx, 3
+xor     esi, 873D306Bh
+not     ebx
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+ror     esi, 1
+shr     eax, cl
+mov     ecx, ebx
+neg     ecx
+or      edx, eax
+and     ecx, 1Fh
+mov     eax, esi
+shr     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shl     esi, cl
+or      eax, esi
+mov     [ebp+var_14], ebx
+mov     ecx, eax
+sub     ecx, edx
+xor     edi, 275274A7h
+not     edi
+add     ebx, eax
+ror     edi, 0Eh
+xor     edi, 0A37EA88Ah
+lea     edx, [edi+77050D81h]
+add     edx, ecx
+not     ecx
+rol     ecx, 5
+xor     ebx, edx
+xor     edx, ecx
+mov     [ebp+var_10], ecx
+mov     esi, ecx
+xor     edx, ebx
+xor     esi, [ebp+var_14]
+sub     esi, ecx
+ror     edx, 1
+not     esi
+mov     edi, edx
+mov     ecx, esi
+sub     ebx, esi
+neg     ecx
+not     ebx
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, esi
+and     ecx, 1Fh
+xor     esi, 0EB14ADF1h
+shr     edx, cl
+add     esi, ebx
+mov     ecx, [ebp+var_10]
+or      edi, edx
+add     ecx, 71078E70h
+not     edi
+mov     eax, ecx
+rol     ecx, 0Ch
+xor     eax, esi
+rol     ecx, 0Bh
+xor     ebx, eax
+mov     [ebp+var_10], ecx
+add     esi, ebx
+xor     esi, edi
+sub     edi, 3B0C9CB8h
+sub     esi, ebx
+mov     eax, edi
+mov     ecx, esi
+lea     edx, [ebx+0C32A692h]
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     edi, cl
+or      eax, edi
+mov     edi, [ebp+var_10]
+xor     edx, edi
+xor     esi, edi
+rol     edx, 6
+add     edi, 1E037436h
+sub     edx, eax
+not     eax
+sub     eax, esi
+ror     edx, 4
+rol     esi, 0Fh
+neg     eax
+add     edx, esi
+mov     ebx, eax
+neg     edx
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+or      ebx, eax
+sub     esi, ebx
+rol     ebx, 0Fh
+xor     ebx, edx
+rol     ebx, 0Bh
+sub     edx, 5624BA33h
+mov     eax, edi
+xor     eax, edx
+add     esi, edx
+sub     eax, edi
+mov     [ebp+var_14], esi
+mov     edx, [ebp+var_14]
+add     eax, esi
+mov     ecx, ebx
+mov     esi, edi
+neg     ecx
+sub     eax, ebx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+rol     ebx, 1
+shl     edi, cl
+or      esi, edi
+mov     edi, eax
+add     edx, esi
+neg     edx
+mov     ecx, edx
+xor     ebx, edx
+neg     ecx
+not     ebx
+and     ecx, 1Fh
+sub     ebx, edx
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+ror     edx, 0Fh
+shl     eax, cl
+or      edi, eax
+mov     [ebp+var_14], ebx
+not     edi
+lea     ebx, [esi+6BC662C7h]
+add     edi, 0D657662h
+mov     eax, edx
+mov     ecx, edi
+add     ebx, edi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     edx, cl
+or      eax, edx
+mov     edx, [ebp+var_14]
+not     eax
+add     edi, eax
+mov     [ebp+var_10], eax
+mov     ecx, eax
+mov     esi, edi
+neg     ecx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, eax
+and     ecx, 1Fh
+mov     eax, edx
+shr     edi, cl
+mov     ecx, ebx
+neg     ecx
+or      esi, edi
+and     ecx, 1Fh
+sub     esi, 57D46354h
+shl     eax, cl
+xor     esi, ebx
+mov     ecx, ebx
+not     esi
+and     ecx, 1Fh
+add     esi, 6CBA2C23h
+shr     edx, cl
+or      eax, edx
+add     eax, 7F7DD024h
+add     ebx, eax
+lea     edx, [eax+1]
+mov     eax, [ebp+var_10]
+not     eax
+xor     edx, 0D3D00643h
+add     esi, eax
+neg     eax
+rol     ebx, 4
+sub     ebx, edx
+mov     [ebp+var_10], eax
+mov     ecx, esi
+mov     eax, ebx
+neg     ecx
+inc     edx
+and     ecx, 1Fh
+xor     edx, 0EFDD2758h
+shr     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     ebx, cl
+or      eax, ebx
+mov     ebx, [ebp+var_10]
+sub     esi, ebx
+neg     eax
+ror     esi, 7
+xor     ebx, 8C0AC1D9h
+xor     esi, 0AB343230h
+mov     [ebp+var_14], eax
+mov     ecx, esi
+mov     eax, edx
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+ror     esi, 0Ah
+shr     edx, cl
+mov     ecx, ebx
+or      eax, edx
+neg     ecx
+rol     eax, 10h
+and     ecx, 1Fh
+mov     edi, eax
+shl     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shr     eax, cl
+mov     edx, ebx
+or      edi, eax
+mov     eax, [ebp+var_14]
+xor     esi, eax
+neg     edi
+mov     [ebp+var_C], esi
+mov     esi, eax
+and     eax, 1Fh
+neg     esi
+mov     ecx, eax
+and     esi, 1Fh
+shl     edx, cl
+mov     ecx, esi
+shr     ebx, cl
+mov     ecx, eax
+or      edx, ebx
+mov     ebx, [ebp+var_C]
+shr     ebx, cl
+not     edx
+mov     ecx, esi
+shl     [ebp+var_C], cl
+mov     ecx, eax
+or      ebx, [ebp+var_C]
+mov     eax, edx
+shl     eax, cl
+mov     ecx, esi
+shr     edx, cl
+mov     esi, 0EA39AFE1h
+or      eax, edx
+mov     edx, eax
+lea     eax, [edi+1]
+xor     edx, 99507C4h
+xor     eax, 88B56807h
+mov     ecx, edx
+sub     esi, eax
+mov     eax, [ebp+var_14]
+neg     ecx
+and     ecx, 1Fh
+mov     edi, eax
+shl     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+xor     edx, 7829C0F8h
+shr     eax, cl
+add     edx, esi
+or      edi, eax
+neg     esi
+mov     ecx, esi
+mov     eax, ebx
+neg     ecx
+add     edi, ebx
+and     ecx, 1Fh
+neg     edx
+shl     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+mov     [ebp+var_C], edx
+shr     ebx, cl
+mov     edx, esi
+or      eax, ebx
+mov     ebx, edi
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shr     esi, cl
+or      edx, esi
+mov     esi, eax
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, edx
+and     ecx, 1Fh
+sub     edx, eax
+shl     edi, cl
+not     edx
+or      ebx, edi
+sub     ebx, 5DD25ADBh
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     eax, cl
+or      esi, eax
+mov     eax, edx
+xor     eax, [ebp+var_C]
+rol     esi, 9
+xor     eax, 0E06E96DDh
+not     esi
+mov     edi, eax
+add     edx, esi
+sub     ebx, esi
+not     edx
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+add     edx, 2186AADDh
+shl     eax, cl
+or      edi, eax
+lea     eax, [esi+48D2E30Dh]
+xor     edi, edx
+mov     esi, edx
+mov     ecx, edi
+add     eax, ebx
+neg     ecx
+not     eax
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     edx, cl
+or      esi, edx
+xor     edi, ebx
+lea     edx, [ebx-690E9AA6h]
+sub     esi, edi
+mov     ecx, ebx
+neg     ecx
+mov     [ebp+var_C], esi
+and     ecx, 1Fh
+mov     esi, eax
+shr     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+mov     eax, [ebp+var_C]
+add     esi, edi
+neg     eax
+not     edi
+add     edx, esi
+xor     eax, edi
+not     edx
+mov     ebx, eax
+mov     eax, edi
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shr     edi, cl
+mov     ecx, edx
+neg     ecx
+ror     ebx, 0Eh
+and     ecx, 1Fh
+or      eax, edi
+mov     edi, eax
+not     ebx
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+mov     [ebp+var_C], ebx
+shl     eax, cl
+mov     ecx, esi
+neg     ecx
+or      edi, eax
+and     ecx, 1Fh
+mov     eax, edx
+shr     eax, cl
+neg     edi
+mov     ecx, esi
+not     edi
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, edi
+or      eax, edx
+neg     ecx
+add     eax, esi
+and     ecx, 1Fh
+mov     edx, eax
+xor     esi, ebx
+shr     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+mov     [ebp+var_14], esi
+shl     eax, cl
+mov     ecx, esi
+neg     ecx
+or      edx, eax
+mov     eax, [ebp+var_C]
+and     ecx, 1Fh
+shr     ebx, cl
+neg     edx
+mov     ecx, esi
+mov     esi, edx
+and     ecx, 1Fh
+neg     esi
+shl     eax, cl
+mov     ecx, esi
+or      ebx, eax
+dec     ebx
+and     ecx, 1Fh
+mov     eax, [ebp+var_14]
+and     edx, 1Fh
+rol     edi, 5
+not     ebx
+rol     edi, 4
+mov     [ebp+var_C], eax
+neg     edi
+shl     [ebp+var_C], cl
+xor     edi, esi
+mov     ecx, edx
+mov     edx, [ebp+var_C]
+shr     eax, cl
+or      edx, eax
+not     edx
+lea     ecx, [edi+78A50CFCh]
+add     ecx, ebx
+neg     edx
+rol     ebx, 6
+sub     ebx, ecx
+lea     eax, [ebx+edx]
+neg     edx
+add     esi, eax
+rol     ebx, 6
+sub     ecx, esi
+ror     ebx, 5
+sub     esi, ebx
+mov     [ebp+var_C], edx
+xor     esi, 0AAE8F1D9h
+mov     edi, edx
+mov     [ebp+var_10], esi
+sub     ebx, 40FF27F6h
+mov     esi, edx
+mov     [ebp+var_14], ebx
+mov     ebx, edx
+and     esi, 1Fh
+mov     edx, [ebp+var_14]
+sub     ebx, ecx
+mov     eax, edx
+mov     ecx, esi
+shr     eax, cl
+neg     edi
+and     edi, 1Fh
+mov     ecx, edi
+shl     edx, cl
+mov     ecx, esi
+mov     esi, [ebp+var_10]
+or      eax, edx
+mov     edx, 18EB98C9h
+sub     edx, eax
+mov     eax, edx
+shl     eax, cl
+mov     ecx, edi
+shr     edx, cl
+or      eax, edx
+mov     edx, esi
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     esi, cl
+or      edx, esi
+mov     esi, ebx
+neg     edx
+rol     edx, 8
+not     edx
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, [ebp+var_C]
+or      esi, ebx
+mov     edi, esi
+rol     ecx, 0Bh
+sub     edi, eax
+rol     edi, 1
+rol     ecx, 6
+xor     ecx, esi
+rol     edx, 7
+sub     ecx, 776CAF0Bh
+rol     edi, 6
+mov     eax, 59572078h
+not     edi
+sub     eax, edx
+rol     edi, 10h
+rol     eax, 0Bh
+mov     edx, edi
+xor     eax, ecx
+sub     ecx, esi
+rol     esi, 2
+mov     [ebp+var_14], eax
+lea     ebx, [esi+358A8739h]
+xor     esi, 0C5E4A3F8h
+add     ebx, ecx
+add     esi, eax
+mov     ecx, edi
+xor     ebx, esi
+neg     ecx
+rol     ebx, 10h
+and     ecx, 1Fh
+mov     eax, esi
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     esi, cl
+or      eax, esi
+mov     ecx, eax
+sub     ebx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shr     edi, cl
+or      edx, edi
+mov     edi, [ebp+var_14]
+xor     ebx, edx
+xor     edi, eax
+add     eax, 1CB31F93h
+xor     edx, 0B520AC22h
+add     eax, ebx
+rol     edx, 6
+xor     edx, eax
+sub     ebx, eax
+add     eax, edx
+not     edi
+add     edx, eax
+not     ebx
+lea     esi, [edx+eax]
+mov     eax, edi
+neg     eax
+not     esi
+sub     edx, esi
+mov     [ebp+var_C], eax
+mov     ecx, eax
+add     ebx, esi
+and     ecx, 1Fh
+mov     eax, edx
+shl     eax, cl
+xor     esi, 28E367Ah
+mov     ecx, edi
+and     ecx, 1Fh
+shr     edx, cl
+or      eax, edx
+mov     edx, ebx
+neg     eax
+xor     eax, 0C533602Fh
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shr     ebx, cl
+or      edx, ebx
+lea     ebx, [eax+esi]
+xor     ebx, esi
+sub     ebx, edi
+xor     esi, ebx
+neg     edx
+mov     ecx, esi
+mov     [ebp+var_14], esi
+neg     ecx
+mov     eax, edx
+and     ecx, 1Fh
+xor     ebx, 0D1FBCE81h
+shl     eax, cl
+mov     edi, ebx
+mov     ecx, esi
+neg     edi
+and     ecx, 1Fh
+and     edi, 1Fh
+shr     edx, cl
+mov     ecx, [ebp+var_C]
+or      eax, edx
+neg     ecx
+mov     esi, eax
+and     ecx, 1Fh
+mov     edx, ebx
+shl     esi, cl
+and     edx, 1Fh
+mov     ecx, [ebp+var_C]
+and     ecx, 1Fh
+rol     ebx, 0Ah
+shr     eax, cl
+mov     ecx, edx
+or      esi, eax
+mov     eax, esi
+shl     eax, cl
+mov     ecx, edi
+shr     esi, cl
+mov     ecx, [ebp+var_C]
+or      eax, esi
+mov     esi, [ebp+var_14]
+rol     ecx, 0Bh
+ror     ecx, 2
+xor     ecx, 3AB12470h
+mov     [ebp+var_4], eax
+sub     ecx, eax
+mov     eax, esi
+mov     [ebp+var_C], ecx
+mov     ecx, edx
+shl     eax, cl
+mov     ecx, edi
+shr     esi, cl
+or      eax, esi
+mov     esi, [ebp+var_4]
+not     eax
+rol     eax, 0Ah
+sub     esi, eax
+sub     esi, 5FF85F72h
+xor     esi, 0EC4BCFBFh
+xor     ebx, esi
+mov     [ebp+var_4], esi
+mov     edx, esi
+not     ebx
+sub     edx, eax
+mov     eax, [ebp+var_C]
+mov     ecx, eax
+sub     ebx, edx
+neg     ecx
+mov     edi, ebx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, eax
+and     ecx, 1Fh
+add     eax, edx
+shl     ebx, cl
+not     eax
+mov     ecx, esi
+rol     eax, 10h
+neg     ecx
+mov     esi, eax
+and     ecx, 1Fh
+or      edi, ebx
+shl     esi, cl
+mov     ecx, [ebp+var_4]
+and     ecx, 1Fh
+shr     eax, cl
+or      esi, eax
+xor     edi, 4CEB0C0Fh
+neg     esi
+inc     edi
+not     edi
+mov     ecx, esi
+neg     ecx
+mov     eax, edi
+xor     eax, edx
+and     ecx, 1Fh
+ror     eax, 4
+mov     ebx, edi
+shl     ebx, cl
+mov     ecx, esi
+rol     eax, 0Ch
+and     ecx, 1Fh
+xor     eax, esi
+shr     edi, cl
+rol     eax, 2
+not     esi
+not     eax
+mov     edx, esi
+mov     ecx, eax
+mov     [ebp+var_14], eax
+neg     ecx
+or      ebx, edi
+and     ecx, 1Fh
+mov     edi, [ebp+var_14]
+shr     edx, cl
+not     edi
+mov     ecx, eax
+mov     eax, [ebp+var_4]
+add     eax, 23608479h
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, edi
+ror     eax, 3
+or      edx, esi
+xor     eax, ebx
+ror     edx, 0Fh
+xor     eax, 753AB8F2h
+mov     [ebp+var_8], edx
+neg     ecx
+xor     ebx, 7D3F4811h
+add     ebx, eax
+and     ecx, 1Fh
+add     eax, ebx
+not     ebx
+not     eax
+ror     eax, 0Eh
+mov     edx, eax
+shr     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+or      edx, eax
+neg     ecx
+mov     eax, [ebp+var_8]
+and     ecx, 1Fh
+neg     edx
+neg     eax
+mov     esi, edx
+ror     eax, 3
+shr     esi, cl
+add     eax, edx
+mov     ecx, ebx
+mov     [ebp+var_8], eax
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, eax
+neg     ecx
+or      esi, edx
+and     ecx, 1Fh
+mov     edx, ebx
+shl     edx, cl
+neg     esi
+mov     ecx, eax
+and     ecx, 1Fh
+shr     ebx, cl
+or      edx, ebx
+xor     eax, edi
+mov     ecx, [ebp+var_8]
+xor     eax, esi
+mov     [ebp+var_C], edx
+xor     ecx, eax
+lea     ebx, [edx+esi]
+xor     ebx, ecx
+mov     [ebp+var_8], ecx
+not     eax
+ror     ebx, 0Fh
+sub     eax, 481C4B0h
+mov     edi, edx
+neg     edi
+and     edx, 1Fh
+and     edi, 1Fh
+mov     esi, eax
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, edi
+shr     eax, cl
+mov     ecx, edx
+mov     edx, [ebp+var_C]
+or      esi, eax
+mov     eax, [ebp+var_8]
+xor     ebx, esi
+add     eax, [ebp+var_C]
+rol     eax, 0Ah
+mov     [ebp+var_10], ebx
+sub     ebx, eax
+mov     eax, esi
+shl     eax, cl
+mov     ecx, edi
+shr     esi, cl
+mov     edi, eax
+mov     ecx, [ebp+var_10]
+or      edi, esi
+xor     edi, ebx
+sub     edx, ecx
+sub     ebx, ecx
+add     edi, 4DE80BBDh
+ror     edi, 0Eh
+not     edx
+sub     edi, 323773ADh
+xor     edx, 8FA92B07h
+mov     eax, ebx
+add     edx, 13095F66h
+xor     eax, ecx
+mov     [ebp+var_C], edx
+xor     edi, edx
+neg     eax
+xor     edi, 3E1434B1h
+mov     edx, 58067EA4h
+add     edi, eax
+sub     edx, ebx
+mov     esi, edi
+mov     ebx, eax
+neg     esi
+and     edi, 1Fh
+mov     ecx, esi
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, edi
+shr     eax, cl
+mov     edi, edx
+or      ebx, eax
+mov     eax, 9E29C149h
+neg     ebx
+sub     ebx, esi
+xor     esi, edx
+mov     ecx, ebx
+xor     esi, ebx
+neg     ecx
+sub     eax, esi
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edx, cl
+or      edi, edx
+xor     edi, 0D02DB488h
+sub     [ebp+var_C], 4767A21Dh
+xor     ebx, 7BB1FE1Bh
+mov     edx, eax
+mov     ecx, ebx
+sub     edi, 1C2555ABh
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+xor     ebx, edi
+shr     eax, cl
+or      edx, eax
+mov     [ebp+var_10], ebx
+mov     eax, [ebp+var_C]
+mov     esi, edx
+mov     ebx, eax
+and     edx, 1Fh
+neg     esi
+mov     ecx, esi
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, edx
+shr     eax, cl
+mov     edx, [ebp+var_10]
+or      ebx, eax
+xor     ebx, edi
+mov     eax, esi
+xor     ebx, 96420850h
+sub     ebx, edx
+not     edx
+add     ebx, edi
+not     edi
+sub     edx, ebx
+xor     edi, ebx
+add     edx, 58FB2F10h
+mov     ecx, edx
+mov     [ebp+var_10], edx
+neg     ecx
+xor     edi, edx
+and     ecx, 1Fh
+not     edi
+shr     eax, cl
+xor     edi, 409D5C25h
+mov     ecx, edx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, edi
+or      eax, esi
+neg     ecx
+add     eax, ebx
+and     ecx, 1Fh
+xor     ebx, edx
+sub     eax, 3FEBB01Ch
+mov     edx, eax
+shl     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     eax, cl
+or      edx, eax
+lea     eax, [ebx+edx]
+neg     ebx
+add     edi, eax
+xor     ebx, edx
+mov     ecx, edi
+mov     [ebp+var_14], edi
+mov     esi, [ebp+var_14]
+neg     ecx
+and     ecx, 1Fh
+add     edx, 5EBC44C2h
+mov     edi, edx
+shr     edi, cl
+mov     ecx, esi
+and     ecx, 1Fh
+lea     eax, [ebx+esi]
+shl     edx, cl
+mov     ecx, [ebp+var_10]
+or      edi, edx
+inc     ecx
+add     ecx, eax
+mov     eax, 1
+rol     ecx, 6
+sub     eax, edi
+add     ebx, 0F7AE0270h
+add     ecx, eax
+ror     ebx, 9
+mov     [ebp+var_14], ecx
+mov     eax, edi
+sub     eax, esi
+add     edi, ebx
+xor     eax, ecx
+rol     ebx, 4
+mov     [ebp+var_C], eax
+mov     edx, ebx
+and     edx, 1Fh
+mov     esi, ebx
+neg     esi
+mov     ecx, edx
+shr     [ebp+var_C], cl
+and     esi, 1Fh
+mov     ecx, esi
+shl     eax, cl
+mov     ecx, edx
+or      [ebp+var_C], eax
+mov     eax, edi
+shr     eax, cl
+mov     ecx, esi
+shl     edi, cl
+mov     ecx, edx
+or      eax, edi
+mov     edi, eax
+shl     edi, cl
+mov     ecx, esi
+mov     esi, [ebp+var_C]
+shr     eax, cl
+mov     ecx, esi
+neg     ecx
+or      edi, eax
+and     ecx, 1Fh
+mov     [ebp+var_10], edi
+mov     eax, ebx
+shl     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+ror     esi, 7
+shr     ebx, cl
+mov     edx, esi
+or      eax, ebx
+xor     eax, 3BFBB285h
+mov     ebx, eax
+neg     ebx
+mov     ecx, ebx
+ror     ebx, 7
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     esi, cl
+or      edx, esi
+sub     edx, eax
+mov     eax, edi
+xor     eax, [ebp+var_14]
+sub     edx, edi
+not     eax
+mov     ecx, edx
+neg     ecx
+mov     edi, eax
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+or      edi, eax
+lea     eax, [edx-0CB40D7Dh]
+ror     eax, 0Bh
+add     ebx, eax
+rol     eax, 0Ah
+mov     ecx, ebx
+mov     esi, eax
+neg     ecx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+rol     edi, 8
+shl     eax, cl
+xor     ebx, 36C92AE4h
+or      esi, eax
+mov     [ebp+var_14], ebx
+mov     ebx, [ebp+var_10]
+rol     esi, 0Ah
+xor     ebx, 0C3FBD063h
+xor     edi, esi
+mov     [ebp+var_4], ebx
+xor     edi, 257C01Eh
+mov     eax, edi
+mov     edx, edi
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+and     edx, 1Fh
+shl     [ebp+var_4], cl
+mov     ecx, edx
+shr     ebx, cl
+mov     ecx, eax
+or      [ebp+var_4], ebx
+mov     ebx, 0DDAE8FCh
+mov     eax, [ebp+var_14]
+sub     ebx, esi
+mov     esi, [ebp+var_14]
+shl     esi, cl
+mov     ecx, edx
+shr     eax, cl
+or      esi, eax
+mov     eax, [ebp+var_4]
+rol     esi, 2
+add     eax, 343DB0A9h
+add     esi, ebx
+add     eax, edi
+mov     edi, [ebp+var_4]
+neg     esi
+neg     esi
+not     eax
+xor     esi, ebx
+not     edi
+ror     ebx, 0Eh
+not     esi
+not     ebx
+mov     ecx, ebx
+sub     ebx, edi
+sub     ecx, eax
+not     ebx
+rol     ecx, 8
+lea     eax, [esi-1F800438h]
+sub     ecx, esi
+ror     eax, 9
+dec     ecx
+rol     eax, 8
+sub     edi, ebx
+mov     [ebp+var_C], ecx
+mov     ecx, edi
+mov     [ebp+var_14], ebx
+neg     ecx
+add     eax, 2AD4AAD4h
+and     ecx, 1Fh
+mov     edx, eax
+shl     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+not     edi
+shr     eax, cl
+mov     ebx, edi
+or      edx, eax
+mov     [ebp+var_4], edi
+mov     eax, [ebp+var_14]
+and     edi, 1Fh
+neg     ebx
+mov     esi, edx
+mov     ecx, edi
+and     ebx, 1Fh
+shr     esi, cl
+mov     ecx, ebx
+shl     edx, cl
+or      esi, edx
+mov     edx, [ebp+var_C]
+mov     ecx, esi
+neg     ecx
+xor     eax, 3C19639Fh
+and     ecx, 1Fh
+rol     eax, 0Ah
+shl     edx, cl
+add     eax, 0E55FCEA9h
+add     eax, esi
+mov     ecx, esi
+and     ecx, 1Fh
+shr     [ebp+var_C], cl
+mov     ecx, 75CB4E8h
+sub     ecx, esi
+or      edx, [ebp+var_C]
+mov     [ebp+var_14], ecx
+mov     esi, eax
+mov     ecx, edi
+sub     edx, 744FE5C2h
+shl     esi, cl
+mov     edi, edx
+mov     ecx, ebx
+mov     ebx, [ebp+var_14]
+shr     eax, cl
+mov     ecx, [ebp+var_4]
+or      esi, eax
+rol     ecx, 0Ah
+mov     eax, 0C47DBB5Fh
+sub     eax, ebx
+not     esi
+add     ecx, eax
+not     esi
+mov     [ebp+var_4], ecx
+mov     eax, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, [ebp+var_4]
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+neg     ecx
+or      edi, edx
+xor     edi, [ebp+var_4]
+and     ecx, 1Fh
+mov     edx, esi
+shl     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edi
+neg     ecx
+or      edx, esi
+and     ecx, 1Fh
+rol     edx, 0Ah
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+xor     edi, 0EA2944E4h
+shr     ebx, cl
+or      eax, ebx
+mov     ebx, eax
+mov     eax, edi
+xor     ebx, edx
+rol     edx, 8
+mov     ecx, edx
+rol     ebx, 5
+neg     ecx
+xor     ebx, edx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, [ebp+var_4]
+or      eax, edi
+xor     ecx, 7BD8C92Ch
+add     ecx, edx
+neg     ecx
+xor     ecx, edx
+xor     ecx, 0F033F6A2h
+sub     edx, ebx
+mov     edi, eax
+sub     edi, ecx
+not     eax
+xor     ebx, eax
+mov     esi, edx
+add     eax, edx
+rol     ebx, 5
+xor     eax, 4B934372h
+add     ebx, 18E4B229h
+mov     ecx, eax
+ror     ebx, 0Eh
+neg     ecx
+sub     edi, 482D37B9h
+and     ecx, 1Fh
+mov     [ebp+var_8], edi
+shr     esi, cl
+xor     edi, eax
+mov     ecx, eax
+sub     ebx, 511E16ECh
+and     ecx, 1Fh
+not     ebx
+shl     edx, cl
+mov     ecx, ebx
+or      esi, edx
+neg     ecx
+sub     edi, esi
+and     ecx, 1Fh
+xor     esi, [ebp+var_8]
+sub     edi, 0E3A735Bh
+mov     edx, esi
+not     edi
+shl     edx, cl
+add     edi, esi
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     esi, cl
+or      edx, esi
+mov     esi, [ebp+var_8]
+rol     esi, 0Fh
+rol     esi, 4
+xor     esi, edi
+lea     eax, [ebx+edx]
+mov     [ebp+var_8], esi
+sub     edi, eax
+rol     ebx, 0Ch
+mov     ecx, esi
+mov     eax, edx
+neg     ecx
+not     ebx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+mov     esi, ebx
+shl     edx, cl
+not     ebx
+or      eax, edx
+xor     eax, edi
+neg     edi
+mov     ecx, eax
+mov     edx, edi
+neg     ecx
+xor     esi, eax
+and     ecx, 1Fh
+not     esi
+shl     edx, cl
+add     ebx, esi
+mov     ecx, eax
+mov     eax, ebx
+and     ecx, 1Fh
+shr     edi, cl
+or      edx, edi
+sub     edx, 26001486h
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     edi, [ebp+var_8]
+or      eax, ebx
+add     edx, eax
+sub     esi, edi
+xor     esi, 831661D4h
+xor     edx, 4206DC41h
+neg     esi
+sub     eax, 1E5B81DAh
+xor     esi, edx
+sub     edi, eax
+add     esi, edx
+neg     edi
+xor     esi, eax
+mov     [ebp+var_8], edi
+rol     esi, 0Fh
+lea     ebx, [edx+4FF8A06Eh]
+xor     esi, 8FA7AA4Ch
+add     eax, 3BA44CE8h
+mov     ecx, esi
+mov     edx, eax
+neg     ecx
+not     ebx
+and     ecx, 1Fh
+mov     [ebp+var_4], ebx
+shr     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+sub     esi, 5F3905E0h
+shl     eax, cl
+mov     ecx, ebx
+or      edx, eax
+neg     ecx
+mov     eax, [ebp+var_8]
+and     ecx, 1Fh
+mov     [ebp+var_10], edx
+and     eax, 1Fh
+mov     edx, esi
+shr     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+mov     ebx, edi
+shl     esi, cl
+neg     ebx
+or      edx, esi
+mov     ecx, eax
+not     edx
+mov     edi, ebx
+mov     esi, edx
+and     edi, 1Fh
+shr     esi, cl
+mov     ecx, edi
+shl     edx, cl
+mov     ecx, [ebp+var_4]
+or      esi, edx
+sub     esi, [ebp+var_8]
+not     ecx
+not     esi
+add     [ebp+var_10], esi
+xor     ecx, esi
+mov     [ebp+var_4], ecx
+not     esi
+mov     ecx, eax
+mov     edx, esi
+mov     eax, [ebp+var_10]
+shr     edx, cl
+not     eax
+mov     ecx, edi
+add     eax, 6552FB05h
+shl     esi, cl
+or      edx, esi
+not     edx
+xor     eax, edx
+neg     edx
+xor     ebx, eax
+xor     edx, ebx
+xor     ebx, eax
+mov     ecx, edx
+mov     [ebp+var_14], edx
+add     eax, 6A57D2AFh
+mov     [ebp+var_C], ebx
+neg     ecx
+and     ecx, 1Fh
+mov     edi, [ebp+var_C]
+mov     ebx, eax
+mov     esi, 31F12799h
+shl     ebx, cl
+mov     ecx, edx
+and     ecx, 1Fh
+sub     esi, [ebp+var_4]
+shr     eax, cl
+or      ebx, eax
+mov     eax, ebx
+mov     edx, ebx
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+and     edx, 1Fh
+shl     edi, cl
+mov     ecx, edx
+shr     [ebp+var_C], cl
+mov     ecx, eax
+or      edi, [ebp+var_C]
+mov     eax, esi
+shl     eax, cl
+sub     edi, ebx
+mov     ecx, edx
+mov     edx, edi
+shr     esi, cl
+or      eax, esi
+neg     eax
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+add     eax, 43A9E6F2h
+shr     edi, cl
+or      edx, edi
+mov     [ebp+var_10], eax
+mov     eax, [ebp+var_14]
+rol     edx, 6
+xor     ebx, edx
+add     eax, edx
+neg     eax
+mov     ecx, ebx
+neg     ecx
+mov     edi, eax
+mov     [ebp+var_14], ecx
+and     ebx, 1Fh
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, ebx
+shl     eax, cl
+or      edi, eax
+mov     ebx, [ebp+var_10]
+mov     ecx, edi
+mov     eax, edx
+neg     ecx
+mov     esi, ebx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+sub     edi, 2508E19Eh
+shl     edx, cl
+sub     esi, edi
+or      eax, edx
+mov     ecx, edi
+neg     ecx
+mov     edx, eax
+and     ecx, 1Fh
+xor     ebx, esi
+shl     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     eax, cl
+or      edx, eax
+add     edx, [ebp+var_14]
+mov     edi, edx
+neg     edi
+mov     ecx, edi
+and     ecx, 1Fh
+mov     eax, ebx
+shl     eax, cl
+and     edx, 1Fh
+mov     ecx, edx
+mov     edx, edi
+shr     ebx, cl
+or      eax, ebx
+mov     ebx, esi
+xor     edx, eax
+mov     ecx, eax
+neg     ecx
+add     edx, edi
+and     ecx, 1Fh
+neg     edx
+shr     ebx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+mov     eax, [ebp+var_14]
+shl     esi, cl
+inc     eax
+or      ebx, esi
+mov     ecx, edx
+neg     ecx
+mov     esi, edi
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+xor     edx, 9E55FD8Dh
+shl     edi, cl
+or      esi, edi
+mov     edi, ebx
+mov     ecx, esi
+rol     edi, 0Dh
+neg     ecx
+rol     edi, 0Ch
+and     ecx, 1Fh
+mov     ebx, edx
+shr     ebx, cl
+neg     edi
+mov     ecx, esi
+xor     eax, edi
+and     ecx, 1Fh
+ror     edi, 0Dh
+shl     edx, cl
+sub     eax, 64F4B2C7h
+or      ebx, edx
+sub     edi, eax
+sub     ebx, 26B5C566h
+ror     edi, 5
+add     esi, ebx
+mov     ecx, edi
+neg     ecx
+sub     ebx, edi
+and     ecx, 1Fh
+sub     ebx, 7A8DF9D5h
+mov     edx, esi
+not     ebx
+shl     edx, cl
+xor     ebx, edi
+mov     ecx, edi
+ror     ebx, 6
+and     ecx, 1Fh
+not     ebx
+shr     esi, cl
+mov     ecx, ebx
+or      edx, esi
+neg     ecx
+and     ecx, 1Fh
+mov     esi, eax
+shl     esi, cl
+add     edx, eax
+mov     ecx, ebx
+neg     edx
+and     ecx, 1Fh
+rol     edx, 8
+shr     eax, cl
+or      esi, eax
+mov     [ebp+var_8], esi
+sub     esi, edx
+add     edi, esi
+sub     edx, 2B939AAEh
+mov     [ebp+var_10], edi
+mov     esi, edx
+mov     [ebp+var_C], edx
+mov     edi, ebx
+and     edx, 1Fh
+neg     esi
+mov     ecx, edx
+and     esi, 1Fh
+shr     edi, cl
+mov     ecx, esi
+shl     ebx, cl
+mov     ecx, [ebp+var_8]
+or      edi, ebx
+mov     ebx, [ebp+var_10]
+mov     eax, edi
+sub     eax, ebx
+not     edi
+add     ecx, eax
+ror     ebx, 8
+mov     eax, [ebp+var_C]
+add     edi, 7FE44739h
+xor     ecx, edi
+mov     [ebp+var_8], ecx
+mov     ecx, edx
+mov     edx, ebx
+shr     edx, cl
+mov     ecx, esi
+shl     ebx, cl
+mov     ecx, [ebp+var_8]
+or      edx, ebx
+sub     edi, ecx
+rol     edx, 4
+sub     ecx, eax
+neg     edi
+xor     ecx, 6C53E93Eh
+not     eax
+rol     eax, 4
+not     ecx
+mov     [ebp+var_8], ecx
+mov     ebx, eax
+neg     ebx
+mov     esi, edi
+mov     ecx, ebx
+and     eax, 1Fh
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, eax
+shr     edi, cl
+or      esi, edi
+rol     esi, 9
+dec     esi
+mov     eax, esi
+sub     eax, [ebp+var_8]
+add     edx, eax
+mov     eax, [ebp+var_8]
+xor     ebx, edx
+sub     eax, 5519EFC5h
+rol     ebx, 6
+xor     edx, esi
+sub     ebx, eax
+inc     edx
+xor     eax, 0E9A3F9B6h
+rol     ebx, 8
+ror     eax, 0Eh
+mov     edi, edx
+add     ebx, eax
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     edx, cl
+or      edi, edx
+mov     [ebp+var_4], edi
+mov     edi, esi
+neg     edi
+mov     ecx, edi
+and     ecx, 1Fh
+mov     edx, ebx
+ror     eax, 0Ah
+shr     edx, cl
+and     esi, 1Fh
+mov     ecx, esi
+rol     edi, 7
+shl     ebx, cl
+or      edx, ebx
+xor     edx, 41D188E8h
+add     eax, edx
+mov     ecx, eax
+mov     [ebp+var_8], eax
+mov     ebx, [ebp+var_8]
+neg     ecx
+and     ecx, 1Fh
+mov     eax, edx
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, edi
+or      eax, edx
+neg     ecx
+mov     esi, eax
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+ror     edi, 8
+shl     eax, cl
+neg     edi
+or      esi, eax
+add     ebx, edi
+mov     eax, [ebp+var_4]
+add     eax, 30864B83h
+rol     esi, 2
+mov     [ebp+var_4], eax
+ror     esi, 0Dh
+rol     esi, 0Fh
+not     esi
+rol     ebx, 3
+sub     eax, esi
+mov     edx, esi
+add     edi, eax
+mov     eax, [ebp+var_4]
+mov     ecx, edi
+xor     eax, 9264F911h
+sub     eax, ebx
+neg     ecx
+and     ecx, 1Fh
+mov     [ebp+var_4], eax
+shr     edx, cl
+mov     ecx, edi
+ror     edi, 8
+and     ecx, 1Fh
+sub     edi, eax
+shl     esi, cl
+xor     edi, eax
+or      edx, esi
+xor     ebx, edi
+add     edx, 0DE5C54Fh
+lea     eax, [edi-5CF4C3BDh]
+xor     eax, ebx
+rol     ebx, 0Bh
+add     eax, 0C948418h
+xor     edx, eax
+dec     eax
+xor     ebx, edx
+sub     ebx, 43771A0h
+xor     ebx, 0FF060280h
+add     eax, ebx
+ror     ebx, 0Eh
+xor     eax, 3A8633Dh
+inc     eax
+add     eax, ebx
+add     ebx, 6CDEB045h
+mov     [ebp+var_14], ebx
+mov     ebx, eax
+neg     ebx
+mov     ecx, ebx
+and     ecx, 1Fh
+mov     esi, edx
+ror     ebx, 0Dh
+shr     esi, cl
+and     eax, 1Fh
+mov     ecx, eax
+mov     eax, [ebp+var_14]
+shl     edx, cl
+mov     ecx, [ebp+var_4]
+or      esi, edx
+not     ecx
+xor     esi, eax
+sub     ecx, 0B9E35FBh
+xor     ecx, eax
+not     eax
+add     ecx, esi
+add     eax, 73124474h
+neg     ecx
+lea     edi, [esi+14F8273Eh]
+add     ebx, ecx
+mov     edx, eax
+neg     ebx
+not     ecx
+mov     [ebp+var_4], ecx
+neg     ecx
+mov     esi, [ebp+var_4]
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, esi
+ror     ebx, 6
+and     ecx, 1Fh
+xor     ebx, 3259CB39h
+not     esi
+add     edi, ebx
+sub     esi, 32393F4h
+rol     edi, 0Eh
+xor     edi, eax
+shr     eax, cl
+or      edx, eax
+not     edi
+xor     edx, ebx
+ror     edi, 6
+add     edx, 5FC80BB0h
+not     edi
+sub     ebx, edx
+mov     eax, 11C87A24h
+sub     ebx, esi
+sub     eax, edx
+add     ebx, 63856DD1h
+sub     eax, edi
+ror     ebx, 0Dh
+not     edi
+rol     ebx, 0Bh
+not     edx
+rol     ebx, 8
+add     ebx, eax
+ror     edi, 6
+xor     edx, edi
+lea     eax, [esi+7E936BFFh]
+not     edi
+add     ebx, 0E2E6D6F3h
+not     edx
+mov     [ebp+var_10], edi
+add     ebx, edx
+xor     eax, 5C7AE8BAh
+mov     ecx, edi
+add     edx, eax
+neg     ecx
+mov     esi, edx
+and     ecx, 1Fh
+xor     ebx, 90C2D3D5h
+shr     esi, cl
+add     ebx, eax
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+neg     ecx
+or      esi, edx
+and     ecx, 1Fh
+mov     [ebp+var_14], esi
+shl     edi, cl
+mov     edx, [ebp+var_10]
+neg     eax
+xor     eax, 5FEDAFFEh
+mov     ecx, ebx
+and     ecx, 1Fh
+neg     eax
+shr     edx, cl
+not     ebx
+mov     ecx, esi
+or      edi, edx
+neg     ecx
+mov     esi, eax
+and     ecx, 1Fh
+add     edi, 287C0CE9h
+shl     esi, cl
+mov     ecx, [ebp+var_14]
+and     ecx, 1Fh
+shr     eax, cl
+or      esi, eax
+mov     eax, [ebp+var_14]
+not     eax
+xor     esi, ebx
+mov     ecx, eax
+sub     ebx, esi
+neg     ecx
+mov     edx, ebx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, esi
+neg     ecx
+or      edx, ebx
+and     ecx, 1Fh
+mov     [ebp+var_10], edx
+mov     edx, edi
+shr     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+xor     esi, 0F98CD349h
+shl     edi, cl
+mov     ecx, [ebp+var_10]
+or      edx, edi
+rol     ecx, 1
+lea     edi, [eax-1]
+not     ecx
+ror     edx, 0Ah
+xor     edi, edx
+mov     eax, 0E30A5180h
+add     ecx, edi
+sub     eax, esi
+sub     edi, eax
+not     ecx
+add     edi, 4DDF393Fh
+sub     edx, esi
+not     edi
+ror     edx, 0Eh
+add     edi, 56DA3983h
+ror     edi, 5
+sub     eax, edi
+sub     edi, ecx
+add     eax, edi
+not     edi
+add     eax, ecx
+mov     ebx, edi
+neg     eax
+neg     eax
+lea     esi, [edi+edi]
+sub     esi, edx
+sub     esi, ecx
+not     ecx
+sub     ecx, 45A5F3D3h
+mov     [ebp+var_10], ecx
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     edi, cl
+or      ebx, edi
+not     eax
+mov     edi, [ebp+var_10]
+neg     ebx
+add     esi, edi
+mov     [ebp+var_8], eax
+mov     ecx, [ebp+var_8]
+mov     eax, 964C6363h
+sub     eax, ecx
+rol     ebx, 1
+add     ecx, esi
+add     edi, eax
+sub     ebx, ecx
+mov     [ebp+var_8], ecx
+mov     ecx, ebx
+lea     eax, [esi-1]
+neg     ecx
+mov     edx, edi
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+inc     ebx
+shl     edi, cl
+or      edx, edi
+rol     ebx, 5
+add     edx, 742C536h
+xor     eax, edx
+mov     esi, edx
+rol     eax, 0Eh
+mov     edi, edx
+sub     esi, eax
+mov     eax, [ebp+var_8]
+mov     ecx, esi
+ror     eax, 5
+neg     ecx
+xor     eax, 35DE01C4h
+and     ecx, 1Fh
+sub     eax, esi
+shr     edi, cl
+mov     ecx, esi
+and     ecx, 1Fh
+sub     esi, ebx
+shl     edx, cl
+not     ebx
+or      edi, edx
+sub     ebx, 6504EDF8h
+not     edi
+mov     edx, esi
+add     edi, eax
+xor     ebx, 0B6992C6h
+xor     eax, 0A21CE9B1h
+neg     ebx
+mov     ecx, eax
+rol     ebx, 8
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+xor     eax, 0F7264E2Eh
+shr     esi, cl
+mov     ecx, eax
+or      edx, esi
+mov     [ebp+var_8], eax
+mov     esi, [ebp+var_8]
+sub     edi, edx
+xor     edi, ebx
+neg     ecx
+xor     ebx, 6B9A6FFEh
+and     ecx, 1Fh
+mov     eax, ebx
+xor     edx, 9AFD3C79h
+shl     eax, cl
+xor     edi, 93057BA1h
+neg     edx
+mov     ecx, esi
+xor     edx, edi
+and     ecx, 1Fh
+not     edi
+shr     ebx, cl
+or      eax, ebx
+neg     edx
+rol     edx, 0Fh
+not     eax
+sub     eax, edi
+add     edx, 26EFAC41h
+add     edi, edx
+not     esi
+add     eax, esi
+rol     edx, 2
+add     edx, edi
+neg     esi
+neg     edx
+mov     [ebp+var_8], esi
+mov     ecx, esi
+ror     edi, 8
+neg     ecx
+mov     [ebp+var_14], edi
+and     ecx, 1Fh
+neg     eax
+mov     ebx, esi
+mov     esi, edx
+shr     esi, cl
+sub     ebx, eax
+mov     eax, [ebp+var_8]
+sub     ebx, edx
+mov     ecx, eax
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+neg     ecx
+lea     edi, [eax-1]
+mov     eax, [ebp+var_14]
+and     ecx, 1Fh
+or      esi, edx
+mov     edx, eax
+shl     edx, cl
+add     esi, 578A8524h
+mov     ecx, ebx
+add     edi, esi
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, esi
+or      edx, eax
+neg     ecx
+and     ecx, 1Fh
+not     edx
+mov     eax, edx
+shr     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+rol     esi, 0Fh
+shl     edx, cl
+sub     esi, ebx
+or      eax, edx
+mov     ecx, edi
+xor     ecx, eax
+ror     edi, 0Eh
+not     ecx
+mov     [ebp+var_10], edi
+add     ecx, 0AF95D840h
+mov     eax, edi
+not     ebx
+mov     [ebp+var_14], ecx
+mov     edx, edi
+and     eax, 1Fh
+mov     edi, ebx
+neg     edx
+and     edx, 1Fh
+mov     ecx, eax
+shr     edi, cl
+add     esi, 88632F20h
+add     esi, ebx
+mov     ecx, edx
+shl     ebx, cl
+mov     ecx, eax
+or      edi, ebx
+mov     ebx, esi
+shl     ebx, cl
+mov     ecx, edx
+shr     esi, cl
+mov     eax, [ebp+var_10]
+or      ebx, esi
+xor     eax, edi
+mov     edx, [ebp+var_14]
+add     ebx, eax
+mov     [ebp+var_10], eax
+sub     edi, 36734BE5h
+mov     ecx, ebx
+neg     ecx
+mov     esi, edi
+and     ecx, 1Fh
+mov     eax, ebx
+shl     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+neg     ecx
+or      esi, edi
+and     ecx, 1Fh
+sub     esi, 2298459Bh
+shl     eax, cl
+mov     edi, esi
+sub     edi, [ebp+var_10]
+mov     ecx, edx
+and     ecx, 1Fh
+mov     [ebp+var_14], esi
+shr     ebx, cl
+or      eax, ebx
+sub     eax, 5022D44Bh
+add     edx, eax
+mov     esi, eax
+xor     edx, eax
+rol     edx, 0Dh
+xor     edi, edx
+neg     edx
+mov     ecx, edx
+rol     edi, 0Fh
+neg     ecx
+mov     ebx, edx
+and     ecx, 1Fh
+xor     edi, 5B0D1427h
+shr     esi, cl
+sub     edi, 3E4109D4h
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, [ebp+var_14]
+or      esi, eax
+neg     ecx
+not     esi
+and     ecx, 1Fh
+xor     esi, edi
+shl     ebx, cl
+mov     eax, esi
+mov     ecx, [ebp+var_14]
+xor     edi, 0E385CD7Eh
+and     ecx, 1Fh
+shr     edx, cl
+or      ebx, edx
+mov     edx, [ebp+var_14]
+add     edx, ebx
+not     ebx
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     esi, cl
+or      eax, esi
+add     edx, eax
+sub     eax, edi
+rol     eax, 0Eh
+xor     edi, 108B3171h
+sub     eax, edx
+neg     edi
+xor     edx, eax
+add     eax, 7AC2F231h
+mov     [ebp+var_10], eax
+ror     ebx, 0Ah
+xor     ebx, edi
+lea     ecx, [edx+3491FEB2h]
+rol     ecx, 9
+mov     edx, eax
+dec     ecx
+mov     [ebp+var_14], ebx
+ror     ecx, 0Dh
+neg     edx
+add     ecx, eax
+lea     esi, [edi+ebx*2]
+mov     [ebp+var_C], ecx
+and     eax, 1Fh
+mov     edi, esi
+mov     ecx, eax
+shr     edi, cl
+and     edx, 1Fh
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, eax
+mov     eax, [ebp+var_14]
+or      edi, esi
+shr     ebx, cl
+mov     esi, edi
+mov     ecx, edx
+shl     eax, cl
+or      ebx, eax
+mov     eax, ebx
+mov     edx, ebx
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+and     edx, 1Fh
+shr     esi, cl
+not     ebx
+mov     ecx, edx
+shl     edi, cl
+mov     ecx, eax
+or      esi, edi
+mov     eax, ebx
+mov     edi, [ebp+var_10]
+mov     [ebp+var_14], esi
+mov     esi, edi
+shl     esi, cl
+mov     ecx, edx
+shr     edi, cl
+mov     ecx, ebx
+mov     edx, [ebp+var_C]
+neg     ecx
+and     ecx, 1Fh
+or      esi, edi
+mov     edi, esi
+neg     edx
+shr     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     esi, cl
+or      edi, esi
+mov     esi, [ebp+var_14]
+xor     edi, edx
+not     esi
+mov     ecx, edi
+add     edx, 2
+neg     ecx
+rol     edx, 0Dh
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+rol     edi, 0Eh
+shl     ebx, cl
+mov     ecx, edi
+or      eax, ebx
+neg     ecx
+xor     esi, eax
+and     ecx, 1Fh
+neg     eax
+ror     eax, 7
+mov     ebx, eax
+shl     ebx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     eax, cl
+xor     edi, edx
+or      ebx, eax
+mov     [ebp+var_10], edi
+mov     eax, [ebp+var_10]
+neg     ebx
+mov     ecx, ebx
+rol     esi, 4
+neg     ecx
+rol     esi, 9
+and     ecx, 1Fh
+rol     eax, 7
+sub     edx, 4A1A67C2h
+neg     eax
+add     esi, edx
+mov     edi, edx
+shr     edi, cl
+mov     ecx, ebx
+sub     ebx, esi
+and     ecx, 1Fh
+shl     edx, cl
+add     esi, eax
+or      edi, edx
+not     esi
+ror     edi, 7
+neg     ebx
+sub     esi, edi
+mov     [ebp+var_14], ebx
+not     edi
+mov     edx, ebx
+xor     eax, edi
+neg     edx
+mov     [ebp+var_10], eax
+and     edx, 1Fh
+mov     eax, ebx
+xor     edi, 0D9D68F08h
+and     eax, 1Fh
+mov     ebx, esi
+mov     ecx, eax
+shr     ebx, cl
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, eax
+mov     eax, [ebp+var_10]
+or      ebx, esi
+mov     esi, edi
+mov     [ebp+var_C], ebx
+shr     esi, cl
+mov     ecx, edx
+shl     edi, cl
+or      esi, edi
+mov     edi, 0F27BF20h
+sub     edi, [ebp+var_14]
+xor     esi, edi
+xor     eax, edi
+mov     ecx, esi
+mov     [ebp+var_8], esi
+neg     ecx
+add     eax, edi
+and     ecx, 1Fh
+mov     esi, eax
+shl     esi, cl
+mov     ecx, [ebp+var_8]
+and     ecx, 1Fh
+shr     eax, cl
+or      esi, eax
+mov     eax, esi
+mov     edx, esi
+and     eax, 1Fh
+neg     edx
+and     edx, 1Fh
+mov     ecx, eax
+shl     [ebp+var_C], cl
+mov     ecx, edx
+shr     ebx, cl
+mov     ecx, eax
+or      [ebp+var_C], ebx
+mov     ebx, edi
+shl     ebx, cl
+mov     ecx, edx
+shr     edi, cl
+mov     ecx, [ebp+var_8]
+or      ebx, edi
+mov     edx, [ebp+var_C]
+xor     ebx, ecx
+mov     eax, ecx
+mov     edi, edx
+sub     ecx, edx
+xor     eax, esi
+mov     esi, 50BFFEF8h
+sub     esi, eax
+sub     esi, ebx
+rol     ebx, 0Ch
+sub     ebx, ecx
+sub     ecx, esi
+not     ecx
+rol     ecx, 0Fh
+add     ebx, ecx
+mov     eax, ecx
+sub     eax, edx
+neg     ecx
+rol     ecx, 5
+add     esi, eax
+mov     [ebp+var_8], ecx
+mov     eax, esi
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     edx, cl
+or      edi, edx
+mov     edx, [ebp+var_8]
+add     edi, 3B1379AAh
+xor     edx, ebx
+ror     edi, 3
+mov     ecx, edi
+mov     ebx, [ebp+var_8]
+neg     ecx
+sub     edx, edi
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+xor     edi, edx
+shr     esi, cl
+neg     edx
+or      eax, esi
+neg     edi
+not     eax
+add     eax, 73084FBh
+xor     eax, edi
+xor     edi, edx
+rol     eax, 10h
+mov     ecx, edi
+inc     eax
+neg     ecx
+and     ecx, 1Fh
+mov     [ebp+var_14], eax
+mov     eax, edx
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+or      eax, edx
+mov     edx, eax
+mov     [ebp+var_4], eax
+mov     esi, eax
+and     edx, 1Fh
+neg     esi
+mov     ecx, edx
+shr     ebx, cl
+and     esi, 1Fh
+mov     ecx, esi
+add     edi, eax
+shl     [ebp+var_8], cl
+mov     eax, 7A5F6569h
+or      ebx, [ebp+var_8]
+ror     ebx, 0Ch
+mov     [ebp+var_8], ebx
+rol     edi, 7
+sub     eax, ebx
+mov     ecx, edx
+add     edi, eax
+mov     eax, [ebp+var_14]
+mov     edx, eax
+ror     edi, 2
+shl     edx, cl
+mov     ecx, esi
+shr     eax, cl
+or      edx, eax
+mov     eax, edi
+neg     edx
+rol     edx, 8
+sub     edx, ebx
+mov     esi, edx
+mov     [ebp+var_C], edx
+mov     ebx, edx
+and     esi, 1Fh
+mov     edx, [ebp+var_4]
+neg     ebx
+and     ebx, 1Fh
+inc     edx
+mov     ecx, esi
+shr     eax, cl
+mov     ecx, ebx
+shl     edi, cl
+mov     ecx, eax
+mov     eax, [ebp+var_8]
+or      ecx, edi
+add     edx, ecx
+add     eax, 0A945059Dh
+add     eax, ecx
+neg     ecx
+ror     eax, 1
+ror     ecx, 2
+rol     eax, 0Dh
+ror     ecx, 8
+mov     edi, eax
+mov     [ebp+var_10], ecx
+mov     ecx, esi
+shr     edi, cl
+mov     ecx, ebx
+shl     eax, cl
+mov     ecx, esi
+mov     esi, [ebp+var_10]
+or      edi, eax
+mov     eax, edx
+neg     edi
+shl     eax, cl
+mov     ecx, ebx
+shr     edx, cl
+or      eax, edx
+mov     edx, esi
+xor     edx, [ebp+var_C]
+not     esi
+not     edx
+rol     eax, 0Ch
+not     eax
+sub     eax, edx
+ror     edx, 1
+xor     edx, 79072083h
+add     edx, 1C433901h
+sub     esi, edx
+lea     ebx, [edi+edx]
+rol     edx, 4
+xor     edx, esi
+add     ebx, eax
+neg     ebx
+ror     edx, 0Bh
+sub     edi, ebx
+sub     esi, 454BFA32h
+sub     edx, edi
+add     ebx, edi
+rol     edi, 0Fh
+neg     edx
+xor     edx, edi
+mov     [ebp+var_14], edi
+mov     [ebp+var_10], edx
+sub     ebx, 61A8F734h
+mov     edx, edi
+neg     edx
+mov     eax, edi
+and     edx, 1Fh
+and     eax, 1Fh
+mov     edi, esi
+mov     ecx, eax
+shl     edi, cl
+mov     ecx, edx
+shr     esi, cl
+mov     ecx, eax
+or      edi, esi
+mov     eax, 0F9D6AE60h
+mov     esi, ebx
+not     edi
+shr     esi, cl
+sub     eax, edi
+mov     ecx, edx
+shl     ebx, cl
+or      esi, ebx
+mov     ebx, [ebp+var_10]
+mov     ecx, ebx
+ror     esi, 3
+add     esi, eax
+neg     ecx
+mov     eax, [ebp+var_14]
+and     ecx, 1Fh
+add     eax, ebx
+mov     edx, esi
+shr     edx, cl
+neg     eax
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     esi, cl
+lea     ecx, [ebx+9B0D3E3h]
+add     ecx, edi
+or      edx, esi
+xor     ebx, ecx
+xor     edx, eax
+xor     ecx, 222DBF1Bh
+xor     edx, 22377BDCh
+sub     ecx, ebx
+rol     edx, 0Dh
+not     edx
+add     eax, 90558A52h
+sub     ecx, edx
+rol     eax, 0Eh
+mov     [ebp+var_8], ecx
+not     eax
+add     eax, ebx
+ror     [ebp+var_8], 6
+not     ebx
+ror     eax, 8
+lea     esi, [ecx+edx]
+ror     ebx, 5
+not     esi
+mov     edi, ebx
+mov     ecx, esi
+sub     eax, edx
+neg     ecx
+mov     [ebp+var_14], eax
+and     ecx, 1Fh
+mov     edx, eax
+shr     edi, cl
+neg     edx
+mov     ecx, esi
+and     edx, 1Fh
+and     ecx, 1Fh
+not     esi
+shl     ebx, cl
+or      edi, ebx
+mov     ebx, esi
+add     edi, eax
+and     eax, 1Fh
+mov     ecx, eax
+shl     ebx, cl
+mov     ecx, edx
+shr     esi, cl
+mov     ecx, eax
+or      ebx, esi
+mov     esi, edi
+xor     ebx, [ebp+var_8]
+shl     esi, cl
+mov     ecx, edx
+shr     edi, cl
+mov     ecx, ebx
+or      esi, edi
+neg     ecx
+and     ecx, 1Fh
+not     esi
+mov     eax, esi
+mov     edi, ebx
+shr     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     esi, cl
+or      eax, esi
+mov     esi, [ebp+var_14]
+sub     esi, ebx
+sub     eax, ebx
+xor     eax, [ebp+var_8]
+mov     ecx, esi
+neg     ecx
+mov     [ebp+var_10], eax
+and     ecx, 1Fh
+mov     edx, eax
+shr     edi, cl
+and     eax, 1Fh
+mov     ecx, esi
+neg     edx
+and     ecx, 1Fh
+rol     esi, 7
+shl     ebx, cl
+not     esi
+or      edi, ebx
+mov     ecx, eax
+mov     ebx, esi
+and     edx, 1Fh
+shr     ebx, cl
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, [ebp+var_8]
+or      ebx, esi
+sub     edi, ecx
+neg     ecx
+mov     [ebp+var_8], ecx
+mov     esi, ecx
+mov     ecx, eax
+rol     edi, 9
+mov     eax, [ebp+var_8]
+shl     esi, cl
+mov     ecx, edx
+shr     eax, cl
+or      esi, eax
+rol     edi, 9
+not     esi
+add     edi, ebx
+xor     esi, 0B802CAD3h
+mov     ecx, edi
+neg     ecx
+not     esi
+and     ecx, 1Fh
+mov     eax, esi
+shr     eax, cl
+not     ebx
+mov     ecx, edi
+and     ecx, 1Fh
+shl     esi, cl
+or      eax, esi
+mov     esi, eax
+lea     eax, [edi+6DE0C8A0h]
+not     esi
+add     eax, ebx
+mov     ecx, esi
+mov     edx, eax
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+not     esi
+shl     eax, cl
+or      edx, eax
+ror     esi, 9
+mov     edi, [ebp+var_10]
+mov     ecx, esi
+neg     ecx
+add     edi, 0EA4FDAF9h
+and     ecx, 1Fh
+xor     edi, 8A442870h
+sub     edi, edx
+mov     eax, 1
+sub     eax, ebx
+xor     edi, 50900145h
+mov     ebx, edx
+ror     edi, 7
+shr     ebx, cl
+neg     edi
+mov     ecx, esi
+add     esi, eax
+and     ecx, 1Fh
+neg     eax
+shl     edx, cl
+xor     eax, esi
+or      ebx, edx
+ror     ebx, 0Ch
+rol     ebx, 0Dh
+xor     eax, ebx
+sub     ebx, esi
+xor     esi, 0DC5B2BBh
+ror     eax, 0Ch
+mov     ecx, ebx
+rol     eax, 3
+neg     ecx
+sub     esi, 7B2C4A86h
+and     ecx, 1Fh
+mov     edx, esi
+shl     edx, cl
+xor     edi, eax
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     esi, cl
+or      edx, esi
+lea     esi, [eax-12D86496h]
+xor     edx, 5CAD250Fh
+xor     esi, edx
+sub     edx, ebx
+xor     edi, edx
+neg     esi
+add     ebx, edi
+xor     edx, ebx
+neg     ebx
+xor     edi, ebx
+mov     [ebp+var_14], ebx
+mov     ecx, ebx
+mov     eax, edi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+or      eax, edi
+neg     ecx
+mov     edi, [ebp+var_14]
+and     ecx, 1Fh
+mov     ebx, eax
+xor     esi, eax
+shl     ebx, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, esi
+or      ebx, eax
+neg     ecx
+and     ecx, 1Fh
+mov     eax, edx
+shr     eax, cl
+sub     edi, ebx
+mov     ecx, esi
+and     ecx, 1Fh
+shl     edx, cl
+or      eax, edx
+add     ebx, edi
+mov     ecx, ebx
+mov     [ebp+var_10], ebx
+neg     ecx
+add     esi, ebx
+and     ecx, 1Fh
+rol     esi, 0Bh
+mov     edx, eax
+shl     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     eax, cl
+or      edx, eax
+mov     eax, esi
+sub     eax, edi
+rol     esi, 0Bh
+mov     ecx, eax
+mov     [ebp+var_14], eax
+neg     ecx
+mov     ebx, edx
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+mov     eax, esi
+shr     edx, cl
+or      ebx, edx
+mov     edx, [ebp+var_10]
+rol     ebx, 0Dh
+neg     ebx
+mov     edi, ebx
+mov     [ebp+var_C], ebx
+neg     edi
+mov     ecx, edi
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     esi, cl
+or      eax, esi
+mov     esi, [ebp+var_14]
+xor     edx, esi
+mov     ebx, eax
+not     edx
+add     esi, 20D12810h
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, edx
+and     ecx, 1Fh
+add     edx, edi
+shl     eax, cl
+xor     edi, esi
+or      ebx, eax
+not     edx
+sub     ebx, [ebp+var_C]
+xor     edx, ebx
+mov     ecx, ebx
+lea     eax, [edi+2DC60F37h]
+neg     ecx
+and     ecx, 1Fh
+mov     edi, 1481FA23h
+sub     edi, esi
+add     eax, ebx
+mov     esi, edx
+shl     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+xor     ebx, edi
+shr     edx, cl
+or      esi, edx
+mov     edx, 0E0516D4Bh
+sub     edx, eax
+dec     esi
+mov     eax, 0A93C7ADBh
+sub     eax, ebx
+mov     ebx, edi
+mov     ecx, ebx
+mov     edi, esi
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shl     esi, cl
+or      edi, esi
+ror     ebx, 2
+xor     edi, edx
+neg     ebx
+sub     edi, 68F41DA8h
+rol     ebx, 0Eh
+mov     ecx, edi
+mov     [ebp+var_8], edi
+mov     esi, [ebp+var_8]
+neg     ecx
+and     ecx, 1Fh
+mov     edi, eax
+shr     edi, cl
+inc     edx
+mov     ecx, esi
+xor     esi, ebx
+and     ecx, 1Fh
+shl     eax, cl
+or      edi, eax
+mov     eax, ebx
+sub     eax, edx
+xor     ebx, 856BF50Ch
+add     edi, eax
+mov     ecx, ebx
+neg     ecx
+mov     eax, edx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edx, cl
+or      eax, edx
+mov     edx, esi
+mov     ecx, edx
+mov     esi, ebx
+neg     ecx
+neg     eax
+and     ecx, 1Fh
+add     eax, 1CC54C6Fh
+shr     esi, cl
+xor     eax, edi
+mov     ecx, edx
+ror     edx, 7
+and     ecx, 1Fh
+xor     edx, edi
+shl     ebx, cl
+mov     ecx, eax
+or      esi, ebx
+xor     eax, 64B1011Ah
+xor     esi, edi
+rol     eax, 0Ah
+xor     edx, esi
+add     eax, 1782D879h
+not     esi
+add     esi, edi
+not     edi
+sub     ecx, edi
+sub     edx, edi
+mov     [ebp+var_10], ecx
+mov     [ebp+var_8], edx
+add     edx, eax
+mov     ecx, edx
+mov     eax, esi
+neg     ecx
+mov     ebx, edx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     esi, cl
+or      eax, esi
+mov     esi, eax
+neg     esi
+mov     ecx, esi
+and     ecx, 1Fh
+shr     ebx, cl
+and     eax, 1Fh
+mov     [ebp+var_C], esi
+mov     ecx, eax
+shl     edx, cl
+mov     ecx, [ebp+var_8]
+or      ebx, edx
+add     ecx, 4A2BB9Bh
+mov     eax, ebx
+mov     [ebp+var_8], ecx
+mov     edi, ecx
+mov     edx, ebx
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+shl     edi, cl
+and     edx, 1Fh
+mov     ecx, edx
+not     ebx
+shr     [ebp+var_8], cl
+or      edi, [ebp+var_8]
+mov     ecx, [ebp+var_10]
+neg     edi
+xor     ecx, edi
+sub     ecx, 347FE715h
+ror     ecx, 0Bh
+not     ecx
+mov     [ebp+var_10], ecx
+mov     ecx, eax
+shl     [ebp+var_C], cl
+mov     eax, 1
+mov     ecx, edx
+mov     edx, [ebp+var_C]
+shr     esi, cl
+or      edx, esi
+mov     esi, [ebp+var_10]
+rol     edx, 0Dh
+not     esi
+rol     edx, 6
+neg     edx
+ror     esi, 4
+sub     eax, edx
+mov     ecx, edx
+add     edi, eax
+neg     ecx
+mov     [ebp+var_14], edi
+and     ecx, 1Fh
+mov     edi, ebx
+shl     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+not     edx
+shr     ebx, cl
+or      edi, ebx
+mov     [ebp+var_C], edx
+mov     eax, [ebp+var_C]
+neg     edi
+and     eax, 1Fh
+ror     edi, 9
+mov     ebx, esi
+neg     edx
+and     edx, 1Fh
+mov     ecx, eax
+shl     ebx, cl
+not     edi
+mov     ecx, edx
+rol     edi, 1
+shr     esi, cl
+not     edi
+or      ebx, esi
+rol     edi, 3
+mov     esi, [ebp+var_14]
+add     ebx, 9DC65AFh
+add     esi, ebx
+mov     [ebp+var_10], ebx
+mov     ebx, edi
+mov     ecx, eax
+shr     ebx, cl
+neg     esi
+mov     ecx, edx
+shl     edi, cl
+or      ebx, edi
+mov     edx, esi
+mov     eax, ebx
+neg     eax
+and     ebx, 1Fh
+mov     edi, eax
+mov     [ebp+var_14], eax
+mov     eax, [ebp+var_C]
+and     edi, 1Fh
+mov     ecx, ebx
+shr     edx, cl
+mov     ecx, edi
+shl     esi, cl
+or      edx, esi
+mov     esi, eax
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+or      esi, eax
+mov     eax, edx
+shr     eax, cl
+mov     ecx, edi
+shl     edx, cl
+mov     ecx, ebx
+or      eax, edx
+mov     [ebp+var_C], esi
+mov     esi, [ebp+var_10]
+mov     edx, eax
+shl     edx, cl
+mov     ecx, edi
+shr     eax, cl
+mov     ebx, [ebp+var_C]
+or      edx, eax
+mov     eax, esi
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+not     edx
+shr     esi, cl
+mov     ecx, edx
+neg     ecx
+or      eax, esi
+mov     esi, [ebp+var_14]
+and     ecx, 1Fh
+mov     edi, esi
+xor     eax, ebx
+shl     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     esi, cl
+lea     ecx, [edx+ebx]
+or      edi, esi
+neg     ecx
+add     edi, ebx
+mov     [ebp+var_C], ecx
+add     eax, edi
+dec     ebx
+mov     ecx, ebx
+mov     esi, eax
+neg     ecx
+xor     edi, ebx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+not     ebx
+shr     eax, cl
+or      esi, eax
+add     edi, esi
+sub     edi, ebx
+sub     edi, 578D0BD2h
+not     edi
+ror     edi, 1
+add     esi, 1D87D9B9h
+mov     ecx, edi
+mov     edx, ebx
+neg     ecx
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+add     edi, esi
+shr     ebx, cl
+not     edi
+or      edx, ebx
+rol     esi, 5
+mov     ebx, [ebp+var_C]
+xor     edi, edx
+rol     edi, 1
+xor     ebx, 0A8E194EFh
+mov     ecx, edi
+mov     eax, edx
+neg     ecx
+not     ebx
+and     ecx, 1Fh
+ror     ebx, 1
+shr     eax, cl
+not     ebx
+mov     ecx, edi
+rol     ebx, 3
+and     ecx, 1Fh
+not     esi
+shl     edx, cl
+xor     esi, 610E9E56h
+or      eax, edx
+mov     ecx, esi
+add     edi, eax
+neg     ecx
+xor     eax, ebx
+and     ecx, 1Fh
+sub     ebx, esi
+mov     edx, 57A9C7F3h
+mov     [ebp+var_C], ebx
+sub     edx, esi
+mov     ebx, edi
+rol     edx, 0Ch
+shl     ebx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, [ebp+var_C]
+or      ebx, edi
+lea     esi, [ecx+eax]
+xor     esi, edx
+add     edx, ebx
+add     ecx, esi
+not     ebx
+mov     [ebp+var_C], ecx
+xor     edx, ebx
+mov     ecx, ebx
+mov     edi, edx
+neg     ecx
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edx, cl
+or      edi, edx
+add     edi, ebx
+rol     ebx, 0Bh
+neg     edi
+not     ebx
+add     edi, 2124588Fh
+mov     ecx, ebx
+add     edi, ebx
+neg     ecx
+mov     eax, edi
+and     ecx, 1Fh
+xor     eax, esi
+not     edi
+mov     esi, [ebp+var_C]
+xor     eax, 90060A39h
+mov     edx, esi
+xor     edi, ebx
+shl     edx, cl
+mov     ecx, ebx
+not     ebx
+and     ecx, 1Fh
+add     edi, ebx
+shr     esi, cl
+mov     ecx, edi
+neg     ecx
+mov     [ebp+var_C], edi
+and     ecx, 1Fh
+or      edx, esi
+mov     esi, eax
+dec     edx
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+mov     edi, edx
+shl     eax, cl
+mov     ecx, ebx
+neg     ecx
+or      esi, eax
+and     ecx, 1Fh
+sub     esi, 61DAF822h
+shr     edi, cl
+not     esi
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     edx, cl
+or      edi, edx
+mov     edx, [ebp+var_C]
+not     edi
+lea     eax, [edi+esi]
+xor     esi, ebx
+sub     edx, eax
+rol     edi, 0Ch
+mov     [ebp+var_C], edx
+add     edi, esi
+sub     edx, ebx
+mov     eax, esi
+sub     edx, edi
+neg     edi
+inc     edx
+ror     edi, 2
+mov     ecx, edx
+dec     edi
+neg     ecx
+mov     ebx, edi
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     esi, cl
+or      eax, esi
+mov     esi, [ebp+var_C]
+add     eax, esi
+add     esi, 3F154F15h
+mov     [ebp+var_14], eax
+mov     ecx, esi
+neg     ecx
+mov     [ebp+var_C], esi
+and     ecx, 1Fh
+mov     eax, edx
+shr     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     edx, cl
+or      eax, edx
+neg     eax
+mov     edx, eax
+and     eax, 1Fh
+neg     edx
+mov     ecx, edx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, eax
+shl     edi, cl
+mov     ecx, [ebp+var_14]
+or      ebx, edi
+neg     ecx
+ror     ebx, 0Ch
+and     ecx, 1Fh
+shr     esi, cl
+mov     ecx, [ebp+var_14]
+mov     eax, [ebp+var_C]
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+rol     edx, 0Eh
+xor     esi, ebx
+mov     edi, edx
+xor     ebx, esi
+neg     esi
+mov     ecx, esi
+mov     eax, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, esi
+and     ecx, 1Fh
+ror     esi, 1
+shl     edx, cl
+neg     esi
+or      edi, edx
+mov     ecx, edi
+neg     ecx
+and     ecx, 1Fh
+lea     edx, [esi+66BACD58h]
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+rol     edx, 7
+shr     ebx, cl
+or      eax, ebx
+ror     edx, 6
+mov     ebx, [ebp+var_14]
+add     eax, 0ECE91BBBh
+add     eax, esi
+rol     edi, 9
+add     ebx, 2E48D7BFh
+xor     edx, 0B6B029D3h
+rol     edx, 10h
+not     ebx
+xor     ebx, 0D63B346Ch
+neg     edi
+sub     ebx, eax
+mov     ecx, edx
+neg     ecx
+not     eax
+and     ecx, 1Fh
+mov     [ebp+var_C], eax
+mov     eax, edi
+xor     ebx, 0DC1F2425h
+shr     eax, cl
+sub     ebx, edx
+mov     ecx, edx
+and     ecx, 1Fh
+shl     edi, cl
+or      eax, edi
+mov     edi, edx
+xor     eax, edx
+sub     eax, [ebp+var_C]
+inc     eax
+add     eax, edx
+xor     eax, 2BAF1DCAh
+not     eax
+mov     ecx, eax
+sub     ebx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, eax
+and     ecx, 1Fh
+add     eax, 17DFA3Dh
+shr     edx, cl
+mov     esi, eax
+or      edi, edx
+xor     ebx, edi
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     eax, cl
+not     edi
+mov     ecx, [ebp+var_C]
+or      esi, eax
+neg     ecx
+xor     edi, 661CD548h
+rol     ecx, 0Bh
+not     edi
+xor     edi, ebx
+mov     eax, 51FC1384h
+sub     eax, edi
+mov     edx, esi
+add     ecx, eax
+xor     ebx, 387D55A6h
+mov     [ebp+var_C], ecx
+sub     ebx, 2A92F014h
+mov     ecx, edi
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     esi, cl
+or      edx, esi
+sub     edx, ebx
+sub     edi, edx
+mov     eax, edi
+mov     [ebp+var_14], edi
+xor     eax, ebx
+mov     edi, edx
+mov     ebx, [ebp+var_C]
+sub     edi, eax
+mov     eax, [ebp+var_14]
+sub     ebx, edi
+xor     edx, eax
+ror     edi, 0Ch
+mov     ecx, eax
+rol     edi, 8
+neg     ecx
+mov     esi, edx
+and     ecx, 1Fh
+sub     edi, ebx
+shl     esi, cl
+xor     ebx, 11EE941h
+mov     ecx, eax
+mov     eax, ebx
+and     ecx, 1Fh
+shr     edx, cl
+or      esi, edx
+mov     ecx, esi
+mov     [ebp+var_10], esi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, edi
+or      eax, ebx
+neg     ecx
+and     ecx, 1Fh
+mov     esi, eax
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+mov     eax, [ebp+var_10]
+mov     ebx, eax
+mov     edx, esi
+xor     ebx, edi
+mov     edi, [ebp+var_14]
+inc     edi
+neg     ebx
+not     edi
+mov     ecx, ebx
+add     edi, eax
+neg     ecx
+ror     eax, 0Ah
+sub     eax, 25ABAE04h
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+rol     ebx, 8
+shl     esi, cl
+mov     ecx, edi
+or      edx, esi
+neg     ecx
+and     ecx, 1Fh
+mov     esi, eax
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+xor     esi, edx
+ror     esi, 5
+lea     eax, [esi+edx]
+ror     esi, 0Dh
+add     edi, eax
+xor     esi, ebx
+mov     [ebp+var_10], edi
+mov     eax, ebx
+mov     edi, 0BBB7790Ah
+sub     edi, edx
+mov     edx, [ebp+var_10]
+xor     edx, esi
+not     esi
+mov     ecx, edx
+sub     esi, 782713E2h
+neg     ecx
+xor     esi, edi
+and     ecx, 1Fh
+not     edi
+shr     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     ebx, cl
+or      eax, ebx
+mov     ebx, eax
+mov     eax, esi
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, edi
+or      eax, esi
+neg     ecx
+neg     eax
+mov     esi, edx
+mov     edx, eax
+rol     esi, 9
+and     ecx, 1Fh
+ror     esi, 5
+shl     edx, cl
+not     esi
+mov     ecx, edi
+sub     ebx, esi
+and     ecx, 1Fh
+sub     edi, esi
+shr     eax, cl
+xor     ebx, esi
+or      edx, eax
+neg     edi
+neg     edx
+ror     edi, 3
+mov     eax, 9DEED944h
+neg     edi
+sub     eax, edx
+add     esi, eax
+mov     eax, edi
+sub     ebx, esi
+sub     eax, edx
+lea     esi, [esi+edx*2]
+rol     esi, 3
+add     esi, edi
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+mov     edx, edi
+shr     edx, cl
+not     ebx
+mov     ecx, esi
+inc     esi
+and     ecx, 1Fh
+shl     edi, cl
+or      edx, edi
+mov     edi, ebx
+add     eax, edx
+not     edx
+mov     ecx, edx
+xor     eax, 5AC374F0h
+neg     ecx
+neg     eax
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     ebx, cl
+or      edi, ebx
+mov     ebx, edx
+sub     edi, eax
+xor     eax, esi
+neg     esi
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, esi
+add     esi, 7226E26Eh
+and     ecx, 1Fh
+sub     eax, esi
+shl     edx, cl
+neg     esi
+or      ebx, edx
+mov     ecx, esi
+mov     [ebp+var_10], esi
+mov     edx, [ebp+var_10]
+neg     ecx
+and     ecx, 1Fh
+ror     ebx, 1
+mov     esi, eax
+xor     ebx, edx
+shr     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+mov     eax, 79C94B18h
+rol     esi, 0Ch
+sub     eax, edx
+sub     eax, esi
+not     esi
+add     edi, eax
+rol     esi, 10h
+xor     esi, 42C0927h
+mov     eax, ebx
+add     esi, edi
+neg     eax
+xor     edx, esi
+mov     [ebp+var_14], eax
+mov     [ebp+var_10], edx
+and     ebx, 1Fh
+lea     edx, [edi+1]
+and     eax, 1Fh
+mov     edi, esi
+rol     edx, 0Fh
+mov     ecx, ebx
+shr     edi, cl
+mov     ecx, eax
+shl     esi, cl
+mov     ecx, ebx
+or      edi, esi
+mov     esi, edx
+shl     esi, cl
+mov     ecx, eax
+shr     edx, cl
+rol     edi, 9
+or      esi, edx
+mov     ebx, [ebp+var_14]
+add     esi, 668E852Ch
+mov     edx, [ebp+var_10]
+sub     edi, ebx
+sub     edx, esi
+xor     ebx, 13C92282h
+add     edi, ebx
+mov     eax, edx
+mov     ecx, edi
+neg     esi
+neg     ecx
+xor     ebx, 4C7AAC61h
+and     ecx, 1Fh
+not     ebx
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+or      eax, edx
+neg     eax
+xor     eax, esi
+add     esi, 1DEA907Eh
+mov     [ebp+var_14], eax
+mov     edx, esi
+mov     eax, esi
+mov     [ebp+var_C], esi
+and     eax, 1Fh
+neg     edx
+mov     esi, edi
+mov     ecx, eax
+shl     esi, cl
+and     edx, 1Fh
+mov     ecx, edx
+shr     edi, cl
+mov     ecx, eax
+or      esi, edi
+mov     eax, [ebp+var_C]
+mov     [ebp+var_10], esi
+mov     esi, ebx
+shr     esi, cl
+mov     ecx, edx
+shl     ebx, cl
+mov     edx, [ebp+var_10]
+or      esi, ebx
+mov     ebx, [ebp+var_14]
+mov     edi, esi
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     esi, cl
+or      edi, esi
+xor     edi, edx
+rol     edx, 3
+sub     ebx, edi
+not     edi
+not     ebx
+add     eax, edi
+add     ebx, edx
+neg     eax
+rol     edx, 1
+xor     edx, edi
+ror     eax, 7
+neg     edx
+neg     eax
+mov     ecx, edx
+mov     esi, eax
+neg     ecx
+xor     edi, ebx
+and     ecx, 1Fh
+ror     ebx, 0Dh
+shr     esi, cl
+add     ebx, 6974F1D4h
+mov     ecx, edx
+not     ebx
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+add     edx, esi
+neg     esi
+mov     eax, edx
+rol     esi, 4
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+rol     esi, 0Ch
+shr     edx, cl
+not     esi
+or      eax, edx
+xor     edi, esi
+mov     edx, eax
+neg     edi
+ror     edx, 3
+dec     edi
+sub     edx, ebx
+ror     ebx, 0Bh
+add     esi, ebx
+not     edx
+rol     ebx, 0Eh
+mov     ecx, esi
+neg     ecx
+rol     ebx, 7
+and     ecx, 1Fh
+xor     ebx, esi
+mov     eax, ebx
+xor     edx, 0A89E30FDh
+shr     eax, cl
+not     edx
+mov     ecx, esi
+add     edx, edi
+and     ecx, 1Fh
+ror     edx, 0Ch
+shl     ebx, cl
+mov     ecx, edx
+or      eax, ebx
+rol     esi, 7
+mov     ebx, eax
+neg     ecx
+and     ecx, 1Fh
+xor     ebx, 8DE2F2ABh
+mov     eax, ebx
+sub     eax, edi
+add     eax, 452E8A3Ah
+mov     edi, eax
+shl     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+add     edx, 2328BF30h
+shr     eax, cl
+or      edi, eax
+mov     eax, 58023645h
+xor     edi, edx
+sub     eax, ebx
+add     esi, eax
+mov     ecx, edi
+neg     ecx
+neg     edx
+and     ecx, 1Fh
+rol     edx, 0Fh
+mov     eax, esi
+not     edx
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+mov     [ebp+var_C], edx
+shr     esi, cl
+mov     ecx, edx
+or      eax, esi
+neg     ecx
+mov     esi, [ebp+var_C]
+and     ecx, 1Fh
+mov     edx, eax
+shl     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shr     eax, cl
+or      edx, eax
+xor     ebx, esi
+neg     edx
+xor     ebx, edi
+mov     eax, edi
+add     esi, ebx
+mov     ecx, ebx
+neg     ecx
+mov     [ebp+var_C], esi
+and     ecx, 1Fh
+mov     esi, edx
+shr     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+dec     ebx
+shl     edx, cl
+or      esi, edx
+mov     [ebp+var_10], ebx
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, ebx
+or      eax, edi
+neg     ecx
+and     ecx, 1Fh
+mov     [ebp+var_14], eax
+mov     eax, esi
+mov     edi, 1
+sub     edi, [ebp+var_C]
+shr     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+ror     edi, 1
+shl     esi, cl
+xor     edi, ebx
+or      eax, esi
+mov     ecx, edi
+neg     ecx
+mov     ebx, eax
+and     ecx, 1Fh
+mov     edx, edi
+shl     ebx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     eax, cl
+or      ebx, eax
+mov     eax, ebx
+mov     esi, ebx
+and     eax, 1Fh
+neg     esi
+mov     ecx, eax
+and     esi, 1Fh
+shr     edx, cl
+xor     ebx, 0B5185008h
+mov     ecx, esi
+not     ebx
+shl     edi, cl
+or      edx, edi
+mov     edi, [ebp+var_14]
+mov     ecx, edi
+dec     edi
+sub     ecx, [ebp+var_10]
+mov     [ebp+var_10], ecx
+mov     ecx, eax
+mov     eax, edx
+shr     eax, cl
+mov     ecx, esi
+shl     edx, cl
+or      eax, edx
+mov     edx, [ebp+var_10]
+ror     edx, 4
+mov     ecx, edx
+mov     [ebp+var_4], eax
+neg     ecx
+mov     eax, edi
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     edi, cl
+or      eax, edi
+mov     edi, ebx
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     ebx, cl
+or      edi, ebx
+mov     ebx, [ebp+var_4]
+not     ebx
+rol     ebx, 7
+sub     ebx, edi
+add     edi, eax
+sub     eax, ebx
+ror     ebx, 6
+sub     edx, eax
+add     eax, edi
+rol     edx, 0Bh
+neg     eax
+add     edx, 3024AD80h
+rol     edi, 0Fh
+mov     ecx, edx
+mov     esi, eax
+neg     ecx
+sub     ebx, edx
+and     ecx, 1Fh
+rol     ebx, 5
+shl     esi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+rol     ebx, 0Ch
+shr     eax, cl
+or      esi, eax
+ror     ebx, 7
+xor     esi, edi
+mov     eax, 1
+xor     edx, esi
+sub     eax, esi
+ror     edx, 7
+mov     ecx, esi
+neg     ecx
+add     edx, eax
+and     ecx, 1Fh
+mov     [ebp+var_10], edx
+mov     eax, [ebp+var_10]
+not     edi
+shl     edx, cl
+xor     edi, ebx
+mov     ecx, esi
+xor     edi, 6B311D02h
+and     ecx, 1Fh
+shr     eax, cl
+or      edx, eax
+mov     eax, esi
+sub     edx, 6FA20699h
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+add     edx, edi
+shl     esi, cl
+neg     edx
+or      eax, esi
+mov     ecx, edi
+neg     ecx
+xor     eax, 19F61C6Eh
+and     ecx, 1Fh
+mov     esi, eax
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+neg     esi
+sub     ebx, 7F74DF97h
+mov     [ebp+var_4], ebx
+mov     eax, edx
+mov     ecx, [ebp+var_4]
+mov     ebx, esi
+neg     ecx
+xor     edi, 0AC037311h
+and     ecx, 1Fh
+sub     ebx, edi
+shr     eax, cl
+mov     edi, 68D7CD69h
+mov     ecx, [ebp+var_4]
+and     ecx, 1Fh
+shl     edx, cl
+or      eax, edx
+sub     esi, eax
+sub     edi, eax
+lea     eax, [esi-21D76F12h]
+mov     esi, [ebp+var_4]
+xor     eax, 0AC490F54h
+not     esi
+mov     edx, eax
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shl     eax, cl
+or      edx, eax
+mov     eax, esi
+add     eax, ebx
+xor     edx, edi
+xor     ebx, 80F2BE9Fh
+mov     esi, edx
+mov     ecx, ebx
+not     eax
+neg     ecx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+rol     ebx, 0Ah
+shr     edx, cl
+xor     edi, ebx
+or      esi, edx
+xor     ebx, 1D62D2CDh
+not     esi
+add     esi, 598F35A8h
+xor     eax, esi
+lea     ecx, [edi+1DF9DCDAh]
+neg     eax
+xor     esi, edi
+mov     [ebp+var_4], eax
+add     ecx, ebx
+mov     edi, [ebp+var_4]
+mov     eax, esi
+and     eax, 1Fh
+mov     [ebp+var_C], ecx
+mov     ecx, eax
+mov     edx, esi
+neg     edx
+shl     edi, cl
+and     edx, 1Fh
+mov     ecx, edx
+shr     [ebp+var_4], cl
+mov     ecx, eax
+or      edi, [ebp+var_4]
+mov     eax, ebx
+shr     eax, cl
+mov     ecx, edx
+shl     ebx, cl
+or      eax, ebx
+mov     ebx, [ebp+var_C]
+xor     eax, 5A005831h
+lea     edx, [ebx+esi]
+neg     edx
+rol     edx, 1
+xor     edx, ebx
+neg     edx
+xor     edi, edx
+add     edi, eax
+rol     ebx, 0Ah
+neg     edi
+xor     edi, edx
+add     ebx, 1141775Eh
+rol     ebx, 1
+mov     esi, edi
+rol     ebx, 0Ch
+not     eax
+mov     ecx, ebx
+mov     [ebp+var_8], eax
+neg     ecx
+mov     [ebp+var_C], ebx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, eax
+neg     ecx
+or      esi, edi
+and     ecx, 1Fh
+mov     eax, edx
+shr     eax, cl
+neg     esi
+mov     ecx, [ebp+var_8]
+mov     ebx, esi
+and     ecx, 1Fh
+neg     ebx
+shl     edx, cl
+and     esi, 1Fh
+or      eax, edx
+mov     ecx, ebx
+sub     eax, 15333B83h
+and     ecx, 1Fh
+not     eax
+mov     edx, eax
+shl     edx, cl
+mov     ecx, esi
+mov     esi, [ebp+var_C]
+shr     eax, cl
+not     esi
+or      edx, eax
+mov     eax, [ebp+var_8]
+sub     esi, eax
+sub     edx, ebx
+rol     esi, 6
+mov     edi, edx
+add     esi, eax
+add     eax, esi
+add     esi, 1E74E1A5h
+mov     ecx, eax
+mov     [ebp+var_C], esi
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+lea     esi, [eax+27FCF71Bh]
+mov     ecx, eax
+not     esi
+and     ecx, 1Fh
+mov     eax, 1
+sub     eax, [ebp+var_C]
+shl     edx, cl
+or      edi, edx
+xor     ebx, edi
+add     edi, eax
+neg     ebx
+mov     [ebp+var_8], edi
+not     ebx
+mov     eax, ebx
+mov     edx, ebx
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+and     edx, 1Fh
+shr     [ebp+var_8], cl
+mov     ecx, edx
+shl     edi, cl
+mov     ecx, eax
+or      [ebp+var_8], edi
+mov     edi, esi
+shr     edi, cl
+mov     ecx, edx
+shl     esi, cl
+or      edi, esi
+mov     esi, [ebp+var_C]
+xor     edi, ebx
+not     esi
+sub     esi, ebx
+rol     edi, 1
+mov     ecx, edi
+sub     esi, 7EC47BAEh
+neg     ecx
+add     ebx, esi
+and     ecx, 1Fh
+mov     eax, ebx
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+rol     edi, 0Ah
+shr     ebx, cl
+or      eax, ebx
+mov     ebx, edi
+sub     eax, 72CDF8B6h
+mov     ecx, eax
+mov     edx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shr     edi, cl
+or      ebx, edi
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+ror     ebx, 0Bh
+shl     eax, cl
+or      edx, eax
+mov     eax, [ebp+var_8]
+lea     edi, [esi+eax]
+add     eax, edx
+xor     edi, 65873F3Ch
+mov     [ebp+var_8], eax
+sub     edi, 17588598h
+mov     eax, edx
+ror     edi, 2
+mov     esi, 1D45CDC8h
+mov     ecx, edi
+sub     esi, ebx
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+or      eax, edx
+neg     ecx
+and     ecx, 1Fh
+mov     edx, eax
+shl     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, [ebp+var_8]
+or      edx, eax
+ror     edx, 0Ch
+lea     eax, [edi+1]
+add     edx, 1B095728h
+xor     esi, ecx
+mov     ebx, edx
+not     eax
+sub     ebx, ecx
+not     ebx
+add     ebx, ecx
+not     ebx
+mov     ecx, ebx
+neg     ecx
+and     ecx, 1Fh
+mov     edx, eax
+mov     edi, 0FFBC221Dh
+shr     edx, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     eax, cl
+or      edx, eax
+mov     eax, 0A62187B1h
+sub     eax, esi
+dec     edx
+sub     edi, edx
+ror     eax, 4
+sub     edi, [ebp+var_8]
+xor     eax, ebx
+add     edx, 47DCD97h
+mov     ecx, edi
+neg     ecx
+mov     esi, edx
+and     ecx, 1Fh
+xor     ebx, 8FDBBC72h
+shr     esi, cl
+sub     ebx, 1C0EF0B4h
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+neg     ecx
+or      esi, edx
+and     ecx, 1Fh
+mov     edx, esi
+mov     esi, eax
+add     edx, 58591872h
+shr     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edx
+neg     ecx
+or      esi, eax
+and     ecx, 1Fh
+mov     eax, ebx
+shl     eax, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     ebx, cl
+or      eax, ebx
+mov     ebx, eax
+xor     edi, ebx
+xor     ebx, 2557FFE9h
+sub     edx, edi
+mov     ecx, ebx
+neg     ecx
+add     edi, edx
+and     ecx, 1Fh
+mov     eax, edi
+shr     eax, cl
+neg     edx
+mov     ecx, ebx
+mov     [ebp+var_C], edx
+and     ecx, 1Fh
+xor     ebx, 2B4D3264h
+shl     edi, cl
+add     ebx, 3249206Dh
+or      eax, edi
+mov     ecx, esi
+add     eax, edx
+neg     ecx
+and     ecx, 1Fh
+mov     edx, eax
+shl     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+not     esi
+shr     eax, cl
+or      edx, eax
+mov     eax, [ebp+var_C]
+rol     eax, 0Ah
+mov     ecx, eax
+sub     esi, eax
+neg     ecx
+and     ecx, 1Fh
+mov     edi, esi
+shr     edi, cl
+mov     ecx, eax
+not     eax
+and     ecx, 1Fh
+shl     esi, cl
+xor     eax, 0FDE97793h
+ror     eax, 4
+lea     ecx, [ebx+2FD5AD25h]
+dec     eax
+add     ecx, edx
+rol     eax, 7
+or      edi, esi
+sub     eax, 12627DDDh
+mov     [ebp+var_8], ecx
+rol     eax, 0Ch
+not     eax
+rol     edi, 5
+add     edi, ebx
+mov     [ebp+var_C], eax
+add     ebx, edi
+mov     eax, edi
+and     eax, 1Fh
+mov     [ebp+var_10], ebx
+mov     esi, [ebp+var_10]
+mov     ecx, eax
+shl     ebx, cl
+mov     edx, edi
+neg     edx
+and     edx, 1Fh
+mov     ecx, edx
+shr     esi, cl
+mov     ecx, eax
+mov     eax, [ebp+var_C]
+or      ebx, esi
+mov     esi, [ebp+var_C]
+not     ebx
+shl     esi, cl
+mov     ecx, edx
+shr     eax, cl
+or      esi, eax
+rol     ebx, 0Fh
+mov     eax, [ebp+var_8]
+add     ebx, edi
+lea     edx, [eax+edi]
+not     eax
+mov     ecx, eax
+mov     [ebp+var_8], eax
+neg     ecx
+mov     eax, esi
+and     ecx, 1Fh
+mov     edi, ebx
+shr     eax, cl
+neg     edx
+mov     ecx, [ebp+var_8]
+and     ecx, 1Fh
+shl     esi, cl
+or      eax, esi
+rol     eax, 10h
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, eax
+and     ecx, 1Fh
+rol     eax, 2
+shl     ebx, cl
+mov     ecx, eax
+or      edi, ebx
+neg     ecx
+mov     ebx, [ebp+var_8]
+and     eax, 1Fh
+add     edi, ebx
+mov     [ebp+var_14], ecx
+sub     ebx, edi
+and     ecx, 1Fh
+mov     esi, ebx
+add     edi, ebx
+shl     esi, cl
+mov     ecx, eax
+shr     ebx, cl
+or      esi, ebx
+neg     edi
+mov     ebx, [ebp+var_14]
+add     edx, 897C2BA0h
+ror     edi, 5
+ror     edx, 0Bh
+ror     ebx, 0Fh
+mov     eax, edx
+add     ebx, 74AF8E81h
+rol     esi, 0Ch
+xor     ebx, edi
+ror     esi, 5
+mov     ecx, ebx
+add     edi, esi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+add     ebx, 6A5A3A90h
+shr     edx, cl
+xor     edi, ebx
+or      eax, edx
+ror     edi, 7
+add     eax, 5217E701h
+mov     edx, esi
+add     eax, esi
+neg     edi
+mov     ecx, eax
+ror     edi, 9
+neg     ecx
+xor     edi, eax
+and     ecx, 1Fh
+not     ebx
+shl     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+rol     eax, 8
+shr     esi, cl
+mov     ecx, ebx
+or      edx, esi
+neg     ecx
+mov     esi, eax
+and     ecx, 1Fh
+shr     esi, cl
+neg     edx
+ror     edx, 6
+mov     ecx, ebx
+and     ecx, 1Fh
+neg     edx
+shl     eax, cl
+xor     edx, 7998EC88h
+or      esi, eax
+add     edx, 49F90DFh
+add     esi, edx
+lea     eax, [ebx+1]
+not     eax
+sub     edx, 22D72DD3h
+add     eax, 2665C0ABh
+mov     ecx, edx
+add     esi, eax
+neg     ecx
+sub     eax, 0FAA502Fh
+mov     [ebp+var_C], esi
+mov     esi, eax
+and     ecx, 1Fh
+add     edi, eax
+shr     esi, cl
+mov     ecx, edx
+rol     edi, 0Eh
+and     ecx, 1Fh
+shl     eax, cl
+or      esi, eax
+mov     eax, [ebp+var_C]
+ror     eax, 5
+not     eax
+xor     eax, 0A71814BEh
+neg     eax
+sub     edx, eax
+sub     eax, edi
+not     eax
+sub     edi, eax
+neg     edx
+neg     eax
+ror     edi, 0Dh
+rol     eax, 8
+neg     edi
+xor     esi, edi
+ror     edx, 0Fh
+neg     eax
+ror     edi, 6
+xor     eax, edi
+xor     esi, 91AD5743h
+neg     edx
+neg     esi
+xor     eax, edx
+rol     esi, 0Fh
+rol     eax, 6
+mov     ebx, edi
+add     eax, edi
+sub     ebx, edx
+neg     eax
+not     ebx
+sub     esi, ebx
+mov     [ebp+var_C], eax
+mov     ecx, eax
+ror     esi, 0Ah
+neg     ecx
+add     edi, ebx
+and     ecx, 1Fh
+xor     esi, 0CE83B15Dh
+not     esi
+mov     eax, edi
+shr     eax, cl
+sub     esi, ebx
+mov     ecx, [ebp+var_C]
+inc     esi
+and     ecx, 1Fh
+mov     [ebp+var_14], esi
+shl     edi, cl
+mov     esi, ebx
+or      eax, edi
+xor     eax, ebx
+neg     ebx
+sub     esi, eax
+xor     ebx, 0F9C1735Ah
+mov     eax, [ebp+var_14]
+mov     edi, esi
+mov     edx, eax
+rol     ebx, 0Ch
+and     eax, 1Fh
+neg     edx
+mov     ecx, eax
+and     edx, 1Fh
+shl     edi, cl
+neg     ebx
+mov     ecx, edx
+shr     esi, cl
+mov     ecx, eax
+mov     eax, [ebp+var_C]
+or      edi, esi
+mov     esi, ebx
+shl     esi, cl
+mov     ecx, edx
+shr     ebx, cl
+or      esi, ebx
+xor     eax, esi
+sub     esi, edi
+neg     eax
+mov     ecx, esi
+xor     eax, edi
+neg     ecx
+xor     eax, 8BBBFEBBh
+and     ecx, 1Fh
+neg     eax
+mov     edx, eax
+shl     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shr     eax, cl
+or      edx, eax
+mov     [ebp+var_10], edx
+mov     eax, esi
+mov     ebx, edx
+sub     eax, edi
+neg     ebx
+mov     edi, edx
+and     ebx, 1Fh
+mov     edx, eax
+and     edi, 1Fh
+mov     ecx, edi
+shr     edx, cl
+mov     ecx, ebx
+shl     eax, cl
+or      edx, eax
+mov     eax, [ebp+var_14]
+add     eax, 7276DDBBh
+xor     eax, [ebp+var_10]
+rol     eax, 0Bh
+sub     eax, edx
+add     edx, esi
+add     esi, [ebp+var_10]
+not     eax
+mov     [ebp+var_C], esi
+lea     esi, [eax+edx]
+mov     edx, [ebp+var_C]
+not     esi
+mov     ecx, esi
+sub     eax, esi
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+not     esi
+shl     [ebp+var_C], cl
+mov     ecx, edi
+sub     esi, [ebp+var_10]
+mov     edi, eax
+shl     edi, cl
+mov     ecx, ebx
+shr     eax, cl
+or      edx, [ebp+var_C]
+or      edi, eax
+rol     esi, 10h
+mov     ecx, edi
+neg     ecx
+mov     [ebp+var_C], edi
+and     ecx, 1Fh
+mov     eax, esi
+shl     eax, cl
+lea     ebx, [edx+33F60D2Dh]
+mov     ecx, edi
+rol     ebx, 7
+and     ecx, 1Fh
+shr     esi, cl
+or      eax, esi
+mov     esi, [ebp+var_10]
+not     eax
+mov     edi, eax
+lea     esi, [edx+esi]
+rol     esi, 6
+xor     esi, eax
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, esi
+and     ecx, 1Fh
+xor     esi, 0A7565899h
+shr     eax, cl
+mov     edx, esi
+or      edi, eax
+mov     ecx, edi
+neg     ecx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, ebx
+or      edx, esi
+neg     ecx
+and     ecx, 1Fh
+mov     eax, edi
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edi, cl
+or      eax, edi
+sub     eax, 1E5C3E26h
+mov     [ebp+var_14], eax
+mov     eax, 0B4E3B060h
+sub     eax, ebx
+mov     ebx, [ebp+var_C]
+not     ebx
+mov     esi, eax
+sub     esi, edx
+mov     [ebp+var_C], ebx
+mov     ecx, ebx
+mov     edx, eax
+neg     ecx
+mov     edi, esi
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+mov     ebx, [ebp+var_14]
+and     ecx, 1Fh
+shr     eax, cl
+sub     ebx, 510978D5h
+or      edx, eax
+mov     eax, 89AD87Ch
+mov     ecx, edx
+neg     ecx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, ebx
+or      edi, esi
+neg     ecx
+and     ecx, 1Fh
+ror     edi, 9
+mov     esi, edx
+dec     edi
+shl     esi, cl
+not     edi
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, [ebp+var_C]
+or      esi, edx
+sub     eax, ecx
+add     ebx, eax
+lea     eax, [ecx+1131BBE8h]
+xor     eax, esi
+sub     ebx, eax
+not     eax
+rol     eax, 0Bh
+sub     edi, ebx
+not     eax
+xor     esi, eax
+sub     eax, 6154AE42h
+sub     ebx, eax
+mov     [ebp+var_10], esi
+xor     ebx, edi
+mov     ecx, eax
+neg     ebx
+neg     ecx
+xor     ebx, 0ED9E9C6Eh
+and     ecx, 1Fh
+mov     edx, ebx
+shl     edx, cl
+mov     ecx, eax
+add     eax, 26241EDAh
+and     ecx, 1Fh
+shr     ebx, cl
+or      edx, ebx
+lea     esi, [eax+edi]
+mov     edi, edx
+add     eax, edi
+not     esi
+neg     eax
+ror     edi, 8
+not     esi
+xor     eax, edi
+xor     esi, 47F609DDh
+xor     eax, 9BB13FDCh
+mov     ecx, esi
+neg     ecx
+mov     ebx, eax
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, [ebp+var_10]
+or      ebx, eax
+neg     ecx
+rol     ebx, 10h
+mov     eax, edi
+add     ebx, 7C20EA3Bh
+sub     eax, esi
+ror     edi, 6
+not     eax
+xor     ebx, 35AE4023h
+xor     ecx, ebx
+xor     ebx, eax
+lea     edx, [edi+1BCAB9E2h]
+add     edx, eax
+lea     eax, [ebx+ecx]
+add     eax, edx
+lea     ecx, [ebx-1]
+sub     edx, ebx
+neg     ecx
+and     ecx, 1Fh
+ror     edx, 8
+neg     eax
+rol     edx, 0Fh
+xor     edi, eax
+xor     edx, 0E5C696D7h
+add     eax, edi
+mov     [ebp+var_8], eax
+mov     eax, edx
+shl     eax, cl
+lea     ecx, [ebx-1]
+and     ecx, 1Fh
+sub     ebx, 2
+shr     edx, cl
+mov     ecx, [ebp+var_8]
+or      eax, edx
+lea     esi, [edi+ecx]
+not     ecx
+xor     ecx, 3AAE9D47h
+rol     esi, 9
+mov     edi, ecx
+xor     esi, ebx
+ror     ecx, 2
+xor     edi, eax
+not     ebx
+xor     edi, 5A288A71h
+sub     esi, 0C719AA9h
+lea     edx, [ecx+5E55698Fh]
+add     ecx, esi
+add     edx, ebx
+mov     [ebp+var_8], ecx
+xor     edx, edi
+mov     ebx, esi
+add     edx, edi
+add     edi, ecx
+mov     ecx, edi
+mov     eax, edx
+neg     ecx
+and     ecx, 1Fh
+shl     ebx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     esi, cl
+or      ebx, esi
+mov     esi, [ebp+var_8]
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, esi
+not     esi
+and     ecx, 1Fh
+mov     [ebp+var_8], esi
+shl     edx, cl
+add     edi, esi
+or      eax, edx
+mov     ecx, ebx
+neg     ecx
+mov     esi, eax
+and     ecx, 1Fh
+not     edi
+shr     esi, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+ror     ebx, 4
+shl     eax, cl
+or      esi, eax
+sub     esi, edi
+rol     edi, 0Dh
+add     esi, 19ACF86Fh
+mov     eax, edi
+and     eax, 1Fh
+mov     [ebp+var_C], esi
+mov     ecx, eax
+mov     edx, edi
+shr     [ebp+var_C], cl
+neg     edx
+and     edx, 1Fh
+mov     ecx, edx
+shl     esi, cl
+mov     ecx, [ebp+var_C]
+or      ecx, esi
+mov     esi, ebx
+neg     ecx
+mov     [ebp+var_C], ecx
+mov     ecx, eax
+shr     esi, cl
+mov     ecx, edx
+shl     ebx, cl
+mov     ecx, [ebp+var_C]
+or      esi, ebx
+neg     ecx
+mov     ebx, [ebp+var_8]
+and     ecx, 1Fh
+mov     eax, esi
+shl     eax, cl
+dec     ebx
+mov     ecx, [ebp+var_C]
+and     ecx, 1Fh
+shr     esi, cl
+or      eax, esi
+mov     esi, edi
+rol     eax, 6
+mov     edx, eax
+and     eax, 1Fh
+neg     edx
+mov     ecx, edx
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, eax
+shr     edi, cl
+mov     eax, edx
+or      esi, edi
+mov     ecx, esi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, esi
+and     ecx, 1Fh
+shr     edx, cl
+or      eax, edx
+add     ebx, eax
+mov     [ebp+var_14], eax
+mov     eax, [ebp+var_C]
+xor     eax, esi
+mov     [ebp+var_10], ebx
+add     eax, esi
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+mov     edx, esi
+shl     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+add     eax, 2BA55DBFh
+shr     esi, cl
+xor     eax, ebx
+or      edx, esi
+not     edx
+rol     edx, 3
+xor     edx, eax
+sub     eax, edx
+mov     edi, edx
+mov     esi, eax
+neg     edi
+mov     ecx, edi
+and     edx, 1Fh
+and     ecx, 1Fh
+rol     edi, 3
+shl     esi, cl
+mov     ecx, edx
+shr     eax, cl
+or      esi, eax
+mov     eax, [ebp+var_14]
+rol     eax, 9
+not     eax
+ror     esi, 7
+rol     eax, 2
+xor     eax, ebx
+mov     ebx, esi
+mov     ecx, eax
+mov     edx, eax
+neg     ecx
+and     ecx, 1Fh
+shr     ebx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     esi, cl
+mov     ecx, edi
+neg     ecx
+or      ebx, esi
+and     ecx, 1Fh
+mov     esi, 2958A5EEh
+sub     esi, [ebp+var_10]
+shl     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     eax, cl
+or      edx, eax
+xor     ebx, edx
+mov     [ebp+var_8], edx
+mov     eax, edx
+mov     ecx, edx
+xor     eax, edi
+neg     ecx
+and     ecx, 1Fh
+add     eax, 6706794Fh
+xor     ebx, esi
+mov     edx, eax
+shl     edx, cl
+dec     ebx
+mov     ecx, [ebp+var_8]
+xor     ebx, eax
+and     ecx, 1Fh
+shr     eax, cl
+mov     ecx, ebx
+neg     ecx
+or      edx, eax
+mov     [ebp+var_10], ecx
+and     ebx, 1Fh
+and     ecx, 1Fh
+mov     edi, edx
+shl     edi, cl
+mov     ecx, ebx
+mov     ebx, [ebp+var_8]
+shr     edx, cl
+or      edi, edx
+neg     edi
+xor     ebx, edi
+xor     ebx, 5D92EA3Dh
+mov     [ebp+var_8], ebx
+mov     edx, [ebp+var_10]
+not     esi
+mov     ecx, edx
+neg     edi
+neg     ecx
+sub     esi, edi
+and     ecx, 1Fh
+rol     edi, 9
+not     esi
+add     edi, edx
+mov     [ebp+var_14], esi
+shr     esi, cl
+mov     ecx, edx
+mov     eax, [ebp+var_14]
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+or      esi, eax
+ror     edx, 3
+neg     ecx
+rol     esi, 9
+and     ecx, 1Fh
+xor     esi, 6214C7BAh
+add     edi, esi
+sub     edx, edi
+mov     eax, edi
+shl     eax, cl
+xor     edx, esi
+sub     edx, edi
+mov     ecx, ebx
+and     ecx, 1Fh
+mov     [ebp+var_10], edx
+xor     esi, 1B366A3Bh
+sub     esi, edi
+shr     edi, cl
+or      eax, edi
+mov     ebx, esi
+xor     [ebp+var_8], eax
+mov     edx, eax
+neg     edx
+mov     ecx, edx
+xor     edx, 34A7A260h
+and     ecx, 1Fh
+mov     edi, edx
+shl     ebx, cl
+mov     ecx, eax
+mov     eax, [ebp+var_8]
+and     ecx, 1Fh
+shr     esi, cl
+neg     eax
+or      ebx, esi
+xor     eax, 56A9C4FFh
+mov     esi, [ebp+var_10]
+not     eax
+add     esi, ebx
+not     ebx
+sub     esi, ebx
+not     ebx
+sub     eax, esi
+add     ebx, edx
+mov     ecx, eax
+neg     ecx
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, eax
+and     ecx, 1Fh
+rol     eax, 6
+shr     edx, cl
+xor     eax, esi
+or      edi, edx
+neg     eax
+mov     ecx, edi
+mov     [ebp+var_8], eax
+mov     edx, [ebp+var_8]
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shr     edx, cl
+or      eax, edx
+xor     esi, edi
+not     ebx
+rol     edi, 0Ch
+mov     edx, ebx
+mov     ecx, edi
+add     esi, edi
+neg     ecx
+not     esi
+and     ecx, 1Fh
+shr     edx, cl
+mov     ecx, edi
+and     ecx, 1Fh
+xor     edi, 45796E17h
+shl     ebx, cl
+not     edi
+or      edx, ebx
+sub     edi, esi
+mov     ebx, eax
+add     edx, esi
+not     ebx
+mov     eax, edi
+mov     ecx, ebx
+neg     esi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, ebx
+and     ecx, 1Fh
+sub     ebx, edx
+shr     edi, cl
+mov     ecx, 0C4828FE1h
+or      eax, edi
+sub     ecx, eax
+mov     eax, ebx
+sub     ebx, ecx
+mov     [ebp+var_C], ecx
+sub     eax, edx
+add     eax, 9EF67362h
+add     eax, ebx
+lea     edi, [ecx-160E8339h]
+xor     ebx, eax
+xor     eax, esi
+rol     eax, 3
+xor     esi, 0BC7C8766h
+add     edi, eax
+xor     ebx, 24C25A6Ah
+mov     ecx, edi
+mov     eax, esi
+neg     ecx
+and     ecx, 1Fh
+shl     eax, cl
+mov     ecx, edi
+and     ecx, 1Fh
+add     edi, 32C4808Ah
+shr     esi, cl
+or      eax, esi
+mov     esi, [ebp+var_C]
+sub     ebx, esi
+ror     eax, 2
+xor     ebx, esi
+mov     ecx, eax
+neg     ebx
+neg     ecx
+rol     ebx, 8
+and     ecx, 1Fh
+mov     edx, ebx
+shr     edx, cl
+mov     ecx, eax
+and     ecx, 1Fh
+shl     ebx, cl
+or      edx, ebx
+mov     ebx, edx
+add     ebx, edi
+rol     edi, 0Ch
+rol     edi, 0Eh
+xor     ebx, esi
+add     edi, 3AC974A6h
+xor     ebx, 6AE7C515h
+xor     esi, 0A4EA287Ch
+not     edi
+mov     [ebp+var_C], esi
+lea     esi, [eax-322671DDh]
+mov     ecx, ebx
+mov     eax, [ebp+var_C]
+neg     ecx
+and     ecx, 1Fh
+add     esi, ebx
+mov     edx, edi
+ror     esi, 2
+shl     edx, cl
+not     esi
+mov     ecx, ebx
+add     ebx, eax
+and     ecx, 1Fh
+rol     eax, 3
+shr     edi, cl
+neg     ebx
+or      edx, edi
+mov     [ebp+var_C], eax
+mov     eax, 5735AB5Ch
+sub     eax, edx
+mov     edx, [ebp+var_C]
+mov     ecx, edx
+mov     edi, eax
+neg     ecx
+and     ecx, 1Fh
+shl     edi, cl
+mov     ecx, edx
+and     ecx, 1Fh
+shr     eax, cl
+or      edi, eax
+lea     eax, [esi+ebx]
+add     edx, eax
+neg     edi
+rol     edi, 9
+not     ebx
+xor     ebx, 42065978h
+mov     ecx, edi
+neg     ecx
+mov     [ebp+var_10], ebx
+and     ecx, 1Fh
+xor     edx, ebx
+mov     ebx, edi
+sub     ebx, esi
+mov     esi, edx
+shr     esi, cl
+mov     ecx, edi
+and     ecx, 1Fh
+shl     edx, cl
+mov     ecx, ebx
+neg     ecx
+or      esi, edx
+and     ecx, 1Fh
+mov     edx, edi
+shl     edx, cl
+not     esi
+mov     ecx, ebx
+and     ecx, 1Fh
+shr     edi, cl
+mov     ecx, [ebp+var_18]
+or      edx, edi
+mov     edi, [ebp+var_10]
+add     edx, 20DB0F3Ah
+sub     edi, ebx
+rol     ebx, 7
+add     esi, ebx
+mov     eax, esi
+sub     eax, edi
+xor     eax, ebx
+add     eax, 37C5EA71h

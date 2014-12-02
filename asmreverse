@@ -4,10 +4,12 @@ FILE = FILEBASE + ".txt"
 FILE_OUT = FILEBASE + "_reversed.txt"
 
 from re import *
+import clib
 
-REG = r"([a-z]+)[ \t]+([a-zA-Z0-9_+\[\]]+)[, \t]*([a-zA-Z0-9+_\[\]]*)"
+REG = r"([a-z]+)[ \t]+([a-zA-Z0-9_+\[\]]+)[, \t]*([a-zA-Z0-9\\*\-+_\[\]]*)"
 
 UNDEF = "U"
+
 
 
 '''ax, bx, cx, dx, di, si, bp, sp'''
@@ -36,6 +38,8 @@ class State:
             assert key in self.regs.keys()
             self.regs[key] = regs[key]
         self.lineNum = 0
+        self.code = ''
+        self.cmd = ('', '', '', '')
 
     def getCopy(self):
         regs = {}
@@ -52,44 +56,62 @@ class State:
     def isUndef(self, reg):
         if self.isValue(reg):
             return False
+        if reg == 'cl':
+            return self.isUndef('ecx')
         if reg not in self.regs.keys():
-            raise Exception("Invalid " + str(reg))
+            raise Exception("Invalid " + str(reg) + str(self.lineNum))
         return str(self.regs[reg]) == UNDEF
 
     def makeUndef(self, reg):
+        assert reg != 'cl'
         if reg not in self.regs.keys():
             raise Exception("Invalid " + str(reg))
         self.regs[reg] = UNDEF
 
     def setReg(self, name, value):
+        assert name != 'cl'
+        if self.isValue(name):
+            return
         if self.isValue(value):
-            self.regs[name] = self.parseValue(value)
+            self.regs[name] = self.parseValue(value) & 0xffffffff
         else:
-            self.regs[name] = value
+            self.regs[name] = value & 0xffffffff
 
     def isValue(self, value):
-	value = str(value)
-        if len(value) > 2 and value[:2] == "0x" and value[2:].isdigit():
+        value = str(value)
+        if len(value) > 1 and value[0] == '-':
             return True
-        if value[-1] == 'h' and value[:-1].isdigit():
+        if len(value) > 2 and value[:2] == "0x":
+            return True
+        if len(value) > 1 and value[-1] == 'h':
             return True
         return value.isdigit()
     def parseValue(self, value):
-	value = str(value)
-        if len(value) > 2 and value[:2] == "0x" and value[2:].isdigit():
+        value = str(value)
+        if len(value) > 2 and value[:2] == "0x":
             return int(value[2:], 16)
-        if value[-1] == 'h' and value[:-1].isdigit():
+        if value[-1] == 'h':
             return int(value[:-1], 16)
         return int(value, 10)
 
     def getReg(self, name):
-	if self.isValue(name):
-		return self.parseValue(name) 
-	assert name in self.regs.keys(), "name %s not in regs" % name 
+        assert not self.isUndef(name)
+        if self.isValue(name):
+            return self.parseValue(name) 
+        if name == 'cl':
+            return self.regs['ecx'] & 0xff
+        assert name in self.regs.keys(), "name %s not in regs" % name 
         return self.regs[name]
 
     def __str__(self):
-        return "#%-4i: " % self.lineNum + str(self.regs)
+        s = "#%-6i: " % self.lineNum
+        for key in [ "eax", "ebx", "ecx", "edx", "edi", "esi", "ebp", "esp", "[ebp+var_1C]",
+                "[ebp+var_18]", "[ebp+var_14]", "[ebp+var_10]", "[ebp+var_C]", "[ebp+var_8]", "[ebp+var_4]", "[ebp+arg_0]", "[ebp+arg_4]" ]:
+            if str(self.regs[key]) == UNDEF:
+                s += "%-10s " % "__UNDEF__" 
+            else:
+                s += "0x%-8x " % int(self.regs[key])
+        return s
 
     def check(self, op, arg1, arg2):
         if arg1 not in self.regs.keys() and arg2 not in self.regs.keys():
@@ -104,6 +126,7 @@ class StateMachine:
         self.currentState = lambda: self.endString - self.currentCode
         self.lastState = lambda: len(self.states)  - 1
         self.upFlag = True
+        self.CURRENT = 0
 
         self.cmap = {
             'mov': (self.movUp, self.movDown),
@@ -116,45 +139,80 @@ class StateMachine:
             'and': (self.andUp, self.andDown),
             'neg': (self.negUp, self.negDown),
             'rol': (self.rolUp, self.rolDown),
+            'ror': (self.rorUp, self.rorDown),
             'not': (self.notUp, self.notDown),
             'inc': (self.incUp, self.incDown),
             'dec': (self.decUp, self.decDown),
-            'lea': (self.leaUp, self.leaDown)
+            'lea': (self.leaUp, self.leaDown),
+            'xor': (self.xorUp, self.xorDown),
+            'or': (self.orUp, self.orDown),
+            'imul': (self.calculateImul, self.calculateImul)
         }
 
 
-    def step(self, op, a1, a2, a3):
+    def step(self, code, op, a1, a2, a3):
+        if self.currentState() > self.CURRENT:
+            self.CURRENT = self.lastState()
+            print self.currentCode
+        if self.currentCode in [ 1, 2, 3]:
+            pass
         if self.upFlag:
-            self.up(op, a1, a2, a3)
+            self.up(code, op, a1, a2, a3)
         else:
             self.down(op, a1, a2, a3)
 
-    def up(self, op, arg1, arg2, arg3):
-        self.copyStateUp()
+    def up(self, code, op, arg1, arg2, arg3):
+        self.copyStateUp(arg1)
+        #assert self.states[self.currentState() + 1].isUndef(arg1) # assert that next upper state is valid
         upFunc, downFunc = self.cmap[op]
         upFunc(arg1, arg2, arg3)
         self.currentCode -= 1
         if self.currentCode < 0:
             raise Exception("BUG 4")
-        self.checkForUpdate()
+        self.checkForUpdate(arg1, arg2)
 
     def down(self, op, arg1, arg2, arg3):
         upFunc, downFunc = self.cmap[op]
-        downFunc(arg1, arg2, arg3)
         self.copyStateDown(arg1, arg2, arg3)
+        downFunc(arg1, arg2, arg3)
         self.currentCode += 1
         self.checkForUpdateFinish()
 
-    def checkForUpdate(self):
-        if self.currentState() != len(self.states) - 1:
-            raise Exception("BUG 2")
+    def weCan(self, down, up, regname):
+        assert down.cmd[1] != '' and down.cmd[0] != ''
+        if regname != down.cmd[1]:
+            return True
+        if regname == down.cmd[1] and down.cmd[2] == '':
+            return True
+        if regname == down.cmd[1] and regname != down.cmd[2] and (not down.isUndef(down.cmd[2]) or not up.isUndef(down.cmd[2])):
+            return True
+        return False
+
+    def checkForUpdate(self, a1, a2):
+        if not self.upFlag:
+            return
+        #if self.currentState() != len(self.states) - 1:
+            #raise Exception("BUG 2")
+
+        if self.currentState() > 2:
+            down = self.states[self.currentState() -1]
+            ddown = self.states[self.currentState() -2]
+            for regname in down.regs.keys():
+                if ddown.isUndef(regname) and not down.isUndef(regname):
+                    #assert self.upFlag == True, "BUG 6"
+                    if self.weCan(ddown, down, regname):
+                        self.currentCode += 1
+                        self.upFlag = False
+                        return
 
         curState = self.states[self.currentState()]
         prevState = self.states[self.currentState() - 1]
         for regname in curState.regs.keys():
             if prevState.isUndef(regname) and not curState.isUndef(regname):
                 #assert self.upFlag == True, "BUG 6"
-                self.upFlag = False
+                if self.weCan(prevState, curState, regname):
+                    self.currentCode += 1
+                    self.upFlag = False
 
     def checkForUpdateFinish(self):
         assert self.currentState() >= 0 and self.currentState() <= len(self.states)
@@ -162,38 +220,67 @@ class StateMachine:
         if not curState.ifInUndefState():
             assert self.upFlag == False, "BUG 5"
             self.upFlag = True
-            self.currentCode = self.endString - self.lastState()
-            assert self.currentState() == self.lastState(), "BUG7"
+            #self.currentCode -= 1 #self.endString - self.lastState()
+            #assert self.currentState() == self.lastState(), "BUG7"
 
     def currentPos(self):
         return self.currentCode
 
-    def copyStateUp(self):
-        if len(self.states) - 1 != self.currentState():
-            raise Exception("BUG 1")
-        st = self.states[self.currentState()].getCopy()
-        st.lineNum = self.currentCode - 1
-        self.states.append(st)
+    def copyStateUp(self, a1):
+        if self.lastState() == self.currentState():
+            assert len(self.states) - 1 == self.currentState()
+            st = self.states[self.currentState()].getCopy()
+            st.lineNum = self.currentCode - 1
+            st.makeUndef(a1)
+            self.states.append(st)
+        else:
+            assert len(self.states) - 1 > self.currentState()
+            down = self.states[self.currentState()]
+            up = self.states[self.currentState() + 1]
+
+            for key in down.regs.keys():
+                if key == a1:
+                    continue
+                if up.isUndef(key) and not down.isUndef(key):
+                    up.setReg(key, down.getReg(key))
+
+                if not up.isUndef(key) and down.isUndef(key):
+                    down.setReg(key, up.getReg(key))
+
+                if not up.isUndef(key) and not down.isUndef(key):
+                    assert up.getReg(key) == down.getReg(key)
+
+    
 
     def copyStateDown(self, *args):
         if self.currentState() >= len(self.states) and self.currentState() < 1:
             raise Exception("BUG 3")
 
-        upState = self.states[self.currentState()]
-        downState = self.states[self.currentState() - 1]
+        upState = self.states[self.currentState()+1]
+        downState = self.states[self.currentState()]
         for regname in upState.regs.keys():
-            if regname in args:
+            if regname == args[0]:
                 continue
 
             if not upState.isUndef(regname) and downState.isUndef(regname):
                 downState.regs[regname] = upState.regs[regname]
 
             if not upState.isUndef(regname) and not downState.isUndef(regname):
-                if downState.regs[regname] != upState.regs[regname]:
-                    raise Exception("Warning: different regs states")
+                if regname == 'ecx':
+                    pass
+                #assert downState.regs[regname] == upState.regs[regname], str(regname) # it is bug assert, delete it to x...
+                    #pass #raise Exception("Warning: different regs states") ### raise bug 
 
     ####### useful code
     def movUp(self, a1, a2, a3):
+        #if self.currentCode == 10015:
+            #up = self.states[self.currentState()+1]
+            #if up.isUndef(a1):
+                #up.setReg(a1, 0x1440fbb9) 
+            
+        self.calculateMov(a1, a2)
+        return
+
         downState = self.states[self.currentState()]
         upState = self.states[self.currentState() + 1]
 
@@ -204,9 +291,13 @@ class StateMachine:
         elif not downState.isUndef(a1) and not upState.isUndef(a2):
             assert upState.getReg(a2) == downState.getReg(a2), "BUG 8"
         elif not downState.isUndef(a2) and downState.isUndef(a1):
+            self.currentCode += 1
             self.upFlag = False
 
     def movDown(self, a1, a2, a3):
+        self.calculateMov(a1, a2)
+        return
+
         state = self.states[self.currentState()]
         if not state.isUndef(a2) and state.isUndef(a1):
             state.setReg(a1, state.getReg(a2))
@@ -217,83 +308,692 @@ class StateMachine:
 
 
     def shlUp(self, a1, a2, a3):
-        pass
+        upState = self.states[self.currentState() + 1]
+        upState.makeUndef(a1)
 
     def shlDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states)
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+        if not upState.isUndef(a1) and not state.isUndef(a2):
+            state.setReg(a1, clib.shl(upState.getReg(a1), state.getReg(a2)))
+
 
     def shrUp(self, a1, a2, a3):
-        pass
+        upState = self.states[self.currentState() + 1]
+        upState.makeUndef(a1)
 
     def shrDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states)
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+        if not upState.isUndef(a1) and not state.isUndef(a2):
+            state.setReg(a1, clib.shr(upState.getReg(a1), state.getReg(a2)))
 
     def pushUp(self, a1, a2, a3):
         pass
 
     def pushDown(self, a1, a2, a3):
+        assert self.currentState() + 1 < len(self.states)
         pass
 
     def popUp(self, a1, a2, a3):
         pass
 
     def popDown(self, a1, a2, a3):
+        assert self.currentState() + 1 < len(self.states)
         pass
+
+    def fixSecondArgument(self, a2):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        if up.isUndef(a2) and not down.isUndef(a2):
+            up.setReg(a2, down.getReg(a2))
+
+        if down.isUndef(a2) and not up.isUndef(a2):
+            down.setReg(a2, up.getReg(a2))
+
+        if not down.isUndef(a2) and not up.isUndef(a2):
+            assert down.getReg(a2) == up.getReg(a2), "Invalid working on #%i" % self.currentState() + 1
+
+    def calculateTwoArgsCommand(self, a1, a2, func, reverseFunc):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        if a1 != a2:
+            self.fixSecondArgument(a2)
+
+        ############ up.a1 down.a1 down.a2
+        if a1 != a2:
+            undefs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a2)
+            if undefs == (True, True, True): 
+                if down.getReg(a1) != func(up.getReg(a1), down.getReg(a2)):
+                    pass
+                assert down.getReg(a1) == func(up.getReg(a1), down.getReg(a2)), str(hex(up.getReg(a1)))
+
+            if undefs == (False, True, True): 
+                up.setReg(a1, reverseFunc(down.getReg(a1), down.getReg(a2)))
+
+            if undefs == (True, False, True):
+                down.setReg(a1, func(up.getReg(a1), down.getReg(a2)))
+
+            if undefs == (True, True, False):
+                down.setReg(a2, reverseFunc(down.getReg(a1), up.getReg(a1)))
+        else:
+            assert a1 == a2
+            undefs = not up.isUndef(a1), not down.isUndef(a1), not up.isUndef(a2)
+            if undefs == (True, True, True): 
+                assert down.getReg(a1) == func(up.getReg(a1), up.getReg(a2)), str(hex(up.getReg(a1)))
+
+            if undefs == (False, True, True): 
+                assert 0
+                up.setReg(a1, reverseFunc(down.getReg(a1), up.getReg(a2)))
+
+            if undefs == (True, False, True):
+                down.setReg(a1, func(up.getReg(a1), up.getReg(a2)))
+
+            if undefs == (True, True, False):
+                up.setReg(a2, reverseFunc(down.getReg(a1), up.getReg(a1)))
+
+    def calculateAdd(self, a1, a2):
+        self.calculateTwoArgsCommand(a1, a2, clib.add, clib.sub)
+        return
+
+        ################# original
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        self.fixSecondArgument(a2)
+        undefs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a2)
+
+        ############ up.a1 down.a1 down.a2
+        if undefs == (True, True, True): 
+            assert down.getReg(a1) == clib.add(up.getReg(a1), down.getReg(a2))
+
+        if undefs == (False, True, True): 
+            up.setReg(a1, clib.sub(down.getReg(a1), down.getReg(a2)))
+
+        if undefs == (True, False, True):
+            down.setReg(a1, clib.add(up.getReg(a1), down.getReg(a2)))
+
+        if undefs == (True, True, False):
+            down.setReg(a2, clib.sub(down.getReg(a1), up.getReg(a1)))
+
+    def calculateXor(self, a1, a2):
+        self.calculateTwoArgsCommand(a1, a2, clib.xor, clib.xor)
+    def calculateSub(self, a1, a2):
+        ################# original
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        self.fixSecondArgument(a2)
+        undefs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a2)
+
+        ############ up.a1 down.a1 down.a2
+        if undefs == (True, True, True): 
+            assert down.getReg(a1) == clib.sub(up.getReg(a1), down.getReg(a2))
+
+        if undefs == (False, True, True): 
+            up.setReg(a1, clib.add(down.getReg(a1), down.getReg(a2)))
+
+        if undefs == (True, False, True):
+            down.setReg(a1, clib.sub(up.getReg(a1), down.getReg(a2)))
+
+        if undefs == (True, True, False):
+            down.setReg(a2, clib.sub(up.getReg(a1), down.getReg(a1)))
+
+    def calculateDec(self, a1):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        defs = not up.isUndef(a1), not down.isUndef(a1)
+
+        if defs == (True, True):
+            assert down.getReg(a1) == clib.dec(up.getReg(a1))
+        if defs == (True, False):
+            down.setReg(a1, clib.dec(up.getReg(a1)))
+        if defs == (False, True):
+            up.setReg(a1, clib.inc(down.getReg(a1)))
+    def calculateInc(self, a1):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        defs = not up.isUndef(a1), not down.isUndef(a1)
+
+        if defs == (True, True):
+            assert down.getReg(a1) == clib.inc(up.getReg(a1))
+        if defs == (True, False):
+            down.setReg(a1, clib.inc(up.getReg(a1)))
+        if defs == (False, True):
+            up.setReg(a1, clib.dec(down.getReg(a1)))
+
+    def calculateNot(self, a1):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        defs = not up.isUndef(a1), not down.isUndef(a1)
+
+        if defs == (True, True):
+            assert down.getReg(a1) == clib.notc(up.getReg(a1))
+        if defs == (True, False):
+            down.setReg(a1, clib.notc(up.getReg(a1)))
+        if defs == (False, True):
+            up.setReg(a1, clib.notc(down.getReg(a1)))
+
+    def calculateNeg(self, a1):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        defs = not up.isUndef(a1), not down.isUndef(a1)
+
+        if defs == (True, True):
+            assert down.getReg(a1) == clib.neg(up.getReg(a1))
+        if defs == (True, False):
+            down.setReg(a1, clib.neg(up.getReg(a1)))
+        if defs == (False, True):
+            up.setReg(a1, clib.neg(down.getReg(a1)))
+
+    def calculateMov(self, a1, a2):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        self.fixSecondArgument(a2)
+        undefs = not down.isUndef(a1), not down.isUndef(a2)
+
+        ############ up.a1 down.a1 down.a2
+        if undefs == (True, True): 
+            assert down.getReg(a1) == down.getReg(a2), str(self.currentCode) 
+
+        if undefs == (False, True):
+            down.setReg(a1, down.getReg(a2))
+
+        if undefs == (True, False):
+            down.setReg(a2, down.getReg(a1))
+
+        self.fixSecondArgument(a2)
+
+    def calculateRor(self, a1, a2):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        self.fixSecondArgument(a2)
+        undefs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a2)
+
+        ############ up.a1 down.a1 down.a2
+        if undefs == (True, True, True): 
+            assert down.getReg(a1) == clib.ror(up.getReg(a1), down.getReg(a2))
+
+        if undefs == (False, True, True): 
+            up.setReg(a1, clib.rol(down.getReg(a1), down.getReg(a2)))
+
+        if undefs == (True, False, True):
+            down.setReg(a1, clib.ror(up.getReg(a1), down.getReg(a2)))
+
+    def calculateRol(self, a1, a2):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        self.fixSecondArgument(a2)
+        undefs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a2)
+
+        ############ up.a1 down.a1 down.a2
+        if undefs == (True, True, True): 
+            assert down.getReg(a1) == clib.rol(up.getReg(a1), down.getReg(a2)), "%u " % self.currentCode + a1 + ' ' + a2 
+
+        if undefs == (False, True, True): 
+            up.setReg(a1, clib.ror(down.getReg(a1), down.getReg(a2)))
+
+        if undefs == (True, False, True):
+            down.setReg(a1, clib.rol(up.getReg(a1), down.getReg(a2)))
+
+    def calculateLea(self, a1, a2, a3):
+        state = self.states[self.currentState()]
+        if a2[1:-1] in state.regs.keys():
+            assert 0, "Not implemented instuction as 'lea eax, [ebx]'"
+        else:
+            m = search(r".*\[([a-z]+)[ \t]*([+-])[ \t]*([a-zA-Z0-9]+)[ \t]*([+-\\*]{0,1})[ \t]*([a-zA-Z0-9]*)\].*", a2)
+            assert m and len(m.groups()) == 5, "bad pattern - %s - %s" % (a2, state.code)
+            #print m.groups()
+            r1 = m.group(1)
+            o1 = m.group(2)
+            r2 = m.group(3)
+            o2 = m.group(4)
+            r3 = m.group(5)
+
+            assert o1 in [ '+', '-' ], "Invalid lea"
+            assert o2 in [ '*', '' ], "Invalid lea"
+
+            assert state.cmd[0] == 'lea'
+            state.cmd = ('lea', a1, r1, r2)
+
+            if r3 == '': 
+                assert o2 == ''
+                self.calculateLea2Args(a1, r1, o1, r2)
+            else:
+                assert o2 == '*'
+                self.calculateLea3Args(a1, r1, o1, r2, o2, r3)
+
+    def calculateLea3Args(self, a1, a2, op1, a3, op2, a4):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        assert op1 == '+' and op2 == '*'
+        assert down.isValue(a4) and down.getReg(a4) > 0
+        assert down.getReg(a4) == 2
+
+        if a1 in [a2, a3]:
+            if a2 == a1:
+                defs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a3)
+                if defs == (True, True, True):
+                    if op1 == '+' and op2 == '*':
+                        assert down.getReg(a1) == clib.add(up.getReg(a1), clib.imul(down.getReg(a3), down.getReg(a4)))
+                if defs == (False, True, True):
+                    if op1 == '+' and op2 == '*':
+                        a3_X_a4 = clib.imul(down.getReg(a3), down.getReg(a4))
+                        up.setReg(a1, clib.sub(down.getReg(a1), a3_X_a4))
+                if defs == (True, False, True):
+                    if op1 == '+':
+                        a3_X_a4 = clib.imul(down.getReg(a3), down.getReg(a4))
+                        down.setReg(a1, clib.add(down.getReg(a1), a3_X_a4))
+                if defs == (True, True, False):
+                    if op1 == '+' and op2 == '*':
+                        a3_X_a4 = clib.sub(down.getReg(a1), up.getReg(a1))
+                        down.setReg(a3, clib.div(a3_X_a4, down.getReg(a4)))
+            else:
+                assert a3 == a1 # da1 = da2 + ua1 * C 
+
+                defs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a2)
+                if defs == (True, True, True):
+                    if op1 == '+' and op2 == '*':
+                        assert down.getReg(a1) == clib.add(down.getReg(a2), clib.imul(up.getReg(a1), down.getReg(a4)))
+                if defs == (False, True, True):
+                    if op1 == '+' and op2 == '*':
+                        ua1_X_a4 = clib.sub(down.getReg(a1), down.getReg(a2))
+                        up.setReg(a1, clib.div(ua1_X_a4, down.getReg(a4)))
+                if defs == (True, False, True):
+                    if op1 == '+' and op2 == '*':
+                        ua1_X_a4 = clib.imul(up.getReg(a1), down.getReg(a4))
+                        down.setReg(a1, clib.add(down.getReg(a2), ua1_X_a4))
+                if defs == (True, True, False):
+                    if op1 == '+' and op2 == '*':
+                        ua1_X_a4 = clib.imul(up.getReg(a1), down.getReg(a4))
+                        down.setReg(a2, clib.sub(down.getReg(a1), ua1_X_a4))
+        if a1 not in [a2, a3]:
+            defs = not down.isUndef(a1), not down.isUndef(a2), not down.isUndef(a3)
+            # da1 = da2 + da3 * C, C=da4 
+            if defs == (True, True, True):
+                if op1 == '+' and op2 == '*':
+                    assert down.getReg(a1) == clib.add(down.getReg(a2), clib.imul(down.getReg(a3), down.getReg(a4))) 
+            if defs == (False, True, True):
+                if op1 == '+' and op2 == '*':
+                    a3_X_a4 = clib.imul(down.getReg(a3), down.getReg(a4))
+                    down.setReg(a1, clib.add(down.getReg(a2), a3_X_a4))
+            if defs == (True, False, True):
+                if op1 == '+' and op2 == '*':
+                    a3_X_a4 = clib.imul(down.getReg(a3), down.getReg(a4))
+                    down.setReg(a2, clib.sub(down.getReg(a1), a3_X_a4))
+            if defs == (True, True, False):
+                if op1 == '+' and op2 == '*':
+                    a3_X_a4 = clib.sub(down.getReg(a1), down.getReg(a2))
+                    down.setReg(a3, clib.div(a3_X_a4, down.getReg(a4)))
+
+
+                    
+
+    def calculateLea2Args(self, a1, a2, op, a3):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        #undefs = not up.isUndef(a1), not down.isUndef(a1), not down.isUndef(a2)
+
+        assert op in ['+', '-']
+        if a1 in [a2, a3]:
+            if a2 == a1: a2 = a3
+            assert a1 != a2
+            if op == '+':
+                self.calculateAdd(a1, a2)
+            if op == '-':
+                self.calculateSub(a1, a2)
+        else:
+            self.fixSecondArgument(a2)
+            self.fixSecondArgument(a3)
+            defs = not down.isUndef(a1), not down.isUndef(a2), not down.isUndef(a3)
+
+            if defs == (True, True, True):
+                if op == '+':
+                    assert down.getReg(a1) == clib.add(down.getReg(a2), down.getReg(a3))
+                if op == '-':
+                    assert down.getReg(a1) == clib.sub(down.getReg(a2), down.getReg(a3))
+            if defs == (False, True, True):
+                if op == '+':
+                    down.setReg(a1, clib.add(down.getReg(a2), down.getReg(a3)))
+                if op == '-':
+                    down.setReg(a1, clib.sub(down.getReg(a2), down.getReg(a3)))
+            if defs == (True, False, True):
+                if op == '+':
+                    down.setReg(a2, clib.sub(down.getReg(a1), down.getReg(a3)))
+                if op == '-':
+                    down.setReg(a2, clib.add(down.getReg(a1), down.getReg(a3)))
+            if defs == (True, True, False):
+                if op == '+':
+                    down.setReg(a3, clib.sub(down.getReg(a1), down.getReg(a2)))
+                if op == '-':
+                    down.setReg(a3, clib.sub(down.getReg(a2), down.getReg(a1)))
+
+    def calculateImul(self, a1, a2, a3):
+        assert self.currentState() < self.lastState()
+        down = self.states[self.currentState()]
+        up = self.states[self.currentState() + 1]
+
+        assert a3 == '-2' and not up.isUndef(a3)
+        defs = not down.isUndef(a1), not down.isUndef(a2)
+        if defs == (True, True):
+            assert down.getReg(a1) == clib.imul(down.getReg(a2), down.getReg(a3))
+        if defs == (False, True):
+            down.setReg(a1, clib.imul(down.getReg(a2), down.getReg(a3)))
+        if defs == (True, False):
+            if down.getReg(a1) == 0:
+                down.setReg(a2, 0)
+            else:
+                down.setReg(a2, clib.div(down.getReg(a1), down.getReg(a3)))
+    
+        
+
 
     def addUp(self, a1, a2, a3):
-        pass
+        self.calculateAdd(a1, a2)
+
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if upState.isUndef(a1) and not downState.isUndef(a1) and not downState.isUndef(a2):
+            upState.setReg(a1, downState.getReg(a1) - downState.getReg(a2))
 
     def addDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states), "current state = %u" % self.currentState()
+
+        self.calculateAdd(a1, a2)
+        return
+
+        state = self.states[self.currentState()]
+        upState = self.states[self.currentState()+1]
+        if not upState.isUndef(a1) and not upState.isUndef(a2):
+            state.setReg(a1, upState.getReg(a1) + upState.getReg(a2))
 
     def subUp(self, a1, a2, a3):
-        pass
+        if a1 == 'eax' and a2 == 'edx':
+            pass
+        self.calculateSub(a1, a2)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if upState.isUndef(a1) and not downState.isUndef(a1) and not downState.isUndef(a2):
+            upState.setReg(a1, downState.getReg(a1) + downState.getReg(a2))
 
     def subDown(self, a1, a2, a3):
-        pass
+        if a1 == 'eax' and a2 == 'edx':
+            pass
+        assert self.currentState() + 1 < len(self.states), "current state = %u" % self.currentState()
+        self.calculateSub(a1, a2)
+        return
+
+        assert self.currentState() + 1 < len(self.states)
+        state = self.states[self.currentState()]
+        upState = self.states[self.currentState()+1]
+        if not upState.isUndef(a1) and not upState.isUndef(a2):
+            state.setReg(a1, upState.getReg(a1) - upState.getReg(a2))
 
     def andUp(self, a1, a2, a3):
-        pass
+        upState = self.states[self.currentState() + 1]
+        upState.makeUndef(a1)
 
     def andDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states)
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+        if not upState.isUndef(a1) and not state.isUndef(a2):
+            state.setReg(a1, upState.getReg(a1) & state.getReg(a2))
+
+    def orUp(self, a1, a2, a3):
+        upState = self.states[self.currentState() + 1]
+        upState.makeUndef(a1)
+
+    def orDown(self, a1, a2, a3):
+        assert self.currentState() + 1 < len(self.states)
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+        if not upState.isUndef(a1) and not state.isUndef(a2):
+            state.setReg(a1, upState.getReg(a1) | state.getReg(a2))
 
     def negUp(self, a1, a2, a3):
-        pass
+        self.calculateNeg(a1)
+        return
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+        if not state.isUndef(a1):
+            upState.setReg(a1, clib.neg(state.getReg(a1)))
 
     def negDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states)
+        self.calculateNeg(a1)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not upState.isUndef(a1) and downState.isUndef(a1):
+            downState.setReg(a1, clib.neg(upState.getReg(a1)))
 
     def rolUp(self, a1, a2, a3):
-        pass
+        self.calculateRol(a1, a2)
+        return 
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not downState.isUndef(a2) and not downState.isUndef(a1):
+            upState.setReg(a1, clib.ror(downState.getReg(a1), downState.getReg(a2)))
 
     def rolDown(self, a1, a2, a3):
-        pass
+        self.calculateRol(a1, a2)
+        return 
+        assert self.currentState() + 1 < len(self.states)
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not upState.isUndef(a2) and not upState.isUndef(a1):
+            downState.setReg(a1, clib.rol(upState.getReg(a1), upState.getReg(a2)))
+
+    def rorUp(self, a1, a2, a3):
+        self.calculateRor(a1, a2)
+        return 
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not downState.isUndef(a2) and not downState.isUndef(a1):
+            upState.setReg(a1, clib.rol(downState.getReg(a1), downState.getReg(a2)))
+
+    def rorDown(self, a1, a2, a3):
+        assert self.currentState() + 1 < len(self.states)
+        self.calculateRor(a1, a2)
+        return 
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not upState.isUndef(a2) and not upState.isUndef(a1):
+            downState.setReg(a1, clib.ror(upState.getReg(a1), upState.getReg(a2)))
 
     def notUp(self, a1, a2, a3):
-        pass
+        self.calculateNot(a1)
+        return
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+        if not state.isUndef(a1):
+            upState.setReg(a1, clib.notc(state.getReg(a1)))
 
     def notDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states)
+        self.calculateNot(a1)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not upState.isUndef(a1) and downState.isUndef(a1):
+            downState.setReg(clib.notc(upState.getReg(a1)))
 
     def incUp(self, a1, a2, a3):
-        pass
+        self.calculateInc(a1)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not downState.isUndef(a1):
+            upState.setReg(a1, downState.getReg(a1) - 1)
 
     def incDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states)
+        self.calculateInc(a1)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not upState.isUndef(a1):
+            downState.setReg(upState.getReg(a1) + 1)
 
     def decUp(self, a1, a2, a3):
-        pass
+        self.calculateDec(a1)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not downState.isUndef(a1):
+            upState.setReg(a1, downState.getReg(a1) + 1)
 
     def decDown(self, a1, a2, a3):
-        pass
+        assert self.currentState() + 1 < len(self.states)
+        self.calculateDec(a1)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not upState.isUndef(a1):
+            downState.setReg(upState.getReg(a1) - 1)
+
+    def xorUp(self, a1, a2, a3):
+        self.calculateXor(a1, a2)
+        return
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+        if not state.isUndef(a1) and not state.isUndef(a2):
+            upState.setReg(a1, clib.xor(state.getReg(a1), state.getReg(a2)))
+
+    def xorDown(self, a1, a2, a3):
+        assert self.currentState() + 1 < len(self.states)
+        self.calculateXor(a1, a2)
+        return
+        downState = self.states[self.currentState()]
+        upState = self.states[self.currentState() + 1]
+        if not upState.isUndef(a1) and not upState.isUndef(a2):
+            downState.setReg(a1, clib.xor(upState.getReg(a1), upState.getReg(a2)))
 
     def leaUp(self, a1, a2, a3):
-        pass
+        self.calculateLea(a1, a2, a3)
+        return
+        upState = self.states[self.currentState() + 1]
+        state = self.states[self.currentState()]
+
+        upState.makeUndef(a1)
+        if a2[1:-1] in state.regs.keys():
+            assert 0, "Not implemented instuction as 'lea eax, [ebx]'"
+        else:
+            m = search(r".*\[([a-z]+)[ \t]*([+-])[ \t]*([a-zA-Z0-9]+)[ \t]*([+-\\*]{0,1})[ \t]*([a-zA-Z0-9]*)\].*", a2)
+            assert m and len(m.groups()) == 5, "bad pattern - %s - %s" % (a2, state.code)
+            #print m.groups()
+            r1 = m.group(1)
+            o1 = m.group(2)
+            r2 = m.group(3)
+            o2 = m.group(4)
+            r3 = m.group(5)
+            if o1 == '+' and o2 == '*':
+                assert r3 != ''
+                assert state.isValue(r3) and state.getReg(r3) > 0, "r3 is not a value"
+                #if state.isUndef(a1):
+                    #return
+                if state.isUndef(r1) and not state.isUndef(r2):
+                    upState.setReg(r1, state.getReg(a1) - state.getReg(r2) * state.getReg(r3))
+                elif state.isUndef(r2) and not state.isUndef(r1):
+                    upState.setReg(r2, (state.getReg(a1) - state.getReg(r1)) / state.getReg(r3))
+
+                ########## not tested ####################
+                if state.isUndef(a1) and not state.isUndef(r1) and not state.isUndef(r2):
+                    self.currentCode += 1
+                    self.upFlag = False
+                    #####################################
+            elif o1 == '+' and o2 == '':
+                assert r3 == '', "not a 'lea a1, [r1+r2]'"
+                if state.isUndef(r1) and not state.isUndef(r2) and not state.isUndef(a1):
+                    upState.setReg(r1, state.getReg(a1) - state.getReg(r2))
+                elif state.isUndef(r2) and not state.isUndef(r1) and not state.isUndef(a1):
+                    upState.setReg(r2, state.getReg(a1) - state.getReg(r1))
+
+                ########## not tested ####################
+                if state.isUndef(a1) and not state.isUndef(r1) and not state.isUndef(r2):
+                    self.currentCode += 1
+                    self.upFlag = False
+                    #####################################
+            elif o1 == '-' and o2 == '':
+                assert r3 == '', "not a 'lea a1, [r1+r2]'"
+                if state.isUndef(r1) and not state.isUndef(r2) and not state.isUndef(a1):
+                    upState.setReg(r1, (state.getReg(a1) + state.getReg(r2)) & 0xffffffff)
+                elif state.isUndef(r2) and not state.isUndef(r1) and not state.isUndef(a1):
+                    upState.setReg(r2, (state.getReg(a1) + state.getReg(r1)) & 0xffffffff)
+
+                ########## not tested ####################
+                if state.isUndef(a1) and not state.isUndef(r1) and not state.isUndef(r2):
+                    self.currentCode += 1
+                    self.upFlag = False
+                    #####################################
+
+            else:
+                raise Exception("not implemented instruction - lea %s, %s" % (a1, a2))
 
     def leaDown(self, a1, a2, a3):
+        self.calculateLea(a1, a2, a3)
+        return
+        upState = self.states[self.currentState() + 1]
+        downState = self.states[self.currentState()]
+
+        if a2[1:-1] in downState.regs.keys():
+            assert 0, "Not implemented instuction as 'lea eax, [ebx]'"
+        else:
+            m = search(r".*\[([a-z]+)[ \t]*([+-])[ \t]*([a-zA-Z0-9]+)[ \t]*([+-\\*]{0,1})[ \t]*([a-zA-Z0-9]*)\].*", a2)
+            assert m and len(m.groups()) == 5, "bad pattern - %s" % a2
+            #print m.groups()
+            r1 = m.group(1)
+            o1 = m.group(2)
+            r2 = m.group(3)
+            o2 = m.group(4)
+            r3 = m.group(5)
+            if o1 == '+' and o2 == '*':
+                assert r3 != ''
+                assert downState.isValue(r3) and downState.getReg(r3) > 0, "r3 is not a value"
+                if downState.isUndef(a1) and not downState.isUndef(r1) and not downState.isUndef(r2):
+                    downState.setReg(a1, downState.getReg(r1) + downState.getReg(r2) * downState(r3))
+            elif o1 == '+' and o2 == '':
+                assert r3 == '', "not a 'lea a1, [r1+r2]'"
+                if downState.isUndef(a1) and not downState.isUndef(r1) and not downState.isUndef(r2):
+                    downState.setReg(a1, downState.getReg(r1) + downState.getReg(r2))
+            elif o1 == '-' and o2 == '':
+                assert r3 == '', "not a 'lea a1, [r1-r2]'"
+                if downState.isUndef(a1) and not downState.isUndef(r1) and not downState.isUndef(r2):
+                    downState.setReg(a1, downState.getReg(r1) - downState.getReg(r2))
+            else:
+                raise Exception("not implemented instruction - lea %s, %s" % (a1, a2))
         pass
 
+    
 
 def processMov(arg1, arg2, arg3):
     return "mov " + arg2 + ", " + arg1
@@ -398,12 +1098,34 @@ def processLine(lines, i):
     # return ""
 
 
-fin = open(FILE, "r")
+fin = open(FILE, "r") 
 fout = open(FILE_OUT, "w+")
 
 lines = fin.readlines()
-st = State({"eax": 16, "ebx" : 16, "ecx" : 16, "edx" : 3, "edi": 3, "esi" : 3, "ebp": 16, "esp" :8})
+st = State( {
+    "eax" : 0x6BBE3F66 ,
+    "ebx" : 0x898071C0 ,
+    "ecx" : 0x003AF940 ,
+    "edx" : 0x5E49337A ,
+    "esi" : 0x6532BD51 ,
+    "edi" : 0xAABA981C ,
+    "ebp" : 0x003AF784 ,
+    "esp" : 0x003AF7AC ,
+    "[ebp+var_1C]" : 0x003AF944,
+    "[ebp+var_18]" : 0x003AF940,
+    "[ebp+var_14]" : 0x55202A5F,
+    "[ebp+var_10]" : 0x2bcd98FF,
+    #"[ebp+var_C]" : 0x6C45DEF2,
+    "[ebp+var_C]" : 0x3958E332,
+    #"[ebp+var_8]" : 0x785CE358,
+    "[ebp+var_8]" : 0xFEAD7AB9,
+    "[ebp+var_4]" : 0xBBAB5B70,
+    "[ebp+arg_0]" : 0x003AF948,
+    "[ebp+arg_4]" : 0x003AF948
+    })
+
 stm = StateMachine(len(lines), st)
+print st
 
 outLines = []
 for i in range(len(lines) - 1, -1, -1):
@@ -416,15 +1138,29 @@ while 1:
         print stm.states[-1]
         break
 
-    print lines[cur]
+    stm.states[len(lines) - 1 - cur].code = lines[cur]
+    #print lines[cur]
     m = search(REG, lines[cur])
     if m == None:
-        print "ERROR. Life is shit"
+        print "ERROR. Life is shit, str on %u" %cur
     op, arg1, arg2 = m.group(1), m.group(2), m.group(3)
+    if stm.states[stm.currentState()].cmd[0] == '':
+        stm.states[stm.currentState()].cmd = (op, arg1, arg2, '')
 
-    stm.step(op, arg1, arg2, '')
+    if cur == 13983:
+        pass
+
+    arg3 = ''
+    if op == 'imul':
+        arg3 = '-2'
+
+    stm.step(lines[cur-1], op, arg1, arg2, arg3)
 # for i in range(len(outLines)):
 # s = processLine(outLines[i])
+for i in range(len(stm.states) - 1, -1, -1):
+    fout.write(stm.states[i].code)
+    fout.write(str(stm.states[i]) + '\n')
+
 
 fout.close()
 fin.close()

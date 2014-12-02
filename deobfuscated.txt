@@ -1,3 +1,22 @@
+push		ebp
+mov		ebp, esp
+sub		esp, 1Ch
+mov		eax, ecx
+push		ebx
+mov		ebx, edx
+mov		[ebp+var_18], eax
+push		esi
+mov		esi, [eax]
+mov		eax, [ebp+arg_4]
+mov		[ebp+var_1C], ebx
+push		edi
+mov		edi, [ebp+arg_0]
+mov		eax, [eax]
+mov		edx, eax
+sub		edx, [ebx]
+mov		[ebp+var_C], edx
+mov		edx, eax
+mov		edi, [edi]
 sub		edi, 141A441Ch
 mov		ecx, esi
 rol		edx, cl
@@ -10003,7 +10022,7 @@ add		edi, ebx
 rol		edx, cl
 not		esi
 ror		ebx, 0Eh
-imul	eax, edi, -2
+imul		eax, edi, -2
 add		ebx, edi
 rol		edx, 4
 add		esi, edi
@@ -13992,3 +14011,19 @@ mov		eax, esi
 sub		eax, edi
 xor		eax, ebx
 add		eax, 37C5EA71h
+mov		[ecx], eax
+mov		eax, edx
+mov		ecx, ebx
+ror		eax, cl
+mov		ecx, [ebp+var_1C]
+add		eax, esi
+mov		[ecx], eax
+mov		eax, [ebp+arg_0]
+mov		[eax], edi
+mov		eax, [ebp+arg_4]
+pop		edi
+pop		esi
+mov		[eax], ebx
+pop		ebx
+mov		esp, ebp
+pop		ebp

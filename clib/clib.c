@@ -26,6 +26,14 @@ static PyMethodDef ClibMethods[] = {
         "Add command"},		
 	{"sub", clib_sub, METH_VARARGS,
         "Sub command"},		
+	{"inc", clib_inc, METH_VARARGS,
+        "Inc command"},		
+	{"dec", clib_dec, METH_VARARGS,
+        "Dec command"},		
+	{"imul", clib_imul, METH_VARARGS,
+        "Imul command"},		
+	{"div", clib_div, METH_VARARGS,
+        "Div command"},		
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
@@ -161,7 +169,47 @@ static PyObject *clib_sub(PyObject *self, PyObject *args)
     if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
         return NULL;
 
-    return Py_BuildValue("I", reg1 - reg2);
+    return Py_BuildValue("I", (reg1 - reg2));
+}
+
+static PyObject *clib_inc(PyObject *self, PyObject *args)
+{
+    unsigned int reg = 0;
+
+    if (!PyArg_ParseTuple(args, "I", &reg))
+        return NULL;
+
+    return Py_BuildValue("I", reg + 1);
+}
+
+static PyObject *clib_dec(PyObject *self, PyObject *args)
+{
+    unsigned int reg = 0;
+
+    if (!PyArg_ParseTuple(args, "I", &reg))
+        return NULL;
+
+    return Py_BuildValue("I", reg - 1);
+}
+
+static PyObject *clib_imul(PyObject *self, PyObject *args)
+{
+    unsigned int reg1 = 0, reg2 = 0;
+
+    if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
+        return NULL;
+
+    return Py_BuildValue("I", (reg1 * reg2));
+}
+
+static PyObject *clib_div(PyObject *self, PyObject *args)
+{
+    unsigned int reg1 = 0, reg2 = 0;
+
+    if (!PyArg_ParseTuple(args, "II", &reg1, &reg2))
+        return NULL;
+
+    return Py_BuildValue("I", (reg1 / reg2));
 }
 
 static PyObject *ClibError;

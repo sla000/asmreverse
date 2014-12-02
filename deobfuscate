@@ -1,0 +1,561 @@
+#!/usr/bin/python
+
+from re import *
+from patlib import  *
+
+REG = r"([a-z]+)[ \t]+([a-zA-Z0-9_+\[\]]+)[, \t]*([a-zA-Z0-9\\*\-+_\[\]]*)"
+
+FILE_IN="obfuscated.txt"
+FILE_OUT="deobfuscated.txt"
+
+def deleteEmptyLines(lines):
+    i = len(lines) - 1
+    while lines[i] in ['', '\n', '\r', '\r\n', '\n\r']:
+        lines.remove(lines[i])
+        i -= 1
+    return lines
+
+
+def findUp(parsedLines, currentPosition, what, where):
+    assert currentPosition > 0 and len(lines) > currentPosition
+    i = currentPosition
+    while i >= 0:
+        i -= 1
+        if parsedLines[i][where] == what:
+            return i
+    return -1
+
+def findDown(parsedLines, currentPosition, what, where):
+    assert currentPosition >= 0 and len(parsedLines) > currentPosition, "currentPosition = %u, len = %u" % (currentPosition, len(parsedLines))
+    i = currentPosition
+    while i < len(parsedLines) - 1:
+        i += 1
+        assert i < len(parsedLines), "i: %u len: %u" % (i, len(parsedLines))
+        if parsedLines[i][where] == what:
+            return i
+    return -1
+
+def findCommandUp(parsedLines, currentPosition, command):
+    return findUp(parsedLines, currentPosition, command, 0)
+        
+def findCommandDown(parsedLines, currentPosition, command):
+    return findDown(parsedLines, currentPosition, command, 0)
+
+def findArgUp(parsedLines, currentPosition, arg, num):
+    return findUp(parsedLines, currentPosition, arg, num)
+
+def findArgDown(parsedLines, currentPosition, arg, num):
+    return findDown(parsedLines, currentPosition, arg, num)
+
+    
+def getParserLines(lines): 
+    parsedLines = [] 
+    cur = 0
+    while cur < len(lines) - 1: #TODO: -1 to delete
+        m = search(REG, lines[cur])
+        if m:
+            assert m, "on #%u: '%s'" % (cur + 1, lines[cur].strip())
+            op, arg1, arg2 = m.group(1), m.group(2), m.group(3)
+            parsedLines.append((op, arg1, arg2))
+            cur += 1
+        if search(r".*nop.*", lines[cur]):
+            parsedLines.append(('nop', '', ''))
+            cur += 1
+            
+    return parsedLines
+
+fin = open(FILE_IN, "r")
+lines = deleteEmptyLines(fin.readlines())
+fin.close()
+
+parsedLines = getParserLines(lines)
+########## main
+
+isVariable = lambda v: len(v) >= 2 and v[0] == 'a' and v[1].isdigit()
+
+
+def resolveVariable(v, arg, pat):
+    out = []
+    for op, a1, a2 in pat:
+        if v == a1:
+            a1 = arg
+        if v == a2:
+            a2 = arg
+        out.append((op, a1, a2))
+    return out
+
+def checkRegisterIsOnHisPlace(reg, i, nums):
+    if i in nums:
+        return True
+    return False
+
+def checkRegisterConst(reg, parsedLines, posfrom, posto, nums):
+    assert posfrom <= posto <= len(lines), 'to: %u from : %u len: %u' %(posfrom, posto, len(lines))
+    for i in range(posfrom, posto):
+        if (parsedLines[i])[1] == reg:# and i not in nums: #not checkRegisterIsOnHisPlace(reg, i, nums):
+            print parsedLines[i]
+            return False
+    return True
+
+
+def getAllRegs(parsedPat):
+    regs = []
+    for op, a1, a2 in parsedPat:
+        if a1 not in regs and not isVariable(a1):
+            regs.append(a1)
+        if a2 not in regs and not isVariable(a2):
+            regs.append(a2)
+    return regs
+
+def checkRegisterConstAtEnd(parsedLines, parsedPat, nums):
+    return True
+    lnums = list(nums)
+    lnums.sort()
+    for i in range(nums[0], nums[-1]):
+        if i not in lnums:
+            op, a1, a2 = parsedLines[i]
+            allRegs = getAllRegs(parsedPat)
+            if a1 in allRegs:
+                return False
+    return True
+
+
+
+def findNextValidCommand(parsedLines, parsedPat, prevPosition, endpos):
+    npos = prevPosition
+    for i in range(prevPosition, endpos, -1):
+        op, a1, a2 = parsedLines[i]
+        for pop, pa1, pa2 in parsedPat:
+            if pop == op:
+                if not isVariable(pa1) and not isVariable(pa2):
+                    if pa1 == a1 and pa2 == a2:
+                        return i
+                if not isVariable(pa1) and isVariable(pa2):
+                    if pa1 == a1:
+                        return i
+                if isVariable(pa1) and not isVariable(pa2):
+                    if pa2 == a2:
+                        return i
+    return -1
+
+
+def checkForCommandsOrder(parsedLines, parsedPat, prevPosition, endpos):
+    return findNextValidCommand(parsedLines, parsedPat, prevPosition, endpos) == -1
+
+def argMatch(rexp, arg):
+    if rexp == '*':
+        return True
+    return arg == rexp
+
+def findCommandDownWithArgs(parsedLines, pos, op, a1, a2):
+    ar1 = ar2 = 0
+    while pos != -1:
+        pos = findCommandDown(parsedLines, pos, op)
+        if pos != -1:
+            if argMatch(a1, parsedLines[pos][1]) and argMatch(a2, parsedLines[pos][2]):
+                return pos
+    return -1
+                    
+
+def findLoadCommandDown(parsedLines, pos, a1, a2):
+    p1 = findCommandDownWithArgs(parsedLines, pos, 'mov', a1, a2)
+    p2 = findCommandDownWithArgs(parsedLines, pos, 'lea', a1, a2)
+
+    pos = 0 
+    if p1 == -1 and p2 != -1:
+        pos = p2
+    elif p2 == -1 and p1 != -1:
+        pos = p1
+    else:
+        pos = min(p1, p2)
+    return pos
+
+def checkRegChange(parsedLines, i, reg):
+    op, a1, a2 = parsedLines[i]
+    return a1 == reg
+
+def regInUse(a1, a2, reg):
+    if reg == 'ecx' and a2 == 'cl':
+        return True 
+    if search(".*%s.*" %reg, a2):
+        return True
+    if search(r"\[%s\]" % reg, a1):
+        print "finded a1 = %s, reg = %s" % (a1, reg)
+        return True
+    #m = search(r"\[\(e..\)\]", reg:
+    return False
+
+
+def findLastUsage(parsedLines, start, end, reg):
+    assert parsedLines[end][0] in [ 'mov', 'lea' ]
+    for i in range(end-1, start-1, -1):
+        op, a1, a2 = parsedLines[i]
+        if regInUse(a1, a2, reg):
+            return i
+    return -1
+
+def deleteUnusedCommandsStep(parsedLines, start, end, arg1):
+    count = 0
+    lastUsage = findLastUsage(parsedLines, start, end, arg1)
+    if lastUsage != -1:
+        start = lastUsage + 1
+    op, a1, a2 = parsedLines[end]
+    assert op in [ 'mov', 'lea' ]
+    if regInUse(a1, a2, a1):
+        return 0
+
+    for i in range(start, end):
+        op, a1, a2 = parsedLines[i]
+        if arg1 == a2:
+            pass
+        assert a2 != arg1, 'invalid findLastUsage func'
+        if a1 == arg1:
+            parsedLines[i] = ('nop', '', '')
+            count += 1
+    if lastUsage == -1:
+        assert parsedLines[start-1][0] in [ 'mov', 'lea' ]
+        parsedLines[start-1] = ('nop', '', '')
+
+    return count
+
+def deleteUnusedCommands(parsedLines):
+    cnt = 0
+    count = 0
+    pos = findLoadCommandDown(parsedLines, 0, '*', '*')
+    assert parsedLines[pos][0] == 'mov'
+    pos = 0
+    spos = pos
+    while 1:
+        assert spos < len(parsedLines)
+        spos = findLoadCommandDown(parsedLines, spos, '*', '*')
+        if spos == -1:
+            break
+        arg1 = parsedLines[spos][1]
+        if search(r"\[e..\]", arg1):
+            print arg1
+            continue
+        epos = findLoadCommandDown(parsedLines, spos+1, arg1, '*')
+        assert epos < len(parsedLines)
+        if epos == -1:
+            #spos += 1
+            continue
+            
+        assert parsedLines[epos][1] == arg1 and parsedLines[epos][2] != parsedLines[spos][1] , "BUG1"
+
+        # [ spos +1, epos - 1 ]
+        if cnt > 2426:
+            pass
+        count += deleteUnusedCommandsStep(parsedLines, spos+1, epos, arg1)
+        cnt += 1
+        #if cnt > 2427: 
+            #break
+        #print 'we are in %u, %u' % (spos, epos)
+        #spos += 1
+    return count
+
+def findPattern(rep, pat, parsedLines):
+
+
+    opcodeOn = lambda i, parsed: parsed[i][0]
+    arg1On = lambda i, parsed: parsed[i][1]
+    arg2On = lambda i, parsed: parsed[i][2]
+    RepCount =0 
+
+
+    pos = 0
+    while 1:        
+        nums = []
+
+        patternLines = deleteEmptyLines(pat.split(';'))
+        patternLines = map (lambda x: x.strip(), patternLines)
+        parsedPat = getParserLines(patternLines)
+        parsedPat.reverse()
+
+        pos = findCommandDown(parsedLines, pos, opcodeOn(0, parsedPat))
+        if pos == -1:
+            return []
+
+        replaceLines = deleteEmptyLines(rep.split(';'))
+        replaceLines = map (lambda x: x.strip(), replaceLines)
+        parsedRep = getParserLines(replaceLines)
+
+        nums.append(pos)
+
+        ppos = 0
+        npos = pos
+        while ppos < len(parsedPat) - 1:
+
+            a1 = arg1On(ppos, parsedPat)
+            a2 = arg2On(ppos, parsedPat)
+
+            arg1 = arg1On(npos, parsedLines)
+            arg2 = arg2On(npos, parsedLines)
+
+            if isVariable(a1):
+                parsedPat = resolveVariable(a1, arg1, parsedPat)
+                parsedRep = resolveVariable(a1, arg1, parsedRep)
+                #print 'parsed rep = '
+                #print parsedRep
+            if isVariable(a2):
+                parsedPat = resolveVariable(a2, arg2, parsedPat)
+                parsedRep = resolveVariable(a2, arg2, parsedRep)
+                #print 'parsed rep = '
+                #print parsedRep
+
+            ppos += 1
+
+            prevPosition = npos
+
+            finded = 0
+            while npos != -1:
+                npos = findCommandUp(parsedLines, npos, opcodeOn(ppos, parsedPat))
+
+                if not isVariable(arg1On(ppos, parsedPat)) and not isVariable(arg2On(ppos, parsedPat)):
+                    if arg1On(npos, parsedLines) == arg1On(ppos, parsedPat) and \
+                            arg2On(npos, parsedLines) == arg2On(ppos, parsedPat):
+                        finded = 1
+                        break
+
+                if not isVariable(arg2On(ppos, parsedPat)) and isVariable(arg1On(ppos, parsedPat)):
+                    if arg2On(npos, parsedLines) == arg2On(ppos, parsedPat):
+                        finded =1 
+                        break
+
+                if not isVariable(arg1On(ppos, parsedPat)) and isVariable(arg2On(ppos, parsedPat)):
+                    if arg1On(npos, parsedLines) == arg1On(ppos, parsedPat):
+                        finded =1 
+                        break
+
+            if finded == 0:
+                print 'ebala' 
+                print npos, ppos 
+                break
+
+            if not checkForCommandsOrder(parsedLines, parsedPat, prevPosition - 1, npos):
+                break
+
+
+
+            #assert not isVariable(arg2On(ppos, parsedPat)), arg2On(ppos, parsedPat)
+
+            #assert 
+            #assert arg2On(npos, parsedLines) == arg2On(ppos, parsedPat), arg2On(ppos, parsedPat)
+            nums.append(npos)
+
+
+            
+            if not checkRegisterConst(arg1On(ppos, parsedPat), parsedLines, npos+1, prevPosition, nums):
+                break
+                #assert 0, str(ppos) + ' ' + arg1On(ppos, parsedPat)+ ' %u %u ' % (npos, prevPosition) + ' ' + opcodeOn(ppos, parsedPat)
+
+            if arg2On(ppos, parsedPat) != '' and not checkRegisterConst(arg2On(ppos, parsedPat), parsedLines, npos+1, prevPosition, nums):
+                break
+                #assert 0, str(ppos) + ' ' + arg2On(ppos, parsedPat)+ ' %u %u ' % (npos, prevPosition) + ' ' + opcodeOn(ppos, parsedPat)
+        
+            if ppos == len(parsedPat) - 1:
+                nums.sort()
+                print 'replaced'
+                assert len(parsedPat) >= len(parsedRep)
+                assert len(nums) == len(parsedPat)
+                assert nums[-1] < len(parsedLines), "nums[-1]: %u, len: %u" % (nums[-1], len(parsedLines))
+                #print parsedRep
+                #print nums
+
+                breakIt = 0
+                for op, a1, a2 in parsedRep:
+                    if isVariable(a1) or isVariable(a2):
+                        breakIt =1
+                        break
+                if breakIt == 1:
+                    break
+                if not checkRegisterConstAtEnd(parsedLines, parsedPat, nums):
+                    break
+
+
+
+
+                for i in range(len(nums)):
+                    if i < len(parsedRep):
+                        parsedLines[nums[i]] = parsedRep[i]
+                    else:
+                        parsedLines[nums[i]] = ('nop', '', '')
+                
+                RepCount += 1
+                #if RepCount == 88:
+                    #return nums
+                #for i in len(nums:
+                    #parsedLines[num] = parsedRep[num]
+
+
+
+
+                
+
+
+
+    #print parsedPat 
+    
+for pat, rep in PATTERNS:
+    print findPattern(rep, pat, parsedLines)
+
+it = 0
+while deleteUnusedCommands(parsedLines) != 0:
+    it += 1
+    print "iteration = " + str(it)
+#print findPattern(replaceWith, pattern, parsedLines)
+#print findPattern(replaceWith1, pattern1, parsedLines)
+#print findPattern(replaceWith2, pattern2, parsedLines)
+#print findPattern(replaceWith3, pattern3, parsedLines)
+#print findPattern(replaceWith4, pattern4, parsedLines)
+#print findPattern(replaceWith5, pattern5, parsedLines)
+#print findPattern(replaceWith6, pattern6, parsedLines)
+#print findPattern(replaceWith7, pattern7, parsedLines)
+
+
+'''
+pos = 0
+while 1:
+    pos = findCommandDown(parsedLines, pos, 'or')
+    if pos == -1:
+        break
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+pos = 0
+while 1:
+    curcmd = ''
+    pos = findCommandDown(parsedLines, pos, 'or')
+    indxs = [ pos ]
+    if pos == -1:
+        break
+    opcodeOn = lambda i: parsedLines[i][0]
+    arg1On = lambda i: parsedLines[i][1]
+    arg2On = lambda i: parsedLines[i][2]
+
+    op, a1, a2 = parsedLines[pos]
+    shpos1 = findArgUp(parsedLines, pos, a1, 1)
+    indxs.append(shpos1)
+    assert shpos1 != -1
+    assert opcodeOn(shpos1) in [ 'shr', 'shl' ], "#%i" % (shpos1+1)
+    shpos2 = findArgUp(parsedLines, pos, a2, 1)
+    assert shpos2 != -1
+    assert opcodeOn(shpos2) in [ 'shr', 'shl' ], "#%i" % (shpos2+1)
+    assert opcodeOn(shpos1) != opcodeOn(shpos2)
+    indxs.append(shpos2)
+
+    # handle shpos1 
+    andpos1 = findArgUp(parsedLines, shpos1, 'ecx', 1)
+    assert andpos1 != -1 and opcodeOn(andpos1) == 'and' and arg2On(andpos1) == '1Fh'
+    nmpos1 = findArgUp(parsedLines, andpos1, 'ecx', 1)
+    assert nmpos1 != -1
+    movpos1 = -1
+    negpos1 = -1
+    if opcodeOn(nmpos1) == 'mov':
+        movpos1 = nmpos1
+    elif opcodeOn(nmpos1) == 'neg':
+        negpos1 = nmpos1
+        movpos1 = findArgUp(parsedLines, negpos1, 'ecx', 1)
+        assert movpos1 != -1
+    else:
+        raise Exception("BUG1")
+
+    assert opcodeOn(movpos1) == 'mov'
+    ecxIsEqual1 = arg2On(movpos1)
+
+    # handle shpos2
+    andpos2 = findArgUp(parsedLines, shpos2, 'ecx', 1)
+    assert andpos2 != -1 and opcodeOn(andpos2) == 'and' and arg2On(andpos2) == '1Fh'
+
+
+    nmpos2 = findArgUp(parsedLines, andpos2, 'ecx', 1)
+    assert nmpos2 != -1
+    movpos2 = -1
+    negpos2 = -1
+    if opcodeOn(nmpos2) == 'mov':
+        movpos2 = nmpos2
+    elif opcodeOn(nmpos2) == 'neg':
+        negpos2 = nmpos2
+        movpos2 = findArgUp(parsedLines, negpos2, 'ecx', 1)
+        assert movpos2 != -1
+    else:
+        raise Exception("BUG2")
+
+    assert opcodeOn(movpos2) == 'mov'
+    ecxIsEqual2 = arg2On(movpos2)
+
+    assert negpos1 != negpos2 and -1 in [ negpos1, negpos2 ]
+
+    indxs.append(andpos1)
+    indxs.append(andpos2)
+
+    indxs.append(movpos1)
+    indxs.append(movpos2)
+
+    indxs.append(max(movpos1, movpos2)) # last movpos 
+    indxs.append(max(negpos1, negpos2)) # negpos which is not -1
+
+    print indxs
+
+    assert ecxIsEqual1 == ecxIsEqual2, "This is happend on %u %u lines" % (movpos1 + 1, movpos2 + 1)
+'''
+
+
+
+fout = open(FILE_OUT, "w+")
+for op, a1, a2 in parsedLines:
+    line = op
+    if a1 != '':
+        line += '\t\t' + a1
+    if a2 != '':
+        line += ', ' + a2
+    line += '\n'
+
+    fout.write(line)
+fout.close()

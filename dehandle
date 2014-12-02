@@ -1,0 +1,59 @@
+#!/bin/bash
+
+
+FILE_OUT="deobfuscated.txt"
+FILE_OUT_CPP="ObfuscateFunction.cpp"
+
+sed -i 's/^or\(.*0FFFFFFFFh\)/mov\1/g' $FILE_OUT
+#sed -i 's/\[ebp/dword ptr [ebp/g' $FILE_OUT
+
+sed -i 's/\(^imul.*$\)/\1, -2/g' $FILE_OUT
+sed -i '/^and.*/d' $FILE_OUT
+
+
+touch $FILE_OUT_CPP
+
+echo "#include \"stdafx.h\"" > $FILE_OUT_CPP
+echo "#include \"ObfuscateFunction.h\"" >> $FILE_OUT_CPP
+echo "" >> $FILE_OUT_CPP
+echo "#define var_1C -1Ch" >> $FILE_OUT_CPP
+echo "#define var_18 -18h" >> $FILE_OUT_CPP
+echo "#define var_14 -14h" >> $FILE_OUT_CPP
+echo "#define var_10 -10h" >> $FILE_OUT_CPP
+echo "#define var_C -0Ch" >> $FILE_OUT_CPP
+echo "#define var_8 -8" >> $FILE_OUT_CPP
+echo "#define var_4 -4" >> $FILE_OUT_CPP
+echo "#define arg_0  8" >> $FILE_OUT_CPP
+echo "#define arg_4  0Ch" >> $FILE_OUT_CPP
+echo "" >> $FILE_OUT_CPP
+echo "__declspec( naked ) int ObfuscatedFunc()" >> $FILE_OUT_CPP
+echo "{" >> $FILE_OUT_CPP
+echo "	__asm" >> $FILE_OUT_CPP
+echo "	{" >> $FILE_OUT_CPP
+
+cat $FILE_OUT >> $FILE_OUT_CPP
+echo "retn" >> $FILE_OUT_CPP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo "	};" >> $FILE_OUT_CPP
+echo "};" >> $FILE_OUT_CPP

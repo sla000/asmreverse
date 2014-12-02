@@ -1,0 +1,7 @@
+#!/usr/bin/python
+from re import search
+
+
+a2  = "lea     edi, [ebx+edi*2]"
+m = search(r".*\[([a-z]+)[ \t]*([+-])[ \t]*([a-zA-Z0-9]+)[ \t]*([+-\\*]{0,1})[ \t]*([a-zA-Z0-9]*)\].*", a2)
+print m.groups()

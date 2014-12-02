@@ -19,3 +19,9 @@ static PyObject *clib_and(PyObject *self, PyObject *args);
 
 static PyObject *clib_add(PyObject *self, PyObject *args);
 static PyObject *clib_sub(PyObject *self, PyObject *args);
+
+static PyObject *clib_inc(PyObject *self, PyObject *args);
+static PyObject *clib_dec(PyObject *self, PyObject *args);
+
+static PyObject *clib_imul(PyObject *self, PyObject *args);
+static PyObject *clib_div(PyObject *self, PyObject *args);
